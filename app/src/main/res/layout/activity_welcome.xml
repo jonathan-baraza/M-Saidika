@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".WelcomeActivity">
 
 
     <TextView
@@ -27,7 +27,17 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Mike Mutuma and Jonathan Baraza"
-        android:layout_below="@+id/logoImage"/>
+        android:layout_below="@+id/logoImage"
+        android:id="@+id/txt2"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Proceed"
+        android:layout_below="@id/txt2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="false"
+        android:id="@+id/btnProceed"/>
 
 
 </RelativeLayout>
