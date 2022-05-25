@@ -91,14 +91,14 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String fNameTxt = fName.getText().toString();
-                String lNameTxt = lName.getText().toString();
-                String emailTxt = email.getText().toString();
-                String phoneTxt = phone.getText().toString();
-                String admNoTxt = admNo.getText().toString();
-                String idNoTxt = idNo.getText().toString();
-                String passwordTxt = password.getText().toString();
-                String confirmPasswordTxt = confirmPassword.getText().toString();
+                String fNameTxt = fName.getText().toString().trim();
+                String lNameTxt = lName.getText().toString().trim();
+                String emailTxt = email.getText().toString().trim();
+                String phoneTxt = phone.getText().toString().trim();
+                String admNoTxt = admNo.getText().toString().trim();
+                String idNoTxt = idNo.getText().toString().trim();
+                String passwordTxt = password.getText().toString().trim();
+                String confirmPasswordTxt = confirmPassword.getText().toString().trim();
 
                 if(TextUtils.isEmpty(fNameTxt)){
                     builder.setMessage("You must enter first name");
