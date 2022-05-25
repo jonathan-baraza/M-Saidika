@@ -5,29 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to Msaidika"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:id="@+id/welcomeTxt"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo"
-        android:layout_below="@+id/welcomeTxt"
-        android:id="@+id/logoImage"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Mike Mutuma and Jonathan Baraza"
-        android:layout_below="@+id/logoImage"/>
+        android:layout_centerInParent="true"
+        android:text="Hello there..."/>
 
 
 </RelativeLayout>
