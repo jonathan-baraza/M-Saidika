@@ -125,7 +125,16 @@ public class RegisterActivity extends AppCompatActivity {
                     builder.setMessage("You must confirm password");
                     builder.show();
                 }else{
-                    Toast.makeText(RegisterActivity.this, "Register", Toast.LENGTH_SHORT).show();
+                    if (passwordTxt.length()<6){
+                        builder.setMessage("Password must be greater than 6 characters");
+                        builder.show();
+                    }else if (!passwordTxt.equals(confirmPasswordTxt)){
+                        builder.setMessage("Confirm password does not match password");
+                        builder.show();
+                    }else{
+
+                    }
+
                 }
 
             }
