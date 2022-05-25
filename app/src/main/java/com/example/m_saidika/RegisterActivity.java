@@ -128,7 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
                     builder.setMessage("You must confirm password");
                     builder.show();
                 }else{
-                    if(!Pattern.compile("/^[A-Za-z]+$/").matcher(fNameTxt).matches()){
+                    if(!Pattern.compile(fNameTxt).matcher("/^[A-Za-z]+$/").matches()){
                         builder.setMessage("Only characters allowed in your first name");
                         builder.show();
                     }
