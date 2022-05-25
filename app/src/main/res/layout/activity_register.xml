@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Phone Number"
+                android:hint="Phone Number i.e 254..."
                 android:drawableLeft="@drawable/ic_phone"
                 android:drawablePadding="10dp"
                 android:textSize="14dp"
