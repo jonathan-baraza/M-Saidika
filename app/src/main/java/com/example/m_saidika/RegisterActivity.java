@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -131,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
                         builder.setMessage("Only characters allowed in your first name");
                         builder.show();
                     }
-                    else if(!isValidName(fNameTxt)){
+                    else if(!isValidName(lNameTxt)){
                         builder.setMessage("Only characters allowed in your last name");
                         builder.show();
                     }
@@ -160,7 +161,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean isValidName(String target) {
-        return Pattern.compile("/^[A-Za-z]+$/").matcher(target).matches();
+        Pattern p = Pattern.compile("/^[A-Za-z]+$/");
+        Matcher m = p.matcher(target);
+        boolean b = m.matches();
+        return b;
+//        return Pattern.compile("/^[A-Za-z]+$/").matcher(target).matches();
     }
     public boolean isValidEmail(String target) {
         return Pattern.compile("/^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/").matcher(target).matches();
