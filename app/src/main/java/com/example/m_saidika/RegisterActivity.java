@@ -28,9 +28,6 @@ public class RegisterActivity extends AppCompatActivity {
     public AlertDialog.Builder builder;
 
 
-    public Pattern NAME_PATTERN;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,14 +161,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean isValidName(String target) {
-//        Pattern p = Pattern.compile("^[A-Za-z]+$");
-//        Matcher m = p.matcher(target);
-//        boolean b = m.matches();
-//        return b;
+
         return Pattern.compile("^[A-Za-z]+$").matcher(target).matches();
     }
     public boolean isValidEmail(String target) {
-        return Pattern.compile("/^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/").matcher(target).matches();
+        return Pattern.compile("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$").matcher(target).matches();
     }
 
     private void showResidentDetails(EditText admNo, EditText idNo) {
