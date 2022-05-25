@@ -138,6 +138,9 @@ public class RegisterActivity extends AppCompatActivity {
                     else if(!isValidEmail(emailTxt)){
                         builder.setMessage("Invalid email format");
                         builder.show();
+                    }else if (residentButton.isChecked() && idNo.length()<6){
+                        builder.setMessage("ID number must be greater than 6 characters");
+                        builder.show();
                     }
                     else if (passwordTxt.length()<6){
                         builder.setMessage("Password must be greater than 6 characters");
