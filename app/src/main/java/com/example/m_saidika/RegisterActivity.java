@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class RegisterActivity extends AppCompatActivity {
 
     public EditText fName, lName, email, phone, password, confirmPassword, admNo, idNo;
@@ -26,6 +27,8 @@ public class RegisterActivity extends AppCompatActivity {
     public RadioButton studentButton, residentButton;
     public Button btnRegister;
     public AlertDialog.Builder builder;
+    public InputValidation inputValidation;
+
 
 
     @Override
@@ -128,15 +131,15 @@ public class RegisterActivity extends AppCompatActivity {
                     builder.setMessage("You must confirm password");
                     builder.show();
                 }else{
-                    if(!isValidName(fNameTxt)){
+                    if(!inputValidation.isValidName(fNameTxt)){
                         builder.setMessage("Only characters allowed in your first name");
                         builder.show();
                     }
-                    else if(!isValidName(lNameTxt)){
+                    else if(!inputValidation.isValidName(lNameTxt)){
                         builder.setMessage("Only characters allowed in your last name");
                         builder.show();
                     }
-                    else if(!isValidEmail(emailTxt)){
+                    else if(!inputValidation.isValidEmail(emailTxt)){
                         builder.setMessage("Invalid email format");
                         builder.show();
                     }else if (residentButton.isChecked() && idNo.length()<6){
@@ -160,13 +163,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public boolean isValidName(String target) {
-
-        return Pattern.compile("^[A-Za-z]+$").matcher(target).matches();
-    }
-    public boolean isValidEmail(String target) {
-        return Pattern.compile("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$").matcher(target).matches();
-    }
 
     private void showResidentDetails(EditText admNo, EditText idNo) {
      admNo.setVisibility(View.GONE);
