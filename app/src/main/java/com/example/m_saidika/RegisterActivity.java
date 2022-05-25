@@ -128,15 +128,15 @@ public class RegisterActivity extends AppCompatActivity {
                     builder.setMessage("You must confirm password");
                     builder.show();
                 }else{
-                    if(!isValidName(fNameTxt)){
-                        builder.setMessage("Only characters allowed in your first name");
-                        builder.show();
-                    }
-                    else if(!isValidName(lNameTxt)){
-                        builder.setMessage("Only characters allowed in your last name");
-                        builder.show();
-                    }
-                    else if(!isValidEmail(emailTxt)){
+//                    if(!isValidName(fNameTxt)){
+//                        builder.setMessage("Only characters allowed in your first name");
+//                        builder.show();
+//                    }
+//                    else if(!isValidName(lNameTxt)){
+//                        builder.setMessage("Only characters allowed in your last name");
+//                        builder.show();
+//                    }
+                    if(!isValidEmail(emailTxt)){
                         builder.setMessage("Invalid email format");
                         builder.show();
                     }else if (residentButton.isChecked() && idNo.length()<6){
