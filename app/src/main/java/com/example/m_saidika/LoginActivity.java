@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     public Button btnLogin;
     public TextView goToRegister;
     public AlertDialog.Builder builder;
+    public InputValidation inputValidation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         password=findViewById(R.id.password);
         btnLogin=findViewById(R.id.btnLogin);
         goToRegister=findViewById(R.id.goToRegister);
+
+        inputValidation=new InputValidation();
         
         
         goToRegister.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +62,12 @@ public class LoginActivity extends AppCompatActivity {
                     builder.show();
                 }else if(TextUtils.isEmpty(passwordTxt)){
                     builder.setMessage("You must enter password");
+                    builder.show();
+                }else if(!inputValidation.isValidEmail(emailTxt)){
+                    builder.setMessage("Invalid Email format");
+                    builder.show();
+                }else if (passwordTxt.length()<6){
+                    builder.setMessage("Password must be greater than 6 characters");
                     builder.show();
                 }else{
                     handleLogin(emailTxt,passwordTxt);
