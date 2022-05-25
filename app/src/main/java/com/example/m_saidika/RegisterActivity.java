@@ -1,8 +1,10 @@
 package com.example.m_saidika;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +16,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,6 +35,12 @@ public class RegisterActivity extends AppCompatActivity {
     public Button btnRegister;
     public AlertDialog.Builder builder;
     public InputValidation inputValidation;
+    
+    //loading feature
+    public ProgressDialog pd;
+    
+    //Authentication with firebase
+    private FirebaseAuth mAuth;
 
 
 
@@ -49,6 +62,13 @@ public class RegisterActivity extends AppCompatActivity {
         studentButton = findViewById(R.id.studentButton);
         residentButton = findViewById(R.id.residentButton);
         btnRegister = findViewById(R.id.btnRegister);
+        
+        pd=new ProgressDialog(RegisterActivity.this);
+        pd.setCancelable(false);
+        pd.setMessage("Authenticating...please wait...");
+        pd.create();
+        
+        mAuth=FirebaseAuth.getInstance();
 
 
         builder = new AlertDialog.Builder(RegisterActivity.this);
@@ -158,7 +178,7 @@ public class RegisterActivity extends AppCompatActivity {
                         builder.setMessage("Confirm password does not match password");
                         builder.show();
                     }else{
-
+                        registerUser(emailTxt,passwordTxt);
                     }
 
                 }
@@ -166,6 +186,25 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void registerUser(String emailTxt, String passwordTxt) {
+        pd.show();
+        mAuth.createUserWithEmailAndPassword(emailTxt,passwordTxt).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                pd.dismiss();
+                Toast.makeText(RegisterActivity.this, "Registration was successfull", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                builder.setMessage("Registration failed, try again later.");
+                builder.show();
+            }
+        });
     }
 
 
