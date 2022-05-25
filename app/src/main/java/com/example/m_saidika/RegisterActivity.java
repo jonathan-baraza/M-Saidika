@@ -112,10 +112,10 @@ public class RegisterActivity extends AppCompatActivity {
                 }else if(!studentButton.isChecked() && !residentButton.isChecked()){
                     builder.setMessage("You must select whether you are a student or resident");
                     builder.show();
-                }else if(TextUtils.isEmpty((admNoTxt))){
+                }else if(studentButton.isChecked() && TextUtils.isEmpty((admNoTxt))){
                     builder.setMessage("You must enter admission number ");
                     builder.show();
-                }else if(TextUtils.isEmpty(idNoTxt)){
+                }else if(residentButton.isChecked() && TextUtils.isEmpty(idNoTxt)){
                     builder.setMessage("You must enter ID number");
                     builder.show();
                 }else if(TextUtils.isEmpty(passwordTxt)){
