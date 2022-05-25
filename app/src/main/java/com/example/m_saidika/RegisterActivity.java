@@ -37,6 +37,28 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch(i){
+                    case R.id.studentButton:
+                        showStudentDetails(admNo,idNo);
+                        break;
+
+                    case R.id.residentButton:
+                        showResidentDetails(admNo,idNo);
+                        break;
+
+                    default:
+                        //Do nothing
+
+                }
+            }
+        });
+
+
+
         goToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,5 +67,16 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    private void showResidentDetails(EditText admNo, EditText idNo) {
+     admNo.setVisibility(View.GONE);
+        idNo.setVisibility(View.VISIBLE);
+    }
+
+    private void showStudentDetails(EditText admNo, EditText idNo) {
+        idNo.setVisibility(View.GONE);
+        admNo.setVisibility(View.VISIBLE);
     }
 }
