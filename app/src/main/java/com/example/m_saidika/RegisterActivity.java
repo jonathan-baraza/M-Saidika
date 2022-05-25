@@ -60,6 +60,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        inputValidation=new InputValidation();
+
 
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
