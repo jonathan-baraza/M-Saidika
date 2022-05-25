@@ -28,6 +28,9 @@ public class RegisterActivity extends AppCompatActivity {
     public AlertDialog.Builder builder;
 
 
+    public Pattern NAME_PATTERN=Pattern.compile("/^[A-Za-z]+$/");
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,7 +131,7 @@ public class RegisterActivity extends AppCompatActivity {
                     builder.setMessage("You must confirm password");
                     builder.show();
                 }else{
-                    if(!Pattern.compile(fNameTxt).matcher("/^[A-Za-z]+$/").matches()){
+                    if(!NAME_PATTERN.matcher(fNameTxt).matches()){
                         builder.setMessage("Only characters allowed in your first name");
                         builder.show();
                     }
@@ -161,6 +164,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean isValidName(String target) {
+
         Pattern p = Pattern.compile("/^[A-Za-z]+$/");
         Matcher m = p.matcher(target);
         boolean b = m.matches();
