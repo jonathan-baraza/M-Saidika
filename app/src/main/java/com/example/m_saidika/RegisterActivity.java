@@ -15,6 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
 
     public EditText fName, lName, email, phone, password, confirmPassword, admNo, idNo;
@@ -125,7 +127,19 @@ public class RegisterActivity extends AppCompatActivity {
                     builder.setMessage("You must confirm password");
                     builder.show();
                 }else{
-                    if (passwordTxt.length()<6){
+                    if(!isValidName(fNameTxt)){
+                        builder.setMessage("Only characters allowed in your first name");
+                        builder.show();
+                    }
+                    else if(!isValidName(fNameTxt)){
+                        builder.setMessage("Only characters allowed in your last name");
+                        builder.show();
+                    }
+                    else if(!isValidEmail(emailTxt)){
+                        builder.setMessage("Invalid email format");
+                        builder.show();
+                    }
+                    else if (passwordTxt.length()<6){
                         builder.setMessage("Password must be greater than 6 characters");
                         builder.show();
                     }else if (!passwordTxt.equals(confirmPasswordTxt)){
@@ -142,6 +156,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    public boolean isValidName(String target) {
+        return Pattern.compile("/^[A-Za-z]+$/").matcher(target).matches();
+    }
+    public boolean isValidEmail(String target) {
+        return Pattern.compile("/^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/").matcher(target).matches();
+    }
 
     private void showResidentDetails(EditText admNo, EditText idNo) {
      admNo.setVisibility(View.GONE);
