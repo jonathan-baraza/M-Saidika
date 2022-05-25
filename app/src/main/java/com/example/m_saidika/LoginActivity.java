@@ -1,17 +1,25 @@
 package com.example.m_saidika;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     public EditText email,password;
@@ -19,6 +27,10 @@ public class LoginActivity extends AppCompatActivity {
     public TextView goToRegister;
     public AlertDialog.Builder builder;
     public InputValidation inputValidation;
+    //loading feature
+    public ProgressDialog pd;
+
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +43,13 @@ public class LoginActivity extends AppCompatActivity {
 
         inputValidation=new InputValidation();
         
-        
+        mAuth=FirebaseAuth.getInstance();
+
+        pd=new ProgressDialog(LoginActivity.this);
+        pd.setCancelable(false);
+        pd.setMessage("Authenticating...please wait...");
+        pd.create();
+
         goToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,6 +97,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleLogin(String emailTxt, String passwordTxt) {
-        Toast.makeText(LoginActivity.this, "Logging you in.", Toast.LENGTH_SHORT).show();
+        pd.show();
+        mAuth.signInWithEmailAndPassword(emailTxt,passwordTxt).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                pd.dismiss();
+                Toast.makeText(LoginActivity.this, "Login was successfull", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                builder.setMessage("Login Failed");
+                builder.show();
+            }
+        });
     }
 }
