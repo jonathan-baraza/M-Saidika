@@ -17,10 +17,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+//import com.google.android.gms.tasks.OnFailureListener;
+//import com.google.android.gms.tasks.OnSuccessListener;
+//import com.google.firebase.auth.AuthResult;
+//import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     public ProgressDialog pd;
     
     //Authentication with firebase
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
 
 
 
@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         pd.setMessage("Authenticating...please wait...");
         pd.create();
         
-        mAuth=FirebaseAuth.getInstance();
+//        mAuth=FirebaseAuth.getInstance();
 
 
         builder = new AlertDialog.Builder(RegisterActivity.this);
@@ -113,99 +113,99 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String fNameTxt = fName.getText().toString().trim();
-                String lNameTxt = lName.getText().toString().trim();
-                String emailTxt = email.getText().toString().trim();
-                String phoneTxt = phone.getText().toString().trim();
-                String admNoTxt = admNo.getText().toString().trim();
-                String idNoTxt = idNo.getText().toString().trim();
-                String passwordTxt = password.getText().toString().trim();
-                String confirmPasswordTxt = confirmPassword.getText().toString().trim();
-
-                if(TextUtils.isEmpty(fNameTxt)){
-                    builder.setMessage("You must enter first name");
-                    builder.show();
-                }else if(TextUtils.isEmpty(lNameTxt)){
-                    builder.setMessage("You must enter last name");
-                    builder.show();
-                }else if(TextUtils.isEmpty(emailTxt)){
-                    builder.setMessage("You must enter email");
-                    builder.show();
-                }else if(TextUtils.isEmpty(phoneTxt)){
-                    builder.setMessage("You must enter phone number");
-                    builder.show();
-                }else if(!studentButton.isChecked() && !residentButton.isChecked()){
-                    builder.setMessage("You must select whether you are a student or resident");
-                    builder.show();
-                }else if(studentButton.isChecked() && TextUtils.isEmpty((admNoTxt))){
-                    builder.setMessage("You must enter admission number ");
-                    builder.show();
-                }else if(residentButton.isChecked() && TextUtils.isEmpty(idNoTxt)){
-                    builder.setMessage("You must enter ID number");
-                    builder.show();
-                }else if(TextUtils.isEmpty(passwordTxt)){
-                    builder.setMessage("You must enter password");
-                    builder.show();
-                }else if(TextUtils.isEmpty(confirmPasswordTxt)){
-                    builder.setMessage("You must confirm password");
-                    builder.show();
-                }else{
-                    if(!inputValidation.isValidName(fNameTxt)){
-                        builder.setMessage("Only characters allowed in your first name");
-                        builder.show();
-                    }
-                    else if(!inputValidation.isValidName(lNameTxt)){
-                        builder.setMessage("Only characters allowed in your last name");
-                        builder.show();
-                    }
-                    else if(!inputValidation.isValidEmail(emailTxt)){
-                        builder.setMessage("Invalid email format");
-                        builder.show();
-                    }else if(!(phoneTxt.length()==12)){
-                        builder.setMessage("Invalid phone number");
-                        builder.show();
-                    }else if (residentButton.isChecked() && idNo.length()<6){
-                        builder.setMessage("ID number must be greater than 6 characters");
-                        builder.show();
-                    }
-                    else if (passwordTxt.length()<6){
-                        builder.setMessage("Password must be greater than 6 characters");
-                        builder.show();
-                    }else if (!passwordTxt.equals(confirmPasswordTxt)){
-                        builder.setMessage("Confirm password does not match password");
-                        builder.show();
-                    }else{
-                        registerUser(emailTxt,passwordTxt);
-                    }
-
-                }
-
-            }
-        });
+//        btnRegister.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String fNameTxt = fName.getText().toString().trim();
+//                String lNameTxt = lName.getText().toString().trim();
+//                String emailTxt = email.getText().toString().trim();
+//                String phoneTxt = phone.getText().toString().trim();
+//                String admNoTxt = admNo.getText().toString().trim();
+//                String idNoTxt = idNo.getText().toString().trim();
+//                String passwordTxt = password.getText().toString().trim();
+//                String confirmPasswordTxt = confirmPassword.getText().toString().trim();
+//
+//                if(TextUtils.isEmpty(fNameTxt)){
+//                    builder.setMessage("You must enter first name");
+//                    builder.show();
+//                }else if(TextUtils.isEmpty(lNameTxt)){
+//                    builder.setMessage("You must enter last name");
+//                    builder.show();
+//                }else if(TextUtils.isEmpty(emailTxt)){
+//                    builder.setMessage("You must enter email");
+//                    builder.show();
+//                }else if(TextUtils.isEmpty(phoneTxt)){
+//                    builder.setMessage("You must enter phone number");
+//                    builder.show();
+//                }else if(!studentButton.isChecked() && !residentButton.isChecked()){
+//                    builder.setMessage("You must select whether you are a student or resident");
+//                    builder.show();
+//                }else if(studentButton.isChecked() && TextUtils.isEmpty((admNoTxt))){
+//                    builder.setMessage("You must enter admission number ");
+//                    builder.show();
+//                }else if(residentButton.isChecked() && TextUtils.isEmpty(idNoTxt)){
+//                    builder.setMessage("You must enter ID number");
+//                    builder.show();
+//                }else if(TextUtils.isEmpty(passwordTxt)){
+//                    builder.setMessage("You must enter password");
+//                    builder.show();
+//                }else if(TextUtils.isEmpty(confirmPasswordTxt)){
+//                    builder.setMessage("You must confirm password");
+//                    builder.show();
+//                }else{
+//                    if(!inputValidation.isValidName(fNameTxt)){
+//                        builder.setMessage("Only characters allowed in your first name");
+//                        builder.show();
+//                    }
+//                    else if(!inputValidation.isValidName(lNameTxt)){
+//                        builder.setMessage("Only characters allowed in your last name");
+//                        builder.show();
+//                    }
+//                    else if(!inputValidation.isValidEmail(emailTxt)){
+//                        builder.setMessage("Invalid email format");
+//                        builder.show();
+//                    }else if(!(phoneTxt.length()==12)){
+//                        builder.setMessage("Invalid phone number");
+//                        builder.show();
+//                    }else if (residentButton.isChecked() && idNo.length()<6){
+//                        builder.setMessage("ID number must be greater than 6 characters");
+//                        builder.show();
+//                    }
+//                    else if (passwordTxt.length()<6){
+//                        builder.setMessage("Password must be greater than 6 characters");
+//                        builder.show();
+//                    }else if (!passwordTxt.equals(confirmPasswordTxt)){
+//                        builder.setMessage("Confirm password does not match password");
+//                        builder.show();
+//                    }else{
+//                        registerUser(emailTxt,passwordTxt);
+//                    }
+//
+//                }
+//
+//            }
+//        });
 
     }
 
-    private void registerUser(String emailTxt, String passwordTxt) {
-        pd.show();
-        mAuth.createUserWithEmailAndPassword(emailTxt,passwordTxt).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                pd.dismiss();
-                Toast.makeText(RegisterActivity.this, "Registration was successfull", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                pd.dismiss();
-                builder.setMessage("Registration failed, try again later.");
-                builder.show();
-            }
-        });
-    }
+//    private void registerUser(String emailTxt, String passwordTxt) {
+//        pd.show();
+//        mAuth.createUserWithEmailAndPassword(emailTxt,passwordTxt).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+//            @Override
+//            public void onSuccess(AuthResult authResult) {
+//                pd.dismiss();
+//                Toast.makeText(RegisterActivity.this, "Registration was successfull", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                pd.dismiss();
+//                builder.setMessage("Registration failed, try again later.");
+//                builder.show();
+//            }
+//        });
+//    }
 
 
     private void showResidentDetails(EditText admNo, EditText idNo) {
