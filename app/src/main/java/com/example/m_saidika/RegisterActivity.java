@@ -17,10 +17,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+//import com.google.android.gms.tasks.OnFailureListener;
+//import com.google.android.gms.tasks.OnSuccessListener;
+//import com.google.firebase.auth.AuthResult;
+//import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     public ProgressDialog pd;
     
     //Authentication with firebase
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
 
 
 
@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         pd.setMessage("Authenticating...please wait...");
         pd.create();
         
-        mAuth=FirebaseAuth.getInstance();
+//        mAuth=FirebaseAuth.getInstance();
 
 
         builder = new AlertDialog.Builder(RegisterActivity.this);
@@ -113,6 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,26 +188,27 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
-    private void registerUser(String emailTxt, String passwordTxt) {
-        pd.show();
-        mAuth.createUserWithEmailAndPassword(emailTxt,passwordTxt).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                pd.dismiss();
-                Toast.makeText(RegisterActivity.this, "Registration was successfull", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                pd.dismiss();
-                builder.setMessage("Registration failed, try again later.");
-                builder.show();
-            }
-        });
-    }
+//    private void registerUser(String emailTxt, String passwordTxt) {
+//        pd.show();
+//        mAuth.createUserWithEmailAndPassword(emailTxt,passwordTxt).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+//            @Override
+//            public void onSuccess(AuthResult authResult) {
+//                pd.dismiss();
+//                Toast.makeText(RegisterActivity.this, "Registration was successfull", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                pd.dismiss();
+//                builder.setMessage("Registration failed, try again later.");
+//                builder.show();
+//            }
+//        });
+//    }
 
 
     private void showResidentDetails(EditText admNo, EditText idNo) {

@@ -3,6 +3,9 @@ package com.example.m_saidika;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.widget.TextView;
+
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+
 public class ProfileActivity extends AppCompatActivity {
     //update form elements
     public LinearLayout updateForm;
@@ -20,14 +24,39 @@ public class ProfileActivity extends AppCompatActivity {
     public EditText fNameUpdate,lNameUpdate,phoneUpdate,bioUpdate;
     public Button btnShowUpdateForm,btnUpdateProfilePhoto,btnUpdateProfile;
 
+
+    public Button btnBack, btnUpdate;
+    public ImageView profilePic;
+    public TextView name, email, phone, idNo;
+
+
     //Validator
     public InputValidation inputValidation;
 
     public AlertDialog.Builder builder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+
+        btnBack = findViewById(R.id.btnBack);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        profilePic = findViewById(R.id.profilePic);
+        name = findViewById(R.id.name);
+        email = findViewById(R.id.email);
+        phone = findViewById(R.id.phone);
+        idNo = findViewById(R.id.idNo);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, WelcomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         updateForm=findViewById(R.id.updateForm);
         btnShowUpdateForm=findViewById(R.id.btnShowUpdateForm);
@@ -103,5 +132,6 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 }
