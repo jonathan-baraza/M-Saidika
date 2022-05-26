@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                 String passwordTxt=password.getText().toString();
                 builder=new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Input Error");
+                builder.setIcon(R.drawable.ic_warning_yellow);
                 builder.setCancelable(false).setPositiveButton("Try again", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

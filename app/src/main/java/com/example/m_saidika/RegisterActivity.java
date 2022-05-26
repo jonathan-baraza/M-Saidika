@@ -73,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         builder = new AlertDialog.Builder(RegisterActivity.this);
         builder.setTitle("Input Error").setCancelable(false).create();
+        builder.setIcon(R.drawable.ic_warning_yellow);
         builder.setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -165,7 +166,7 @@ public class RegisterActivity extends AppCompatActivity {
                         builder.setMessage("Invalid email format");
                         builder.show();
                     }else if(!(phoneTxt.length()==12)){
-                        builder.setMessage("Invalid phone number");
+                        builder.setMessage("Invalid phone number...check the number of digits and start with 254...");
                         builder.show();
                     }else if (residentButton.isChecked() && idNo.length()<6){
                         builder.setMessage("ID number must be greater than 6 characters");

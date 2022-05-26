@@ -1,9 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/black"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+
+
+            <!--Profile details go here-->
+
+
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="update profile"
+                android:textAllCaps="false"
+                android:id="@+id/btnShowUpdateForm"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/updateForm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:background="@color/white">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:elevation="3dp"
+                   >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Update your profile"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:layout_centerHorizontal="true"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/btnCloseUpdateForm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:src="@drawable/ic_close" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/imgUpdate"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/img_holder" />
+
+            <Button
+                android:id="@+id/btnUpdateProfilePhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Update profile photo"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="First Name"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="10dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/fNameUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_one"
+                android:inputType="text"
+                android:hint="Enter first name"
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Last Name"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="10dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/lNameUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_one"
+                android:inputType="text"
+                android:hint="Enter last name"
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Phone Number"
+                android:drawableStart="@drawable/ic_phone"
+                android:drawablePadding="10dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/phoneUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_one"
+                android:inputType="phone"
+                android:hint="i.e 254..."
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Bio"
+                android:drawableStart="@drawable/ic_info"
+                android:drawablePadding="10dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/bioUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_one"
+                android:hint="Write something about yourself..."
+                android:inputType="text"
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnUpdateProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="20dp"
+                android:text="Update"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+
+        </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
