@@ -73,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         builder = new AlertDialog.Builder(RegisterActivity.this);
         builder.setTitle("Input Error").setCancelable(false).create();
+        builder.setIcon(R.drawable.ic_warning_yellow);
         builder.setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -113,78 +114,80 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-//        btnRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String fNameTxt = fName.getText().toString().trim();
-//                String lNameTxt = lName.getText().toString().trim();
-//                String emailTxt = email.getText().toString().trim();
-//                String phoneTxt = phone.getText().toString().trim();
-//                String admNoTxt = admNo.getText().toString().trim();
-//                String idNoTxt = idNo.getText().toString().trim();
-//                String passwordTxt = password.getText().toString().trim();
-//                String confirmPasswordTxt = confirmPassword.getText().toString().trim();
-//
-//                if(TextUtils.isEmpty(fNameTxt)){
-//                    builder.setMessage("You must enter first name");
-//                    builder.show();
-//                }else if(TextUtils.isEmpty(lNameTxt)){
-//                    builder.setMessage("You must enter last name");
-//                    builder.show();
-//                }else if(TextUtils.isEmpty(emailTxt)){
-//                    builder.setMessage("You must enter email");
-//                    builder.show();
-//                }else if(TextUtils.isEmpty(phoneTxt)){
-//                    builder.setMessage("You must enter phone number");
-//                    builder.show();
-//                }else if(!studentButton.isChecked() && !residentButton.isChecked()){
-//                    builder.setMessage("You must select whether you are a student or resident");
-//                    builder.show();
-//                }else if(studentButton.isChecked() && TextUtils.isEmpty((admNoTxt))){
-//                    builder.setMessage("You must enter admission number ");
-//                    builder.show();
-//                }else if(residentButton.isChecked() && TextUtils.isEmpty(idNoTxt)){
-//                    builder.setMessage("You must enter ID number");
-//                    builder.show();
-//                }else if(TextUtils.isEmpty(passwordTxt)){
-//                    builder.setMessage("You must enter password");
-//                    builder.show();
-//                }else if(TextUtils.isEmpty(confirmPasswordTxt)){
-//                    builder.setMessage("You must confirm password");
-//                    builder.show();
-//                }else{
-//                    if(!inputValidation.isValidName(fNameTxt)){
-//                        builder.setMessage("Only characters allowed in your first name");
-//                        builder.show();
-//                    }
-//                    else if(!inputValidation.isValidName(lNameTxt)){
-//                        builder.setMessage("Only characters allowed in your last name");
-//                        builder.show();
-//                    }
-//                    else if(!inputValidation.isValidEmail(emailTxt)){
-//                        builder.setMessage("Invalid email format");
-//                        builder.show();
-//                    }else if(!(phoneTxt.length()==12)){
-//                        builder.setMessage("Invalid phone number");
-//                        builder.show();
-//                    }else if (residentButton.isChecked() && idNo.length()<6){
-//                        builder.setMessage("ID number must be greater than 6 characters");
-//                        builder.show();
-//                    }
-//                    else if (passwordTxt.length()<6){
-//                        builder.setMessage("Password must be greater than 6 characters");
-//                        builder.show();
-//                    }else if (!passwordTxt.equals(confirmPasswordTxt)){
-//                        builder.setMessage("Confirm password does not match password");
-//                        builder.show();
-//                    }else{
-//                        registerUser(emailTxt,passwordTxt);
-//                    }
-//
-//                }
-//
-//            }
-//        });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String fNameTxt = fName.getText().toString().trim();
+                String lNameTxt = lName.getText().toString().trim();
+                String emailTxt = email.getText().toString().trim();
+                String phoneTxt = phone.getText().toString().trim();
+                String admNoTxt = admNo.getText().toString().trim();
+                String idNoTxt = idNo.getText().toString().trim();
+                String passwordTxt = password.getText().toString().trim();
+                String confirmPasswordTxt = confirmPassword.getText().toString().trim();
+
+                if(TextUtils.isEmpty(fNameTxt)){
+                    builder.setMessage("You must enter first name");
+                    builder.show();
+                }else if(TextUtils.isEmpty(lNameTxt)){
+                    builder.setMessage("You must enter last name");
+                    builder.show();
+                }else if(TextUtils.isEmpty(emailTxt)){
+                    builder.setMessage("You must enter email");
+                    builder.show();
+                }else if(TextUtils.isEmpty(phoneTxt)){
+                    builder.setMessage("You must enter phone number");
+                    builder.show();
+                }else if(!studentButton.isChecked() && !residentButton.isChecked()){
+                    builder.setMessage("You must select whether you are a student or resident");
+                    builder.show();
+                }else if(studentButton.isChecked() && TextUtils.isEmpty((admNoTxt))){
+                    builder.setMessage("You must enter admission number ");
+                    builder.show();
+                }else if(residentButton.isChecked() && TextUtils.isEmpty(idNoTxt)){
+                    builder.setMessage("You must enter ID number");
+                    builder.show();
+                }else if(TextUtils.isEmpty(passwordTxt)){
+                    builder.setMessage("You must enter password");
+                    builder.show();
+                }else if(TextUtils.isEmpty(confirmPasswordTxt)){
+                    builder.setMessage("You must confirm password");
+                    builder.show();
+                }else{
+                    if(!inputValidation.isValidName(fNameTxt)){
+                        builder.setMessage("Only characters allowed in your first name");
+                        builder.show();
+                    }
+                    else if(!inputValidation.isValidName(lNameTxt)){
+                        builder.setMessage("Only characters allowed in your last name");
+                        builder.show();
+                    }
+                    else if(!inputValidation.isValidEmail(emailTxt)){
+                        builder.setMessage("Invalid email format");
+                        builder.show();
+                    }else if(!(phoneTxt.length()==12)){
+                        builder.setMessage("Invalid phone number...check the number of digits and start with 254...");
+                        builder.show();
+                    }else if (residentButton.isChecked() && idNo.length()<6){
+                        builder.setMessage("ID number must be greater than 6 characters");
+                        builder.show();
+                    }
+                    else if (passwordTxt.length()<6){
+                        builder.setMessage("Password must be greater than 6 characters");
+                        builder.show();
+                    }else if (!passwordTxt.equals(confirmPasswordTxt)){
+                        builder.setMessage("Confirm password does not match password");
+                        builder.show();
+                    }else{
+                        registerUser(emailTxt,passwordTxt);
+                    }
+
+                }
+
+            }
+        });
+
 
     }
 

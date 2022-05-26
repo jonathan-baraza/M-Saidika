@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 public class WelcomeActivity extends AppCompatActivity {
-    public Button btnLogin,btnRegister, btnProfile;
+
+    public Button btnLogin,btnRegister,btnProfile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +20,7 @@ public class WelcomeActivity extends AppCompatActivity {
         btnLogin=findViewById(R.id.btnLogin);
         btnRegister=findViewById(R.id.btnRegister);
         btnProfile=findViewById(R.id.btnProfile);
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,10 +36,19 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(WelcomeActivity.this,RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(WelcomeActivity.this, ProfileActivity.class);
+                Intent intent=new Intent(WelcomeActivity.this,ProfileActivity.class);
+
                 startActivity(intent);
             }
         });

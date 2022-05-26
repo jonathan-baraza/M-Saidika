@@ -61,19 +61,38 @@ public class LoginActivity extends AppCompatActivity {
 
         //TODO: Set Regex to validate inputs for both login and register.
         
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String emailTxt=email.getText().toString();
-//                String passwordTxt=password.getText().toString();
-//                builder=new AlertDialog.Builder(LoginActivity.this);
-//                builder.setTitle("Input Error");
-//                builder.setCancelable(false).setPositiveButton("Try again", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        //Dismisses builder.
-//                    }
-//                }).create();
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String emailTxt=email.getText().toString();
+                String passwordTxt=password.getText().toString();
+                builder=new AlertDialog.Builder(LoginActivity.this);
+                builder.setTitle("Input Error");
+                builder.setIcon(R.drawable.ic_warning_yellow);
+                builder.setCancelable(false).setPositiveButton("Try again", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Dismisses builder.
+                    }
+                }).create();
+
+                if(TextUtils.isEmpty(emailTxt)){
+                    builder.setMessage("Your must enter email");
+                    builder.show();
+                }else if(TextUtils.isEmpty(passwordTxt)){
+                    builder.setMessage("You must enter password");
+                    builder.show();
+                }else if(!inputValidation.isValidEmail(emailTxt)){
+                    builder.setMessage("Invalid Email format");
+                    builder.show();
+                }else if (passwordTxt.length()<6){
+                    builder.setMessage("Password must be greater than 6 characters");
+                    builder.show();
+                }else{
+                    handleLogin(emailTxt,passwordTxt);
+                }
+
 //
 //                if(TextUtils.isEmpty(emailTxt)){
 //                    builder.setMessage("Your must enter email");
