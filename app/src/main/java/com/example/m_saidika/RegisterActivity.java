@@ -205,7 +205,9 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 pd.dismiss();
                 builder.setTitle("Error");
-                builder.setMessage("Registration failed, try again later.");
+//                builder.setMessage("Registration failed, try again later.");
+                  builder.setMessage(e.toString());
+                System.out.println(e);
                 builder.show();
             }
         });
