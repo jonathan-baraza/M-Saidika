@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "694981512881",
-    "project_id": "m-saidika",
-    "storage_bucket": "m-saidika.appspot.com"
+    "project_number": "385657919164",
+    "project_id": "m-saidika-931f8",
+    "storage_bucket": "m-saidika-931f8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:694981512881:android:53f1e365ae4c0e4ffd1c90",
+        "mobilesdk_app_id": "1:385657919164:android:f345ea19f288509b5ea2b9",
         "android_client_info": {
           "package_name": "com.example.m_saidika"
         }
       },
       "oauth_client": [
         {
-          "client_id": "694981512881-2n20emv4gjho5gud2heijel9tggmvm77.apps.googleusercontent.com",
+          "client_id": "385657919164-abunf5f7a59csk0d9p2lrvbvvuv2f3lt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyApoDQwDxWZ27gr1mSsB1fuVmwbaVqROLM"
+          "current_key": "AIzaSyBSrhaMut-95kZXxckFlaDz29fejvqgu00"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "694981512881-2n20emv4gjho5gud2heijel9tggmvm77.apps.googleusercontent.com",
+              "client_id": "385657919164-abunf5f7a59csk0d9p2lrvbvvuv2f3lt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
