@@ -9,13 +9,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     public TextView email;
     public Button btn;
 
-//    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,20 +25,20 @@ public class MainActivity extends AppCompatActivity {
         email=findViewById(R.id.email);
         btn=findViewById(R.id.btn);
 
-//        mAuth=FirebaseAuth.getInstance();
+        mAuth=FirebaseAuth.getInstance();
 
-//        if(mAuth!=null){
-//            email.setText(mAuth.getCurrentUser().getEmail());
-//
-//            btn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    mAuth.signOut();
-//                    Toast.makeText(MainActivity.this, "You have been signed out", Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
-//                }
-//            });
-//        }
+        if(mAuth!=null){
+            email.setText(mAuth.getCurrentUser().getEmail());
+
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mAuth.signOut();
+                    Toast.makeText(MainActivity.this, "You have been signed out", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                }
+            });
+        }
 
 
     }
