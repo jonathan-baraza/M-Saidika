@@ -17,11 +17,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,6 +46,8 @@ public class RegisterActivity extends AppCompatActivity {
     
     //Authentication with firebase
     private FirebaseAuth mAuth;
+
+    private DatabaseReference databaseRef;
 
 
 
@@ -69,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
         pd.create();
         
         mAuth=FirebaseAuth.getInstance();
+        databaseRef=FirebaseDatabase.getInstance().getReference().child("Profiles");
 
 
         builder = new AlertDialog.Builder(RegisterActivity.this);
@@ -180,7 +188,7 @@ public class RegisterActivity extends AppCompatActivity {
                         builder.setMessage("Confirm password does not match password");
                         builder.show();
                     }else{
-                        registerUser(emailTxt,passwordTxt);
+                        registerUser(emailTxt,passwordTxt,fNameTxt,lNameTxt,phoneTxt,residentButton.isChecked(),studentButton.isChecked());
                     }
 
                 }
@@ -191,14 +199,47 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void registerUser(String emailTxt, String passwordTxt) {
+    private void registerUser(String emailTxt, String passwordTxt,String fNameTxt,String lNameTxt,String phoneTxt,boolean resident,boolean student) {
         pd.show();
         mAuth.createUserWithEmailAndPassword(emailTxt,passwordTxt).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                pd.dismiss();
-                Toast.makeText(RegisterActivity.this, "Registration was successfull", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+
+                String admission=admNo.getText().toString();
+                String identityNo=idNo.getText().toString();
+
+                HashMap<String,Object> userData=new HashMap<>();
+                userData.put("firstName",fName);
+                userData.put("lastName",lName);
+                userData.put("phone",phoneTxt);
+                if(student){
+                    userData.put("admNo",admission);
+                }else{
+                    userData.put("idNo",identityNo);
+                }
+                userData.put("photo","");
+                userData.put("bio","");
+
+
+                databaseRef.child(authResult.getUser().getUid().toString()).setValue(userData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            pd.dismiss();
+                            Toast.makeText(RegisterActivity.this, "Registration was successfull", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+                        }
+                        else{
+                            pd.dismiss();
+                            builder.setTitle("Error");
+//                builder.setMessage("Registration failed, try again later.");
+                            builder.setMessage(task.getException().toString());
+
+                            builder.show();
+                        }
+                    }
+                });
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
