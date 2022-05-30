@@ -1,5 +1,6 @@
 package com.example.m_saidika;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.m_saidika.Models.Profile;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class ProfileActivity extends AppCompatActivity {
     //update form elements
@@ -27,13 +37,15 @@ public class ProfileActivity extends AppCompatActivity {
 
     public Button btnBack, btnUpdate;
     public ImageView profilePic;
-    public TextView name, email, phone, idNo;
+    public TextView name, email, phone, idNo,admNo;
 
 
     //Validator
     public InputValidation inputValidation;
 
     public AlertDialog.Builder builder;
+
+    FirebaseUser fUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +60,13 @@ public class ProfileActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         phone = findViewById(R.id.phone);
         idNo = findViewById(R.id.idNo);
+        admNo=findViewById(R.id.admNo);
+
+        fUser= FirebaseAuth.getInstance().getCurrentUser();
+
+        email.setText("Email: "+fUser.getEmail().toString());
+
+        getProfileDetails();
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,5 +152,28 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getProfileDetails() {
+        FirebaseDatabase.getInstance().getReference().child("Profiles").child(fUser.getUid().toString()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Profile userProfie=snapshot.getValue(Profile.class);
+                name.setText(userProfie.getFirstName()+" "+userProfie.getLastName());
+                phone.setText("Phone: "+userProfie.getPhone());
+                if(TextUtils.isEmpty(userProfie.getAdmNo())){
+                    idNo.setText("ID Number: "+userProfie.getIdNo().toString());
+                    admNo.setVisibility(View.GONE);
+                }else{
+                    admNo.setText("Admission Number: "+userProfie.getAdmNo().toString());
+                    idNo.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
