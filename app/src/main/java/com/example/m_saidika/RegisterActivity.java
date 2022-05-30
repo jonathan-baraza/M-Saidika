@@ -188,7 +188,7 @@ public class RegisterActivity extends AppCompatActivity {
                         builder.setMessage("Confirm password does not match password");
                         builder.show();
                     }else{
-                        registerUser(emailTxt,passwordTxt,fNameTxt,lNameTxt,phoneTxt,residentButton.isChecked(),studentButton.isChecked());
+                        registerUser(emailTxt,passwordTxt,fNameTxt,lNameTxt,phoneTxt,residentButton.isChecked(),studentButton.isChecked(),admNoTxt,idNoTxt);
                     }
 
                 }
@@ -199,23 +199,21 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void registerUser(String emailTxt, String passwordTxt,String fNameTxt,String lNameTxt,String phoneTxt,boolean resident,boolean student) {
+    private void registerUser(String emailTxt, String passwordTxt,String fNameTxt,String lNameTxt,String phoneTxt,boolean resident,boolean student, String admNo,String idNo) {
         pd.show();
         mAuth.createUserWithEmailAndPassword(emailTxt,passwordTxt).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
 
-                String admission=admNo.getText().toString();
-                String identityNo=idNo.getText().toString();
 
                 HashMap<String,Object> userData=new HashMap<>();
-                userData.put("firstName",fName);
-                userData.put("lastName",lName);
+                userData.put("firstName",fNameTxt);
+                userData.put("lastName",lNameTxt);
                 userData.put("phone",phoneTxt);
                 if(student){
-                    userData.put("admNo",admission);
+                    userData.put("admNo",admNo);
                 }else{
-                    userData.put("idNo",identityNo);
+                    userData.put("idNo",idNo);
                 }
                 userData.put("photo","");
                 userData.put("bio","");
