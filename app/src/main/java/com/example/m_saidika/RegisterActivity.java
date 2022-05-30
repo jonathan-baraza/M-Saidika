@@ -212,8 +212,10 @@ public class RegisterActivity extends AppCompatActivity {
                 userData.put("phone",phoneTxt);
                 if(student){
                     userData.put("admNo",admNo);
+                    userData.put("idNo","");
                 }else{
                     userData.put("idNo",idNo);
+                    userData.put("admNo","");
                 }
                 userData.put("photo","");
                 userData.put("bio","");

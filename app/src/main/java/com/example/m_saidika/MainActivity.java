@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     public TextView email;
-    public Button btn;
+    public Button btn,btnProfile;
 
     private FirebaseAuth mAuth;
 
@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         email=findViewById(R.id.email);
         btn=findViewById(R.id.btn);
+        btnProfile=findViewById(R.id.btnProfile);
 
         mAuth=FirebaseAuth.getInstance();
 
@@ -36,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
                     mAuth.signOut();
                     Toast.makeText(MainActivity.this, "You have been signed out", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                }
+            });
+
+            btnProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(MainActivity.this,ProfileActivity.class));
                 }
             });
         }
