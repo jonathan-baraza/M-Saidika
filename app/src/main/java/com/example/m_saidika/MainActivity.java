@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +17,10 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-    public TextView email,btnProfile;
+
+    public ImageView jobImage,transportImage,foodImage,housingImage,sPImage,emergencyImage;
+    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile;
+
 
     private FirebaseAuth mAuth;
 
@@ -25,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     public RelativeLayout sideMenu,btnSignOut;
 
     private Animation openSideMenuAnimation,closeSideMenuAnimation;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +39,20 @@ public class MainActivity extends AppCompatActivity {
         btnSignOut=findViewById(R.id.btnSignOut);
         btnProfile=findViewById(R.id.btnProfile);
 
-        mAuth=FirebaseAuth.getInstance();
+        jobImage=findViewById(R.id.jobImage);
+        transportImage=findViewById(R.id.transportImage);
+        foodImage=findViewById(R.id.foodImage);
+        housingImage=findViewById(R.id.housingImage);
+        sPImage=findViewById(R.id.sPImage);
+        emergencyImage=findViewById(R.id.emergencyImage);
+        jobText=findViewById(R.id.jobText);
+        transportText=findViewById(R.id.transportText);
+        foodText=findViewById(R.id.foodText);
+        housingText=findViewById(R.id.housingText);
+        sPText=findViewById(R.id.sPText);
+        emergencyText=findViewById(R.id.emergencyText);
 
+        mAuth=FirebaseAuth.getInstance();
 
         //sideMenu
         sideMenu=findViewById(R.id.sideMenu);
