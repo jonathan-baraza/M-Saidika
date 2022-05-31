@@ -6,14 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-    public TextView email;
-    public Button btn,btnProfile;
+
+    public ImageView jobImage,transportImage,foodImage,housingImage,sPImage,emergencyImage;
+    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText;
 
     private FirebaseAuth mAuth;
 
@@ -22,31 +24,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email=findViewById(R.id.email);
-        btn=findViewById(R.id.btn);
-        btnProfile=findViewById(R.id.btnProfile);
+
+        jobImage=findViewById(R.id.jobImage);
+        transportImage=findViewById(R.id.transportImage);
+        foodImage=findViewById(R.id.foodImage);
+        housingImage=findViewById(R.id.housingImage);
+        sPImage=findViewById(R.id.sPImage);
+        emergencyImage=findViewById(R.id.emergencyImage);
+        jobText=findViewById(R.id.jobText);
+        transportText=findViewById(R.id.transportText);
+        foodText=findViewById(R.id.foodText);
+        housingText=findViewById(R.id.housingText);
+        sPText=findViewById(R.id.sPText);
+        emergencyText=findViewById(R.id.emergencyText);
+
 
         mAuth=FirebaseAuth.getInstance();
-
-        if(mAuth!=null){
-            email.setText(mAuth.getCurrentUser().getEmail());
-
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mAuth.signOut();
-                    Toast.makeText(MainActivity.this, "You have been signed out", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
-                }
-            });
-
-            btnProfile.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(MainActivity.this,ProfileActivity.class));
-                }
-            });
-        }
 
 
     }
