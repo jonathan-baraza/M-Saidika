@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         email=findViewById(R.id.email);
         btnSignOut=findViewById(R.id.btnSignOut);
+
         btnProfile=findViewById(R.id.btnProfile);
 
         jobImage=findViewById(R.id.jobImage);
@@ -98,25 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(mAuth!=null){
-            email.setText(mAuth.getCurrentUser().getEmail());
 
-            btnSignOut.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mAuth.signOut();
-                    Toast.makeText(MainActivity.this, "You have been signed out", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
-                }
-            });
-
-            btnProfile.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(MainActivity.this,ProfileActivity.class));
-                }
-            });
-        }
 
 
     }

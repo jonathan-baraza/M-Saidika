@@ -24,6 +24,119 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar">
+
+
+
+
+        <ImageView
+            android:id="@+id/jobImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/profile" />
+        <TextView
+            android:id="@+id/jobText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Job Opportunities"
+            android:layout_alignBottom="@+id/jobImage"
+            android:layout_marginLeft="10dp"/>
+        <ImageView
+            android:id="@+id/transportImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/profile"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:layout_alignParentRight="true"
+            />
+        <TextView
+            android:id="@+id/transportText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transport Services"
+            android:layout_alignBottom="@+id/transportImage"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="55dp"/>
+
+        <ImageView
+            android:id="@+id/foodImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/profile"
+            android:layout_alignTop="@+id/jobText"/>
+
+        <TextView
+            android:id="@+id/foodText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Food Services"
+            android:layout_alignBottom="@+id/foodImage"
+            android:layout_marginLeft="10dp"/>
+
+        <ImageView
+            android:id="@+id/housingImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/profile"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/transportText"/>
+
+        <TextView
+            android:id="@+id/housingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Housing Services"
+            android:layout_alignBottom="@+id/housingImage"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="55dp"/>
+
+        <ImageView
+            android:id="@+id/sPImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/profile"
+            android:layout_alignTop="@+id/foodText"/>
+        <TextView
+            android:id="@+id/sPText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Service Provider"
+            android:layout_alignBottom="@+id/sPImage"
+            android:layout_marginLeft="10dp"/>
+
+        <ImageView
+            android:id="@+id/emergencyImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/profile"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/housingText"/>
+
+        <TextView
+            android:id="@+id/emergencyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Emergency Services"
+            android:layout_alignBottom="@+id/emergencyImage"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="55dp"/>
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/sideMenu"
         android:layout_width="250dp"
@@ -169,118 +282,6 @@
                 android:textSize="16dp" />
         </RelativeLayout>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/bar">
-
-
-
-
-        <ImageView
-            android:id="@+id/jobImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginLeft="10dp"
-            android:padding="5dp"
-            android:src="@drawable/profile" />
-        <TextView
-            android:id="@+id/jobText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Job Opportunities"
-            android:layout_alignBottom="@+id/jobImage"
-            android:layout_marginLeft="10dp"/>
-        <ImageView
-            android:id="@+id/transportImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/profile"
-            android:layout_marginRight="10dp"
-            android:padding="5dp"
-            android:layout_alignParentRight="true"
-            />
-        <TextView
-            android:id="@+id/transportText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Transport Services"
-            android:layout_alignBottom="@+id/transportImage"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="55dp"/>
-
-        <ImageView
-            android:id="@+id/foodImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginLeft="10dp"
-            android:padding="5dp"
-            android:src="@drawable/profile"
-            android:layout_alignTop="@+id/jobText"/>
-
-        <TextView
-            android:id="@+id/foodText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Food Services"
-            android:layout_alignBottom="@+id/foodImage"
-            android:layout_marginLeft="10dp"/>
-
-        <ImageView
-            android:id="@+id/housingImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/profile"
-            android:layout_marginRight="10dp"
-            android:padding="5dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@id/transportText"/>
-
-        <TextView
-            android:id="@+id/housingText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Housing Services"
-            android:layout_alignBottom="@+id/housingImage"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="55dp"/>
-
-        <ImageView
-            android:id="@+id/sPImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginLeft="10dp"
-            android:padding="5dp"
-            android:src="@drawable/profile"
-            android:layout_alignTop="@+id/foodText"/>
-        <TextView
-            android:id="@+id/sPText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Service Provider"
-            android:layout_alignBottom="@+id/sPImage"
-            android:layout_marginLeft="10dp"/>
-
-        <ImageView
-            android:id="@+id/emergencyImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/profile"
-            android:layout_marginRight="10dp"
-            android:padding="5dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@id/housingText"/>
-
-        <TextView
-            android:id="@+id/emergencyText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Emergency Services"
-            android:layout_alignBottom="@+id/emergencyImage"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="55dp"/>
     </RelativeLayout>
 
 </RelativeLayout>
