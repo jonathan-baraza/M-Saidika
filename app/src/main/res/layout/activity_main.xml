@@ -2,15 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:layout_gravity="center">
-
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -29,29 +23,6 @@
                 android:id="@+id/openSideMenu"/>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bar">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Hello there..."
-        android:id="@+id/greeting"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/greeting"
-        android:text="Email"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:id="@+id/email"/>
-
-
-
-    </RelativeLayout>
-
 
     <RelativeLayout
         android:id="@+id/sideMenu"
@@ -200,6 +171,13 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar">
+
+
+
 
         <ImageView
             android:id="@+id/jobImage"
@@ -303,5 +281,6 @@
             android:layout_alignBottom="@+id/emergencyImage"
             android:layout_alignParentRight="true"
             android:layout_marginRight="55dp"/>
+    </RelativeLayout>
 
 </RelativeLayout>
