@@ -3,15 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/drawable/ic_warning_black.xml" value="0.144" />
+        <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_emergency_activty.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_profile.xml" value="0.21" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_welcome.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/drawable/ic_close.xml" value="0.1605" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/drawable/ic_login_logout.xml" value="0.163" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_profile.xml" value="0.25" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_welcome.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>

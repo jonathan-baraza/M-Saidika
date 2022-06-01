@@ -100,7 +100,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        emergencyImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, EmergencyActivty.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
