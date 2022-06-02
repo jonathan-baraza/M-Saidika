@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -107,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,6 +116,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+        emergencyImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, EmergencyActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     @Override
     protected void onStart() {
