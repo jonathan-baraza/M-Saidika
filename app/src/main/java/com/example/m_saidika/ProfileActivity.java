@@ -45,7 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
     //update form elements
     public LinearLayout updateForm,profileDetails;
     public ImageView btnCloseUpdateForm,imgUpdate,backArrow;
-    public EditText fNameUpdate,lNameUpdate,phoneUpdate,bioUpdate;
+    public EditText phoneUpdate,bioUpdate;
     public Button btnShowUpdateForm,btnUpdateProfilePhoto,btnUpdateProfile;
 
 
@@ -248,8 +248,11 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Profile userProfie=snapshot.getValue(Profile.class);
+                Picasso.get().load(userProfie.getPhoto()).into(imgUpdate);
                 name.setText(userProfie.getFirstName()+" "+userProfie.getLastName());
                 phone.setText("Phone: "+userProfie.getPhone());
+                phoneUpdate.setText(userProfie.getPhone());
+                bioUpdate.setText(userProfie.getBio());
                 Picasso.get().load(userProfie.getPhoto()).into(imgUpdate);
                 if(TextUtils.isEmpty(userProfie.getAdmNo())){
                     idNo.setText("ID Number: "+userProfie.getIdNo().toString());
