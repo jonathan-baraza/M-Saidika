@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -53,6 +54,8 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
 
+
+
         btnBack = findViewById(R.id.btnBack);
         btnUpdate = findViewById(R.id.btnUpdate);
         profilePic = findViewById(R.id.profilePic);
@@ -75,6 +78,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
 
         updateForm=findViewById(R.id.updateForm);
@@ -115,6 +119,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+
+        btnUpdateProfilePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CropImage.activity().start(ProfileActivity.this);
+            }
+        });
 
         btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
