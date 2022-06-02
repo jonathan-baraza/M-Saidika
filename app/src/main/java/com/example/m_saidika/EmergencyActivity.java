@@ -9,6 +9,6 @@ public class EmergencyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency_activty);
+        setContentView(R.layout.activity_emergency);
     }
 }
