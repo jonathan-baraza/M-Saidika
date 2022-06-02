@@ -1,9 +1,11 @@
 package com.example.m_saidika;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -13,8 +15,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.m_saidika.Models.Profile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     public RelativeLayout sideMenu,btnSignOut;
 
     private Animation openSideMenuAnimation,closeSideMenuAnimation;
+
+    private CircleImageView profilePic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +65,15 @@ public class MainActivity extends AppCompatActivity {
         sPText=findViewById(R.id.sPText);
         emergencyText=findViewById(R.id.emergencyText);
 
+
+
         mAuth=FirebaseAuth.getInstance();
 
         //sideMenu
         sideMenu=findViewById(R.id.sideMenu);
         openSideMenu=findViewById(R.id.openSideMenu);
         closeSideMenu=findViewById(R.id.closeSideMenu);
+        profilePic=findViewById(R.id.profilePic);
 
 
         openSideMenuAnimation= AnimationUtils.loadAnimation(MainActivity.this,R.anim.open_side_menu);
@@ -134,7 +149,25 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         if(user==null){
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
+        }else{
+            getProfileDetails();
         }
         super.onStart();
+    }
+
+    private void getProfileDetails() {
+        FirebaseDatabase.getInstance().getReference().child("Profiles").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Profile userProfie=snapshot.getValue(Profile.class);
+                Picasso.get().load(userProfie.getPhoto()).into(profilePic);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
