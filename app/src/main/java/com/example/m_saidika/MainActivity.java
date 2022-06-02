@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -99,8 +100,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+            }
+        });
 
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(MainActivity.this, "You have been signed out.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            }
+        });
 
+    }
 
+    @Override
+    protected void onStart() {
+        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        if(user==null){
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+        }
+        super.onStart();
     }
 }
