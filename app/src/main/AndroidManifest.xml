@@ -18,6 +18,9 @@
         android:theme="@style/Theme.MSaidika"
         tools:targetApi="31">
         <activity
+            android:name=".ApplicationsActivity"
+            android:exported="false" />
+        <activity
             android:name=".FoodActivity"
             android:exported="false" />
         <activity
