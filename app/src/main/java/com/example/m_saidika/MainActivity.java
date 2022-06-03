@@ -160,7 +160,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Profile userProfie=snapshot.getValue(Profile.class);
-                Picasso.get().load(userProfie.getPhoto()).into(profilePic);
+                if(userProfie.getPhoto().length()>0){
+                    Picasso.get().load(userProfie.getPhoto()).placeholder(R.drawable.loader2).into(profilePic);
+                }else{
+                    profilePic.setImageResource(R.drawable.avatar1);
+                }
 
             }
 

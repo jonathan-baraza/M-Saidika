@@ -247,20 +247,27 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child("Profiles").child(fUser.getUid().toString()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Profile userProfie=snapshot.getValue(Profile.class);
-                Picasso.get().load(userProfie.getPhoto()).into(imgUpdate);
-                name.setText(userProfie.getFirstName()+" "+userProfie.getLastName());
-                phone.setText("Phone: "+userProfie.getPhone());
-                phoneUpdate.setText(userProfie.getPhone());
-                bioUpdate.setText(userProfie.getBio());
-                Picasso.get().load(userProfie.getPhoto()).into(imgUpdate);
-                if(TextUtils.isEmpty(userProfie.getAdmNo())){
-                    idNo.setText("ID Number: "+userProfie.getIdNo().toString());
+                Profile userProfile=snapshot.getValue(Profile.class);
+                Picasso.get().load(userProfile.getPhoto()).into(imgUpdate);
+                name.setText(userProfile.getFirstName()+" "+userProfile.getLastName());
+                phone.setText("Phone: "+userProfile.getPhone());
+                phoneUpdate.setText(userProfile.getPhone());
+                bioUpdate.setText(userProfile.getBio());
+
+                if(userProfile.getPhoto().length()>0){
+                    Picasso.get().load(userProfile.getPhoto()).into(imgUpdate);
+                }else{
+                    imgUpdate.setImageResource(R.drawable.img_holder);
+                }
+
+                if(TextUtils.isEmpty(userProfile.getAdmNo())){
+                    idNo.setText("ID Number: "+userProfile.getIdNo().toString());
                     admNo.setVisibility(View.GONE);
                 }else{
-                    admNo.setText("Admission Number: "+userProfie.getAdmNo().toString());
+                    admNo.setText("Admission Number: "+userProfile.getAdmNo().toString());
                     idNo.setVisibility(View.GONE);
                 }
+
             }
 
             @Override

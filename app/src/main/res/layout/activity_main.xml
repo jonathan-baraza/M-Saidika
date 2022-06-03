@@ -160,7 +160,7 @@
             android:layout_height="100dp"
             android:layout_below="@id/closeSideMenu"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/avatar1" />
+            android:src="@drawable/loader2" />
 
         <LinearLayout
             android:id="@+id/navList"
