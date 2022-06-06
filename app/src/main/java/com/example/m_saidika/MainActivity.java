@@ -166,13 +166,12 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child("Profiles").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Profile userProfie=snapshot.getValue(Profile.class);
-                if(userProfie.getPhoto().length()>0){
-                    Picasso.get().load(userProfie.getPhoto()).placeholder(R.drawable.loader2).into(profilePic);
+                Profile userProfile=snapshot.getValue(Profile.class);
+                if(userProfile.getPhoto().length()>0){
+                    Picasso.get().load(userProfile.getPhoto()).placeholder(R.drawable.loader2).into(profilePic);
                 }else{
                     profilePic.setImageResource(R.drawable.avatar1);
                 }
-
             }
 
             @Override

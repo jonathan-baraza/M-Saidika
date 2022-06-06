@@ -3,27 +3,35 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    >
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="10dp"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="10dp">
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="false"
+        android:id="@+id/parentContainer"
+       >
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
                 android:text="Rice"
+                android:textSize="14sp"
                 android:id="@+id/foodName"
                 android:textColor="@color/black"/>
+            </LinearLayout>
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/foodone"
                 android:id="@+id/foodImage"/>
@@ -32,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Ksh 250"
+                android:textSize="14sp"
                 android:id="@+id/foodPrice"
                 android:textColor="@color/black"/>
         </LinearLayout>
