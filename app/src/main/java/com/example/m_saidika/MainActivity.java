@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -74,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
         openSideMenu=findViewById(R.id.openSideMenu);
         closeSideMenu=findViewById(R.id.closeSideMenu);
         profilePic=findViewById(R.id.profilePic);
+
+
+        foodImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, FoodMenuActivity.class));
+            }
+        });
 
 
         openSideMenuAnimation= AnimationUtils.loadAnimation(MainActivity.this,R.anim.open_side_menu);
