@@ -248,7 +248,6 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Profile userProfile=snapshot.getValue(Profile.class);
-                Picasso.get().load(userProfile.getPhoto()).into(imgUpdate);
                 name.setText(userProfile.getFirstName()+" "+userProfile.getLastName());
                 phone.setText("Phone: "+userProfile.getPhone());
                 phoneUpdate.setText(userProfile.getPhone());
