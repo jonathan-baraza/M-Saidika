@@ -14,7 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +46,8 @@
         </com.google.android.material.appbar.AppBarLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/bar">
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
