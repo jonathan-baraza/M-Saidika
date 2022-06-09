@@ -184,7 +184,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void updateProfileDetails(String phone, String bio) {
         if(imageUri!=null){
-            String fileExtension=imageUri.getLastPathSegment().substring(imageUri.getLastPathSegment().length()-3);
+            String[] splitArray=imageUri.getLastPathSegment().split("\\.");
+            String fileExtension=splitArray[splitArray.length-1];
             StorageReference storageRef= FirebaseStorage.getInstance().getReference().child("ProfilesPhotos").child(System.currentTimeMillis()+fileExtension);
             StorageTask uploadTask=storageRef.putFile(imageUri);
 
