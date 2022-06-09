@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">M-Saidika</string>
+
+    <string-array name="Service_Type">
+        <item></item>
+        <item>Job</item>
+        <item>Food</item>
+        <item>Housing</item>
+        <item>Transport</item>
+    </string-array>
+    
 </resources>

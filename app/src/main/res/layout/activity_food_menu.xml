@@ -48,11 +48,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/foodMenuRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/foodMenuRecyclerView"
-                android:paddingBottom="30dp"/>
+                android:paddingBottom="30dp" />
 
         </RelativeLayout>
         </RelativeLayout>
