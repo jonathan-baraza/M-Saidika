@@ -146,6 +146,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        sPImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ServiceProviderActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
