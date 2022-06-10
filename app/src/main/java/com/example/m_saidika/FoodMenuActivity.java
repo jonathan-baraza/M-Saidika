@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.m_saidika.Adapters.MenuAdapter;
@@ -46,6 +47,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FoodMenuActivity extends AppCompatActivity {
+    public TextView title;
     public ImageView closeAddForm,imgUpdate,goBack;
     public Button btnSelectPicture,btnAddFood;
     public EditText foodName,foodPrice;
@@ -65,6 +67,7 @@ public class FoodMenuActivity extends AppCompatActivity {
     public MenuAdapter menuAdapter;
     public LinearLayoutManager layoutManager;
     public ArrayList<FoodItem> allFoodItems;
+    public String foodServiceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,7 @@ public class FoodMenuActivity extends AppCompatActivity {
 
         InputValidation inputValidation=new InputValidation();
 
+        title=findViewById(R.id.title);
         closeAddForm=findViewById(R.id.closeAddForm);
         imgUpdate=findViewById(R.id.imgUpdate);
         btnSelectPicture=findViewById(R.id.btnSelectPicture);
@@ -86,6 +90,15 @@ public class FoodMenuActivity extends AppCompatActivity {
         fUser= FirebaseAuth.getInstance().getCurrentUser();
 
         addFoodForm=findViewById(R.id.addFoodForm);
+
+        Intent intent=getIntent();
+        foodServiceId=intent.getStringExtra("id");
+        title.setText(intent.getStringExtra("title"));
+
+        //show fab if it is the owner
+        if(fUser.getUid().toString().equals(foodServiceId)){
+            fab.setVisibility(View.VISIBLE);
+        }
 
         builder=new AlertDialog.Builder(FoodMenuActivity.this);
         builder.setCancelable(false);
@@ -180,7 +193,7 @@ public class FoodMenuActivity extends AppCompatActivity {
     }
 
     private void fetchFoodItemsFromDB() {
-        DatabaseReference dbRef= FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Food").child(fUser.getUid()).child("Menu");
+        DatabaseReference dbRef= FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Food").child(foodServiceId).child("Menu");
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -191,7 +204,6 @@ public class FoodMenuActivity extends AppCompatActivity {
                 }
                 menuAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -200,8 +212,6 @@ public class FoodMenuActivity extends AppCompatActivity {
     }
 
     private void insertFoodToDB(String foodName, String foodPrice) {
-        Intent intent=getIntent();
-        String foodServiceId=intent.getStringExtra("id");
         DatabaseReference dbRef= FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Food").child(foodServiceId).child("Menu");
 
         String[] splitArray=imageUri.getLastPathSegment().split("\\.");
@@ -229,7 +239,6 @@ public class FoodMenuActivity extends AppCompatActivity {
                 menuData.put("photo",downloadUrl);
                 menuData.put("name",foodName);
                 menuData.put("price",foodPrice);
-
                 String key=dbRef.push().getKey();
 
                 dbRef.child(key).setValue(menuData).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -239,19 +248,15 @@ public class FoodMenuActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(FoodMenuActivity.this, "Your food was added successfully", Toast.LENGTH_SHORT).show();
                             clearInputs();
-
                         }else{
                             builder.setTitle("Error").setMessage("There was an error while adding your food item, try again later.");
                             builder.show();
                             imageUri=null;
-                        }                    }
+                        }
+                    }
                 });
-
-
             }
         });
-
-
     }
 
     private void clearInputs() {
@@ -261,7 +266,6 @@ public class FoodMenuActivity extends AppCompatActivity {
         closeAddForm.performClick();
         imgUpdate.setImageResource(R.drawable.img_holder);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

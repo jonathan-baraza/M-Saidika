@@ -31,15 +31,15 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_back_arrow"
                         android:id="@+id/goBack"/>
+
                     <TextView
+                        android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Megabytes Menu"
-                        android:id="@+id/title"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
                         android:layout_centerHorizontal="true"
-                        />
+                        android:text="Megabytes Menu"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
                 </RelativeLayout>
 
             </androidx.appcompat.widget.Toolbar>
@@ -157,6 +157,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="15dp"
         android:src="@drawable/ic_baseline_add_24"
+        android:visibility="gone"
         android:id="@+id/fab"/>
 
 </RelativeLayout>

@@ -53,7 +53,12 @@ public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Profile profile=snapshot.getValue(Profile.class);
-                Picasso.get().load(profile.getPhoto()).placeholder(R.drawable.loader2).into(holder.image);
+                if(profile.getPhoto().length()>0){
+                    Picasso.get().load(profile.getPhoto()).placeholder(R.drawable.loader2).into(holder.image);
+                }else{
+                    holder.image.setImageResource(R.drawable.cartoon_restaurant);
+                }
+
             }
 
             @Override
@@ -64,11 +69,13 @@ public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.
 
         holder.name.setText(applicationItem.getCompanyName());
         holder.description.setText(applicationItem.getDescription());
+        holder.location.setText("Location: "+applicationItem.getLocation());
         holder.foodServiceContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(mContext, FoodMenuActivity.class);
                 intent.putExtra("id",applicationItem.getUserId());
+                intent.putExtra("title",applicationItem.getCompanyName());
                 mContext.startActivity(intent);
             }
         });
@@ -82,7 +89,7 @@ public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder{
         public RelativeLayout foodServiceContainer;
         public ImageView image;
-        public TextView name,description;
+        public TextView name,description,location;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -90,6 +97,7 @@ public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.
             name=itemView.findViewById(R.id.name);
             description=itemView.findViewById(R.id.description);
             foodServiceContainer=itemView.findViewById(R.id.foodServiceContainer);
+            location=itemView.findViewById(R.id.location);
         }
     }
 }

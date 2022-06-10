@@ -18,6 +18,9 @@
         android:theme="@style/Theme.MSaidika"
         tools:targetApi="31">
         <activity
+            android:name=".ViewMenuItem"
+            android:exported="false" />
+        <activity
             android:name=".ViewApplication"
             android:exported="false" />
         <activity
