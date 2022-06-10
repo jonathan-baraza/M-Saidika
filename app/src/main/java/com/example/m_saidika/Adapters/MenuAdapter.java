@@ -1,6 +1,7 @@
 package com.example.m_saidika.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.m_saidika.Models.FoodItem;
 import com.example.m_saidika.R;
+import com.example.m_saidika.ViewMenuItem;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
@@ -51,7 +53,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder>{
         holder.parentContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, foodItem.getName()+" selected", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(mContext, ViewMenuItem.class);
+                intent.putExtra("photo",foodItem.getPhoto());
+                intent.putExtra("name",foodItem.getName());
+                intent.putExtra("price",foodItem.getPrice());
+                mContext.startActivity(intent);
             }
         });
     }
