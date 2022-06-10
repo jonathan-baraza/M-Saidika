@@ -200,7 +200,9 @@ public class FoodMenuActivity extends AppCompatActivity {
     }
 
     private void insertFoodToDB(String foodName, String foodPrice) {
-        DatabaseReference dbRef= FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Food").child(fUser.getUid()).child("Menu");
+        Intent intent=getIntent();
+        String foodServiceId=intent.getStringExtra("id");
+        DatabaseReference dbRef= FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Food").child(foodServiceId).child("Menu");
 
         String[] splitArray=imageUri.getLastPathSegment().split("\\.");
         String fileExtension=splitArray[splitArray.length-1];
