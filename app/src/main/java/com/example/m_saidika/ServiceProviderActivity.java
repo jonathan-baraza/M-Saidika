@@ -183,9 +183,9 @@ public class ServiceProviderActivity extends AppCompatActivity implements Adapte
         applicationData.put("logo","");
         applicationData.put("permit",downloadImageUrl);
         applicationData.put("userId",fUser.getUid());
-        applicationData.put("isVerified",false);
+        applicationData.put("verificationStatus","pending");
 
-        String key = dbRef.push().getKey();
+        String key = fUser.getUid();
 
         dbRef.child(key).updateChildren(applicationData).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

@@ -8,9 +8,9 @@ public class ApplicationItem {
     private String serviceType;
     private String permit;
     private String userId;
-    private boolean isVerified;
+    private String verificationStatus;
 
-    public ApplicationItem(String companyName, String logo, String location, String description, String serviceType, String permit, String userId, boolean isVerified) {
+    public ApplicationItem(String companyName, String logo, String location, String description, String serviceType, String permit, String userId, String verificationStatus) {
         this.companyName = companyName;
         this.logo = logo;
         this.location = location;
@@ -18,7 +18,7 @@ public class ApplicationItem {
         this.serviceType = serviceType;
         this.permit = permit;
         this.userId = userId;
-        this.isVerified = isVerified;
+        this.verificationStatus = verificationStatus;
     }
 
     public ApplicationItem() {
@@ -80,11 +80,11 @@ public class ApplicationItem {
         this.userId = userId;
     }
 
-    public boolean getVerified() {
-        return isVerified;
+    public String getVerificationStatus() {
+        return verificationStatus;
     }
 
-    public void setVerified(boolean verified) {
-        isVerified = verified;
+    public void setVerificationStatus(String verificationStatus) {
+        this.verificationStatus = verificationStatus;
     }
 }
