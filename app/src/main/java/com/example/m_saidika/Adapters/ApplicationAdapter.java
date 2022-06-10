@@ -1,6 +1,7 @@
 package com.example.m_saidika.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.m_saidika.Models.ApplicationItem;
 import com.example.m_saidika.Models.FoodItem;
 import com.example.m_saidika.R;
+import com.example.m_saidika.ViewApplication;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
@@ -44,13 +46,15 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
     @Override
     public void onBindViewHolder(@NonNull ApplicationAdapter.ViewHolder holder, int position) {
         ApplicationItem applicationItem = allApplicationItems.get(position);
-        holder.appCompanyName.setText(applicationItem.getCompanyName());
-        holder.appServiceType.setText(applicationItem.getServiceType());
+        holder.appCompanyName.setText("Company Name: " + applicationItem.getCompanyName());
+        holder.appServiceType.setText("Service Type: " + applicationItem.getServiceType());
 
         holder.appCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, applicationItem.getCompanyName()+" selected", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, ViewApplication.class);
+                intent.putExtra("uid", applicationItem.getUserId());
+                mContext.startActivity(intent);
             }
         });
 
