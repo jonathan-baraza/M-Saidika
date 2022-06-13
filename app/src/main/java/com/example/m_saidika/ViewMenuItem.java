@@ -47,7 +47,10 @@ public class ViewMenuItem extends AppCompatActivity {
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ViewMenuItem.this, "Buying "+name.getText().toString(), Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(ViewMenuItem.this,PaymentActivity.class);
+                intent.putExtra("name",name.getText().toString());
+                intent.putExtra("price",price.getText().toString());
+                startActivity(intent);
             }
         });
 
