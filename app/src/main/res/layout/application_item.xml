@@ -6,21 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/sPApplication"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Service Provider Applications"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/appCard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:elevation="3dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,6 +29,12 @@
 
             <TextView
                 android:id="@+id/appServiceType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/appVerificationStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView" />

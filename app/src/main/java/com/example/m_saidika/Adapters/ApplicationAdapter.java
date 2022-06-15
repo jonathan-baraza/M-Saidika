@@ -48,6 +48,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         ApplicationItem applicationItem = allApplicationItems.get(position);
         holder.appCompanyName.setText("Company Name: " + applicationItem.getCompanyName());
         holder.appServiceType.setText("Service Type: " + applicationItem.getServiceType());
+        holder.appVerificationStatus.setText("Verification Status: " + applicationItem.getVerificationStatus());
 
         holder.appCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +67,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView appCompanyName, appServiceType;
+        public TextView appCompanyName, appServiceType, appVerificationStatus;
         public CardView appCard;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,6 +75,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
             appCompanyName=itemView.findViewById(R.id.appCompanyName);
             appServiceType=itemView.findViewById(R.id.appServiceType);
             appCard=itemView.findViewById(R.id.appCard);
+            appVerificationStatus=itemView.findViewById(R.id.appVerificationStatus);
         }
     }
 }

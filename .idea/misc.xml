@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/drawable/ic_back_arrow.xml" value="0.1375" />
+        <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/drawable/ic_back_arrow_2.xml" value="0.1375" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.138" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/drawable/ic_chat.xml" value="0.138" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_applications.xml" value="0.20416666666666666" />
@@ -13,6 +15,10 @@
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_profile.xml" value="0.21" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_service_provider.xml" value="0.20416666666666666" />
+
+        <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_view_application.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_view_permit_application.xml" value="0.20416666666666666" />
+
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/activity_welcome.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/application.xml" value="0.203125" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/application_item.xml" value="0.16666666666666666" />

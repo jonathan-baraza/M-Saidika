@@ -20,6 +20,9 @@
         <activity
             android:name=".ViewMenuItem"
             android:exported="false" />
+       <activity
+            android:name=".ViewPermitApplication"
+            android:exported="false" />
         <activity
             android:name=".ViewApplication"
             android:exported="false" />
