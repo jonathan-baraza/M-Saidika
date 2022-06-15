@@ -28,7 +28,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
 
     public ImageView jobImage,transportImage,foodImage,housingImage,sPImage,emergencyImage;
-    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile;
+    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,recentActivities,chat,help,about;
 
 
     private FirebaseAuth mAuth;
@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         email=findViewById(R.id.email);
         btnSignOut=findViewById(R.id.btnSignOut);
 
-        btnProfile=findViewById(R.id.btnProfile);
 
         jobImage=findViewById(R.id.jobImage);
         transportImage=findViewById(R.id.transportImage);
@@ -65,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
         emergencyText=findViewById(R.id.emergencyText);
 
 
+        //side menu
+        btnProfile=findViewById(R.id.btnProfile);
+        recentActivities=findViewById(R.id.recentActivities);
+        chat=findViewById(R.id.chat);
+        help=findViewById(R.id.help);
+        about=findViewById(R.id.about);
 
         mAuth=FirebaseAuth.getInstance();
 
@@ -73,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
         openSideMenu=findViewById(R.id.openSideMenu);
         closeSideMenu=findViewById(R.id.closeSideMenu);
         profilePic=findViewById(R.id.profilePic);
+
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,AllChatsActivity.class));
+            }
+        });
 
 
         foodImage.setOnClickListener(new View.OnClickListener() {

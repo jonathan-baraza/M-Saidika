@@ -1,6 +1,7 @@
 package com.example.m_saidika.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.m_saidika.ChatActivity;
 import com.example.m_saidika.Models.Profile;
 import com.example.m_saidika.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,18 +44,22 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Profile userProfile=allUsers.get(position);
-
         Picasso.get().load(userProfile.getPhoto()).placeholder(R.drawable.loader2).into(holder.profilePic);
         holder.name.setText(userProfile.getFirstName()+" "+userProfile.getLastName());
 
         holder.btnStartChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent=new Intent(mContext, ChatActivity.class);
+                intent.putExtra("recipientId",userProfile.getUserId());
+                mContext.startActivity(intent);
 
-                //Logic for redirecting with user id;
-                //check first user is not clicking their own account
             }
         });
+    }
+
+    public void setAllUsers(ArrayList<Profile> allUsers) {
+        this.allUsers = allUsers;
     }
 
     @Override

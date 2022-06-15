@@ -18,6 +18,10 @@
         android:theme="@style/Theme.MSaidika"
         tools:targetApi="31">
         <activity
+            android:name=".ChatActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
+        <activity
             android:name=".AllChatsActivity"
             android:exported="false" />
         <activity

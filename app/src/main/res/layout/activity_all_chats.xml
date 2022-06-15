@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:id="@+id/toolbar"/>
+            android:id="@+id/toolbar" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -55,8 +55,9 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_baseline_search_24"
                     android:layout_marginStart="20dp"
-                    android:hint="Search for user"
+                    android:hint="Type to search for user"
                     android:padding="10dp"
+                    android:textSize="14sp"
                     android:drawablePadding="10dp"
                     android:layout_margin="10dp"
                     android:id="@+id/search"/>
@@ -66,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/allUsersRecView"
+            android:layout_below="@+id/usersBar"
             android:paddingBottom="30dp"
             />
     </RelativeLayout>
