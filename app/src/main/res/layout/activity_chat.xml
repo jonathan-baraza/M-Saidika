@@ -70,7 +70,10 @@
             android:layout_toStartOf="@+id/btnsContainer"
             android:background="@drawable/bg_two"
             android:hint="Type Message here..."
-            android:padding="15dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="30dp"
             android:textColor="@color/white"
             android:textColorHint="#d6d6d6"
             android:textSize="16sp" />

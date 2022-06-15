@@ -13,12 +13,14 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back_white"
         android:id="@+id/backArrow"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:layout_margin="5dp"/>
 
     <ImageView
         android:id="@+id/viewPermitApp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_holder"/>
 
 
 </LinearLayout>

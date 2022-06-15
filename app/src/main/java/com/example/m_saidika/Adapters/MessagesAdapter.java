@@ -71,7 +71,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
                 holder.recipientMessage.setVisibility(View.GONE);
                 holder.recipientPhoto.setVisibility(View.VISIBLE);
                 Picasso.get().load(message.getMessage()).placeholder(R.drawable.loader2).into(holder.recipientPhoto);
-                holder.senderPhoto.setOnClickListener(new View.OnClickListener() {
+                holder.recipientPhoto.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         viewPhoto(message.message);
