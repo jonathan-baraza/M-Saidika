@@ -256,8 +256,11 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if(userProfile.getPhoto().length()>0){
                     Picasso.get().load(userProfile.getPhoto()).into(imgUpdate);
+                    Picasso.get().load(userProfile.getPhoto()).into(profilePic);
                 }else{
                     imgUpdate.setImageResource(R.drawable.img_holder);
+                    profilePic.setImageResource(R.drawable.img_holder);
+
                 }
 
                 if(TextUtils.isEmpty(userProfile.getAdmNo())){
