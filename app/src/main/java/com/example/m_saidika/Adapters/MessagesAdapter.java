@@ -1,6 +1,7 @@
 package com.example.m_saidika.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.m_saidika.Models.Message;
 import com.example.m_saidika.R;
+import com.example.m_saidika.ViewPermitApplication;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
@@ -49,6 +51,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
                 holder.senderMessage.setVisibility(View.GONE);
                 holder.senderPhoto.setVisibility(View.VISIBLE);
                 Picasso.get().load(message.getMessage()).placeholder(R.drawable.loader2).into(holder.senderPhoto);
+                holder.senderPhoto.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        viewPhoto(message.getMessage());
+                    }
+                });
             }else{
                 holder.senderPhoto.setVisibility(View.GONE);
                 holder.senderMessage.setVisibility(View.VISIBLE);
@@ -63,6 +71,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
                 holder.recipientMessage.setVisibility(View.GONE);
                 holder.recipientPhoto.setVisibility(View.VISIBLE);
                 Picasso.get().load(message.getMessage()).placeholder(R.drawable.loader2).into(holder.recipientPhoto);
+                holder.senderPhoto.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        viewPhoto(message.message);
+                    }
+                });
             }else{
                 holder.recipientPhoto.setVisibility(View.GONE);
                 holder.recipientMessage.setVisibility(View.VISIBLE);
@@ -71,6 +85,14 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
             holder.recipientTime.setText(message.getTime());
 
         }
+
+
+    }
+
+    private void viewPhoto(String message) {
+        Intent intent=new Intent(mContext, ViewPermitApplication.class);
+        intent.putExtra("permit",message);
+        mContext.startActivity(intent);
     }
 
     @Override
