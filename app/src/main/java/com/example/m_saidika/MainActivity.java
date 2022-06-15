@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         foodImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, FoodMenuActivity.class));
+                startActivity(new Intent(MainActivity.this, FoodActivity.class));
             }
         });
 
