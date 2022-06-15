@@ -8,9 +8,10 @@ public class Profile {
     private String idNo;
     private String photo;
     private String bio;
+    private String userId;
 
 
-    public Profile(String firstName, String lastName, String phone, String admNo, String idNo, String photo, String bio) {
+    public Profile(String firstName, String lastName, String phone, String admNo, String idNo, String photo, String bio,String userId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -18,6 +19,7 @@ public class Profile {
         this.idNo = idNo;
         this.photo = photo;
         this.bio = bio;
+        this.userId=userId;
     }
 
     public Profile() {
@@ -77,5 +79,13 @@ public class Profile {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

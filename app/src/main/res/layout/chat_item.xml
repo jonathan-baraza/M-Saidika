@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/senderLayout"
+        android:orientation="vertical"
+        android:background="@drawable/shape_outgoing_message_bubble"
+        android:layout_gravity="end"
+        android:layout_margin="5dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="15dp"
+        android:gravity="end">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello bro"
+            android:gravity="start"
+            android:minWidth="70dp"
+            android:textSize="16sp"
+            android:maxWidth="250dp"
+            android:textColor="@color/white"
+            android:id="@+id/senderMessage"/>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/foodone"
+            android:gravity="center_horizontal"
+            android:id="@+id/senderPhoto"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11:00 pm"
+            android:gravity="end"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:id="@+id/senderTime"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/recipientLayout"
+        android:orientation="vertical"
+        android:background="@drawable/shape_incoming_message_bubble"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="4dp"
+        android:layout_margin="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello bro"
+            android:gravity="start"
+            android:minWidth="70dp"
+            android:textSize="16sp"
+            android:maxWidth="250dp"
+            android:textColor="@color/white"
+            android:id="@+id/recipientMessage"/>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/foodone"
+            android:id="@+id/recipientPhoto"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11:00 pm"
+            android:layout_gravity="end"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:id="@+id/recipientTime"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
