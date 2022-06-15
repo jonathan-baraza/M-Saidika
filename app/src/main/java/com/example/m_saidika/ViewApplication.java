@@ -77,8 +77,8 @@ public class ViewApplication extends AppCompatActivity {
         viewPermit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewApplication.this, ViewPermitApplication.class);
-                intent.putExtra("permit", photoUrl);
+                Intent intent = new Intent(ViewApplication.this, ViewFullPhotoActivity.class);
+                intent.putExtra("photoUrl", photoUrl);
                 startActivity(intent);
             }
         });

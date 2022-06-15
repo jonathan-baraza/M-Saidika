@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.m_saidika.Models.Message;
 import com.example.m_saidika.R;
-import com.example.m_saidika.ViewPermitApplication;
+import com.example.m_saidika.ViewFullPhotoActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
@@ -90,8 +90,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
     }
 
     private void viewPhoto(String message) {
-        Intent intent=new Intent(mContext, ViewPermitApplication.class);
-        intent.putExtra("permit",message);
+        Intent intent=new Intent(mContext, ViewFullPhotoActivity.class);
+        intent.putExtra("photoUrl",message);
         mContext.startActivity(intent);
     }
 

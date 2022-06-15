@@ -28,7 +28,7 @@
             android:name=".ViewMenuItem"
             android:exported="false" />
        <activity
-            android:name=".ViewPermitApplication"
+            android:name=".ViewFullPhotoActivity"
             android:exported="false" />
         <activity
             android:name=".ViewApplication"

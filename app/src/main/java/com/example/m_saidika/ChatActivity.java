@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.m_saidika.Adapters.MessagesAdapter;
 import com.example.m_saidika.Models.Message;
@@ -34,16 +33,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageActivity;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -65,6 +59,8 @@ public class ChatActivity extends AppCompatActivity {
     public LinearLayoutManager layoutManager;
     public MessagesAdapter adapter;
     public ArrayList<Message> allMessages;
+
+    public String recipientProfilePicUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,12 +108,23 @@ public class ChatActivity extends AppCompatActivity {
         });
 
 
+        //view dp
+        recipientProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ChatActivity.this, ViewFullPhotoActivity.class);
+                intent.putExtra("photoUrl",recipientProfilePicUrl);
+                startActivity(intent);
+            }
+        });
+
         FirebaseDatabase.getInstance().getReference().child("Profiles").child(recipientId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Profile userData=snapshot.getValue(Profile.class);
                 if(userData.getPhoto().length()>0){
                     Picasso.get().load(userData.getPhoto()).placeholder(R.drawable.loader2).into(recipientProfilePic);
+                    recipientProfilePicUrl=userData.getPhoto();
                 }else{
                     recipientProfilePic.setImageResource(R.drawable.avatar1);
                 }

@@ -6,20 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.m_saidika.Models.ApplicationItem;
 import com.squareup.picasso.Picasso;
 
-public class ViewPermitApplication extends AppCompatActivity {
+public class ViewFullPhotoActivity extends AppCompatActivity {
 
     public ImageView viewPermitApp, backArrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_permit_application);
+        setContentView(R.layout.activity_view_full_photo);
 
         viewPermitApp = findViewById(R.id.viewPermitApp);
         backArrow = findViewById(R.id.backArrow);
@@ -34,7 +31,7 @@ public class ViewPermitApplication extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String photo = intent.getStringExtra("permit");
+        String photo = intent.getStringExtra("photoUrl");
 
         if(photo.length()>0){
             Picasso.get().load(photo).placeholder(R.drawable.loader2).into(viewPermitApp);
