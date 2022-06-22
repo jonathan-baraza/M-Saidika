@@ -18,6 +18,7 @@ public class ViewMenuItem extends AppCompatActivity {
     public ImageView image;
     public Button btnOrder;
     public Toolbar toolbar;
+    public String amountToBePaid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,8 @@ public class ViewMenuItem extends AppCompatActivity {
         Intent intent=getIntent();
         Picasso.get().load(intent.getStringExtra("photo")).placeholder(R.drawable.loader2).into(image);
         name.setText(intent.getStringExtra("name"));
-        price.setText(intent.getStringExtra("price"));
+        price.setText("Ksh "+intent.getStringExtra("price")+"/=");
+        amountToBePaid=intent.getStringExtra("price");
 
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +52,7 @@ public class ViewMenuItem extends AppCompatActivity {
                 Intent intent=new Intent(ViewMenuItem.this,PaymentActivity.class);
                 intent.putExtra("name",name.getText().toString());
                 intent.putExtra("price",price.getText().toString());
+                intent.putExtra("amountToBePaid",amountToBePaid);
                 startActivity(intent);
             }
         });
