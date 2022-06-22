@@ -72,6 +72,7 @@ public class PaymentActivity extends AppCompatActivity{
         ButterKnife.bind(this);
         pd = new ProgressDialog(this);
         pd.setIcon(R.drawable.ic_baseline_hourglass_top_24);
+        pd.setCancelable(false);
         mApiClient = new DarajaApiClient();
         mApiClient.setIsDebug(true); //Set True to enable logging, false to disable.
 
@@ -84,7 +85,6 @@ public class PaymentActivity extends AppCompatActivity{
         });
 
         getUserProfileDetails();
-
 
     }
 
