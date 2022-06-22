@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.m_saidika.Adapters.ApplicationAdapter;
 import com.example.m_saidika.Adapters.MenuAdapter;
@@ -28,6 +31,7 @@ public class ApplicationsActivity extends AppCompatActivity {
     public ApplicationAdapter applicationAdapter;
     public LinearLayoutManager layoutManager;
     public ArrayList<ApplicationItem> allApplicationItems;
+    public ImageView backArrow;
 
     FirebaseUser fUser;
 
@@ -36,8 +40,19 @@ public class ApplicationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_applications);
 
+        backArrow = findViewById(R.id.backArrow);
+
         fUser= FirebaseAuth.getInstance().getCurrentUser();
         initializeRecyclerView();
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ApplicationsActivity.this, ServiceProviderActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initializeRecyclerView() {

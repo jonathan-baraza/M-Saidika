@@ -18,8 +18,16 @@
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/application_item.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/business_food_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Mike/AndroidStudioProjects/M-Saidika/app/src/main/res/layout/menu_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/drawable/bg_round.xml" value="0.166" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/drawable/bg_round_disabled.xml" value="0.166" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/drawable/bg_two.xml" value="0.166" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/drawable/ic_close.xml" value="0.1605" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/drawable/ic_login_logout.xml" value="0.163" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/drawable/shape_incoming_bubble.xml" value="0.16" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/drawable/shape_incoming_message_bubble.xml" value="0.16" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/drawable/shape_outgoing_message_bubble.xml" value="0.16" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_all_chats.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_emergency.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_food.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_food_menu.xml" value="0.22447916666666667" />
@@ -28,9 +36,12 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_view_application.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_view_menu_item.xml" value="0.25" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_view_permit_application.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/activity_welcome.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/application_item.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/chat_item.xml" value="0.2234375" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/food_service_item.xml" value="0.2234375" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MSaidika/app/src/main/res/layout/user_item.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>

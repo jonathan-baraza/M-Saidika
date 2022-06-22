@@ -7,9 +7,35 @@
     android:layout_height="match_parent"
     tools:context=".ApplicationsActivity">
 
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      tools:ignore="MissingConstraints"
+      android:padding="10dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back_arrow"
+        android:id="@+id/backArrow"/>
+
+  <TextView
+      android:id="@+id/sPApplication"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Service Provider Applications"
+      android:layout_marginLeft="25dp"
+      android:textSize="20dp"
+      android:textColor="@android:color/black"
+      android:textStyle="bold"/>
+
+  </LinearLayout>
+
+
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/applicationRecyclerView"
       android:layout_width="match_parent"
-      android:layout_height="match_parent" />
+      android:layout_height="match_parent"
+      android:layout_marginTop="40dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
