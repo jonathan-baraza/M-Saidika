@@ -22,12 +22,11 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/allMessagesRecView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/bar"
-        android:id="@+id/allChatsRecView"
-        android:paddingBottom="30dp"
-        />
+        android:paddingBottom="30dp" />
 </RelativeLayout>
 
     <RelativeLayout

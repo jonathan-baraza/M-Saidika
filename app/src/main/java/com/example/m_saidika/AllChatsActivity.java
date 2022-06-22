@@ -13,9 +13,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
+import com.example.m_saidika.Adapters.AllMessagesAdapter;
 import com.example.m_saidika.Adapters.AllUsersAdapter;
+import com.example.m_saidika.Models.Message;
 import com.example.m_saidika.Models.Profile;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,13 +26,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Collections;
+
 
 public class AllChatsActivity extends AppCompatActivity {
     public Toolbar toolbar;
-    public RecyclerView allChatsRecView,allUsersRecView;
+    public RecyclerView allMessagesRecView,allUsersRecView;
     public FloatingActionButton fab;
     public RelativeLayout chatsLayout,allUsersLayout;
 
@@ -39,7 +40,10 @@ public class AllChatsActivity extends AppCompatActivity {
     public EditText search;
 
     public LinearLayoutManager layoutManager;
-    public AllUsersAdapter adapter;
+    public AllUsersAdapter allUsersAdapter;
+    public AllMessagesAdapter allMessagesAdapter;
+    public ArrayList<Message> allMessages;
+    public ArrayList<Message> userMessages;
     public ArrayList<Profile> allUsers;
     public ArrayList<Profile> allUsersHolder=new ArrayList<>();
 
@@ -55,7 +59,6 @@ public class AllChatsActivity extends AppCompatActivity {
         fUser= FirebaseAuth.getInstance().getCurrentUser();
 
         toolbar=findViewById(R.id.toolbar);
-        allChatsRecView=findViewById(R.id.allChatsRecView);
         fab=findViewById(R.id.fab);
 
         chatsLayout=findViewById(R.id.chatsLayout);
@@ -73,6 +76,9 @@ public class AllChatsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        //For all messages
+        initAllMessages();
 
         //For all users
         initAllUsersRecView();
@@ -99,19 +105,20 @@ public class AllChatsActivity extends AppCompatActivity {
                         searchedUsers.clear();
                         for(Profile user:allUsers){
                             String fullName=user.getFirstName()+" "+user.getLastName();
-                            if(fullName.toLowerCase().startsWith(searchParameter.toLowerCase())){
+                            if(fullName.toLowerCase().contains(searchParameter.toLowerCase())){
                                 searchedUsers.add(user);
                             }
+
                         }
                     }
-                    adapter.setAllUsers(searchedUsers);
-                    adapter.notifyDataSetChanged();
+                    allUsersAdapter.setAllUsers(searchedUsers);
+                    allUsersAdapter.notifyDataSetChanged();
                 }else{
-                    adapter.setAllUsers(allUsersHolder);
-                    adapter.notifyDataSetChanged();
+                    allUsersAdapter.setAllUsers(allUsersHolder);
+                    allUsersAdapter.notifyDataSetChanged();
 
                 }
-                adapter.notifyDataSetChanged();
+                allUsersAdapter.notifyDataSetChanged();
             }
         });
 
@@ -136,14 +143,70 @@ public class AllChatsActivity extends AppCompatActivity {
 
     }
 
+    private void initAllMessages() {
+        allMessagesRecView=findViewById(R.id.allMessagesRecView);
+        layoutManager=new LinearLayoutManager(AllChatsActivity.this);
+        allMessagesRecView.setLayoutManager(layoutManager);
+        allMessages=new ArrayList<>();
+        userMessages=new ArrayList<>();
+        allMessagesAdapter=new AllMessagesAdapter(AllChatsActivity.this,userMessages);
+        allMessagesRecView.setAdapter(allMessagesAdapter);
+        allMessagesAdapter.notifyDataSetChanged();
+
+        fetchAllMessages();
+
+    }
+
+    private void fetchAllMessages() {
+        FirebaseDatabase.getInstance().getReference().child("Messages").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                allMessages.clear();
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    Message message=snapshot.getValue(Message.class);
+                    if(message.getSenderId().equals(fUser.getUid()) || message.getRecipientId().equals(fUser.getUid())){
+                        allMessages.add(message);
+                        //filter messages
+                    }
+                }
+                filterMessages(allMessages);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void filterMessages(ArrayList<Message> allMessages) {
+        //Reverse to get the latest first
+        Collections.reverse(allMessages);
+        //Create array of ids
+        ArrayList<String> ids=new ArrayList<>();
+        ids.clear();
+        userMessages.clear();
+        for(Message message:allMessages){
+            String comboOne=message.getSenderId()+message.getRecipientId();
+            String comboTwo=message.getRecipientId()+message.getSenderId();
+            if(!(ids.contains(comboOne) || ids.contains(comboTwo))){
+                userMessages.add(message);
+                ids.add(comboOne);
+                ids.add(comboTwo);
+            }
+        }
+        allMessagesAdapter.notifyDataSetChanged();
+        getSupportActionBar().setTitle("My Chats ("+userMessages.size()+")");
+    }
+
     private void initAllUsersRecView() {
         allUsersRecView=findViewById(R.id.allUsersRecView);
         layoutManager=new LinearLayoutManager(AllChatsActivity.this);
         allUsersRecView.setLayoutManager(layoutManager);
         allUsers=new ArrayList<>();
-        adapter =new AllUsersAdapter(allUsers,AllChatsActivity.this);
-        allUsersRecView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        allUsersAdapter =new AllUsersAdapter(allUsers,AllChatsActivity.this);
+        allUsersRecView.setAdapter(allUsersAdapter);
+        allUsersAdapter.notifyDataSetChanged();
         getAllUsers();
     }
 
@@ -162,7 +225,7 @@ public class AllChatsActivity extends AppCompatActivity {
 
                 }
 
-                adapter.notifyDataSetChanged();
+                allUsersAdapter.notifyDataSetChanged();
             }
 
             @Override
