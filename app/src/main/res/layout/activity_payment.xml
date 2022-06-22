@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:text="Pay With"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mpesa_one"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:text="Name of product"
+        android:textStyle="bold"
+        android:id="@+id/name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:text="Pay ksh 1500/="
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:id="@+id/price"/>
+    <Button
+        android:layout_width="100dp"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Pay"
+        android:textSize="18sp"
+        android:backgroundTint="#28a745"
+        android:layout_marginTop="40dp"
+        android:drawableEnd="@drawable/ic_baseline_payment_24"
+        android:id="@+id/btnPay"
+        />
+
+</LinearLayout>
