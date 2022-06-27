@@ -228,6 +228,7 @@ public class RegisterActivity extends AppCompatActivity {
                             pd.dismiss();
                             Toast.makeText(RegisterActivity.this, "Registration was successfull", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+                            finish();
                         }
                         else{
                             pd.dismiss();

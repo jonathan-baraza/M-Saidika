@@ -29,11 +29,13 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder>{
     public Context mContext;
     public List<FoodItem> allItems;
     private FirebaseUser fUser;
+    private String foodServiceId;
 
-    public MenuAdapter(Context mContext, List<FoodItem> allItems) {
+    public MenuAdapter(Context mContext, List<FoodItem> allItems,String foodServiceId) {
         this.mContext = mContext;
         this.allItems = allItems;
         this.fUser = FirebaseAuth.getInstance().getCurrentUser();
+        this.foodServiceId=foodServiceId;
     }
 
     @NonNull
@@ -54,6 +56,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder>{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(mContext, ViewMenuItem.class);
+                intent.putExtra("foodServiceId",foodServiceId);
                 intent.putExtra("photo",foodItem.getPhoto());
                 intent.putExtra("name",foodItem.getName());
                 intent.putExtra("price",foodItem.getPrice());

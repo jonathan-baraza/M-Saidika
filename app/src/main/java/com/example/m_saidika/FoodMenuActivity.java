@@ -186,7 +186,7 @@ public class FoodMenuActivity extends AppCompatActivity {
         allFoodItems=new ArrayList<>();
         layoutManager=new GridLayoutManager(FoodMenuActivity.this,3);
         foodMenuRecyclerView.setLayoutManager(layoutManager);
-        menuAdapter=new MenuAdapter(FoodMenuActivity.this,allFoodItems);
+        menuAdapter=new MenuAdapter(FoodMenuActivity.this,allFoodItems,foodServiceId);
         foodMenuRecyclerView.setAdapter(menuAdapter);
         menuAdapter.notifyDataSetChanged();
         fetchFoodItemsFromDB();

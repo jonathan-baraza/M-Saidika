@@ -32,12 +32,21 @@ import com.example.m_saidika.Models.Profile;
 import com.example.m_saidika.Models.STKPush;
 import com.example.m_saidika.Models.STKPushFirstResponse;
 import com.example.m_saidika.Services.DarajaApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
 
 public class PaymentActivity extends AppCompatActivity{
     private DarajaApiClient mApiClient;
@@ -54,6 +63,8 @@ public class PaymentActivity extends AppCompatActivity{
     private MpesaResponseItem mpesaRespone;
 
     public AlertDialog.Builder builder;
+    public String serviceId;
+    public String paymentType;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +79,8 @@ public class PaymentActivity extends AppCompatActivity{
         name.setText(intent.getStringExtra("name"));
         price.setText(intent.getStringExtra("price"));
         amountToBePaid=intent.getStringExtra("amountToBePaid");
+        serviceId=intent.getStringExtra("serviceId");
+        paymentType=intent.getStringExtra("type");
 
         ButterKnife.bind(this);
         pd = new ProgressDialog(this);
@@ -216,8 +229,36 @@ public class PaymentActivity extends AppCompatActivity{
                 builder.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(PaymentActivity.this, "Order Placed", Toast.LENGTH_SHORT).show();
-                        finish();
+
+                        if(paymentType.equals("foodOrder")){
+                            //Recording the order after successfull payment
+                            DateFormat df=new SimpleDateFormat("h:mm a EEE, MMM d, yyyy");
+                            String time=df.format(Calendar.getInstance().getTime());
+                            DatabaseReference dbRef=FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Food").child(serviceId).child("Orders");
+                            String key=dbRef.push().getKey();
+                            HashMap<String,Object> orderDetails=new HashMap<>();
+                            orderDetails.put("paymentId",checkoutRequestID);
+                            orderDetails.put("orderId",key);
+                            orderDetails.put("userId",fUser.getUid());
+                            orderDetails.put("name",name.getText().toString());
+                            orderDetails.put("price",amountToBePaid);
+                            orderDetails.put("time", time);
+                            orderDetails.put("status", "pending");
+                            dbRef.child(key).setValue(orderDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(PaymentActivity.this, "Order Placed", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }else{
+                                        Toast.makeText(PaymentActivity.this, "Failed to place order", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
+                                }
+                            });
+
+                        }
+
                     }
                 });
                 builder.create().show();

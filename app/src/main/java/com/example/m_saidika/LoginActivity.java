@@ -106,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                 pd.dismiss();
                 Toast.makeText(LoginActivity.this, "Login was successfull", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
