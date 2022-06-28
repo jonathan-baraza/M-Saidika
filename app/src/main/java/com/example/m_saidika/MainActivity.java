@@ -94,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        jobImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, JobActivity.class));
+            }
+        });
 
         openSideMenuAnimation= AnimationUtils.loadAnimation(MainActivity.this,R.anim.open_side_menu);
         closeSideMenuAnimation=AnimationUtils.loadAnimation(MainActivity.this,R.anim.close_side_menu);

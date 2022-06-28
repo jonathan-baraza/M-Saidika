@@ -64,7 +64,9 @@ public class FoodActivity extends AppCompatActivity {
                 allApplications.clear();
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                     ApplicationItem item=snapshot.getValue(ApplicationItem.class);
-                    allApplications.add(item);
+                    if(item.getServiceType().equals("Food")){
+                        allApplications.add(item);
+                    }
                 }
                 foodServiceAdapter.notifyDataSetChanged();
             }

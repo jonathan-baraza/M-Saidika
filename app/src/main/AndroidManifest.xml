@@ -25,17 +25,26 @@
             android:name=".PaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".ViewJobActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JobActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PostJobActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".AllChatsActivity"
             android:exported="false" />
         <activity
             android:name=".ViewMenuItem"
             android:exported="false" />
-       <activity
+        <activity
             android:name=".ViewFullPhotoActivity"
             android:exported="false" />
         <activity
