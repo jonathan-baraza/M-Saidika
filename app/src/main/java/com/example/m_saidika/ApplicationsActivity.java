@@ -48,8 +48,7 @@ public class ApplicationsActivity extends AppCompatActivity {
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ApplicationsActivity.this, ServiceProviderActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

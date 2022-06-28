@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +29,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
 
     public ImageView jobImage,transportImage,foodImage,housingImage,sPImage,emergencyImage;
-    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,recentActivities,chat,help,about;
+    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,recentActivities,help,about;
 
+    private LinearLayout adminNav,userNav;
+    private ImageView chat;
 
     private FirebaseAuth mAuth;
 
@@ -65,11 +68,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         //side menu
+        authName=findViewById(R.id.authName);
         btnProfile=findViewById(R.id.btnProfile);
+        allApplications=findViewById(R.id.allApplications);
         recentActivities=findViewById(R.id.recentActivities);
         chat=findViewById(R.id.chat);
         help=findViewById(R.id.help);
         about=findViewById(R.id.about);
+
+        adminNav=findViewById(R.id.adminNav);
+        userNav=findViewById(R.id.userNav);
 
         mAuth=FirebaseAuth.getInstance();
 
@@ -146,6 +154,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        allApplications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,ApplicationsActivity.class));
+            }
+        });
+
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,6 +213,8 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     profilePic.setImageResource(R.drawable.avatar1);
                 }
+
+                setUpPageAsPerRole(userProfile.getRole(),userProfile.getFirstName()+" "+userProfile.getLastName());
             }
 
             @Override
@@ -205,6 +222,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setUpPageAsPerRole(String role,String fullName) {
+        switch (role){
+            case "admin":
+                adminNav.setVisibility(View.VISIBLE);
+                userNav.setVisibility(View.GONE);
+                authName.setText("ADMINISTRATOR");
+                break;
+            case "user":
+                userNav.setVisibility(View.VISIBLE);
+                adminNav.setVisibility(View.GONE);
+                authName.setText(fullName);
+                break;
+            default:
+                break;
+        }
     }
 
 }

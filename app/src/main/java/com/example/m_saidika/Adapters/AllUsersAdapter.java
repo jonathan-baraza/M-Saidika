@@ -44,7 +44,12 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Profile userProfile=allUsers.get(position);
-        Picasso.get().load(userProfile.getPhoto()).placeholder(R.drawable.loader2).into(holder.profilePic);
+        if(userProfile.getPhoto().length()>0){
+            Picasso.get().load(userProfile.getPhoto()).placeholder(R.drawable.loader2).into(holder.profilePic);
+        }else{
+            holder.profilePic.setImageResource(R.drawable.avatar1);
+        }
+
         holder.name.setText(userProfile.getFirstName()+" "+userProfile.getLastName());
 
         holder.btnStartChat.setOnClickListener(new View.OnClickListener() {

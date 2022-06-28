@@ -219,6 +219,8 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 userData.put("photo","");
                 userData.put("bio","");
+                userData.put("role","user");
+                userData.put("userId",FirebaseAuth.getInstance().getCurrentUser().getUid());
 
 
                 databaseRef.child(authResult.getUser().getUid().toString()).setValue(userData).addOnCompleteListener(new OnCompleteListener<Void>() {

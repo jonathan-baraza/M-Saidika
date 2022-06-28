@@ -39,6 +39,8 @@ public class ViewApplication extends AppCompatActivity {
     //loading feature
     public ProgressDialog pd;
 
+    public String serviceType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,8 +88,7 @@ public class ViewApplication extends AppCompatActivity {
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewApplication.this, ApplicationsActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -124,8 +125,22 @@ public class ViewApplication extends AppCompatActivity {
                     builder.show();
                 }
                 else{
-                    pd.dismiss();
-                    Toast.makeText(ViewApplication.this, "Application Rejected", Toast.LENGTH_SHORT).show();
+
+                    DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Profiles").child(userId);
+                    HashMap<String,Object> roleUpdate=new HashMap<>();
+                    roleUpdate.put("role","user");
+                    ref.updateChildren(roleUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            pd.dismiss();
+                            if(task.isSuccessful()){
+                                Toast.makeText(ViewApplication.this, "Application Rejected", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(ViewApplication.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ViewApplication.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });
@@ -137,6 +152,8 @@ public class ViewApplication extends AppCompatActivity {
         HashMap<String,Object> applicationData =new HashMap<>();
         applicationData.put("verificationStatus","accepted");
 
+
+
         dbRef.updateChildren(applicationData).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -147,8 +164,35 @@ public class ViewApplication extends AppCompatActivity {
                     builder.show();
                 }
                 else{
-                    pd.dismiss();
-                    Toast.makeText(ViewApplication.this, "Application Accepted", Toast.LENGTH_SHORT).show();
+
+                    dbRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            ApplicationItem applicationItem=snapshot.getValue(ApplicationItem.class);
+                            serviceType=applicationItem.getServiceType();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Profiles").child(userId);
+                    HashMap<String,Object> roleUpdate=new HashMap<>();
+                    roleUpdate.put("role",serviceType);
+                    ref.updateChildren(roleUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            pd.dismiss();
+                            if(task.isSuccessful()){
+                                Toast.makeText(ViewApplication.this, "Application Accepted", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(ViewApplication.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ViewApplication.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
                 }
             }
         });

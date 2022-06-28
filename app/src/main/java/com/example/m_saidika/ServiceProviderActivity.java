@@ -42,7 +42,7 @@ public class ServiceProviderActivity extends AppCompatActivity implements Adapte
     public Spinner spinner;
     public EditText companyName, location, description;
     public ImageView permit;
-    public Button btnSubmit, btnApplications;
+    public Button btnSubmit;
     public LinearLayout permitLin;
     public AlertDialog.Builder builder;
     public String serviceType = "";
@@ -71,7 +71,6 @@ public class ServiceProviderActivity extends AppCompatActivity implements Adapte
         permit =findViewById(R.id.permit);
         permitLin=findViewById(R.id.permitLin);
         btnSubmit=findViewById(R.id.btnSubmit);
-        btnApplications=findViewById(R.id.btnApplications);
         spinner = findViewById(R.id.spinner);
 
         pd=new ProgressDialog(ServiceProviderActivity.this);
@@ -91,14 +90,6 @@ public class ServiceProviderActivity extends AppCompatActivity implements Adapte
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-            }
-        });
-
-        btnApplications.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ServiceProviderActivity.this, ApplicationsActivity.class);
-                startActivity(intent);
             }
         });
 
