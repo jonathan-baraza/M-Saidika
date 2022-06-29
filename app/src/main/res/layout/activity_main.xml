@@ -151,6 +151,7 @@
             android:layout_marginRight="55dp"
             android:text="Emergency Services" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/sideMenu"
         android:layout_width="250dp"
@@ -227,8 +228,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:id="@+id/userNav"
-                android:visibility="gone">
+                android:id="@+id/profileNav"
+                android:visibility="visible">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -247,6 +248,36 @@
                     android:background="@color/white" />
 
 
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/foodServiceNav"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableStart="@drawable/ic_baseline_fastfood_24"
+                    android:drawablePadding="10dp"
+                    android:text="Orders"
+                    android:id="@+id/orders"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white" />
+
+            </LinearLayout>
+
+<!--            For all users-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -269,10 +300,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:drawableStart="@drawable/ic_help"
+                android:drawableStart="@drawable/ic_baseline_info_24"
                 android:drawablePadding="10dp"
-                android:text="Help"
-                android:id="@+id/help"
+                android:text="About us"
+                android:id="@+id/about"
                 android:textColor="@color/white"
                 android:textSize="16dp" />
 
@@ -286,10 +317,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:drawableStart="@drawable/ic_baseline_info_24"
+                android:drawableStart="@drawable/ic_help"
                 android:drawablePadding="10dp"
-                android:text="About us"
-                android:id="@+id/about"
+                android:text="Help"
+                android:id="@+id/help"
                 android:textColor="@color/white"
                 android:textSize="16dp" />
 
@@ -298,9 +329,6 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/white" />
-            </LinearLayout>
-
-
 
 
         </LinearLayout>

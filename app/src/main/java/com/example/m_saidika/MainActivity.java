@@ -29,9 +29,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
 
     public ImageView jobImage,transportImage,foodImage,housingImage,sPImage,emergencyImage;
-    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,recentActivities,help,about;
+    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,orders,recentActivities,help,about;
 
-    private LinearLayout adminNav,userNav;
+    private LinearLayout adminNav,profileNav,foodServiceNav;
     private ImageView chat;
 
     private FirebaseAuth mAuth;
@@ -72,12 +72,14 @@ public class MainActivity extends AppCompatActivity {
         btnProfile=findViewById(R.id.btnProfile);
         allApplications=findViewById(R.id.allApplications);
         recentActivities=findViewById(R.id.recentActivities);
+        orders=findViewById(R.id.orders);
         chat=findViewById(R.id.chat);
         help=findViewById(R.id.help);
         about=findViewById(R.id.about);
 
         adminNav=findViewById(R.id.adminNav);
-        userNav=findViewById(R.id.userNav);
+        profileNav=findViewById(R.id.profileNav);
+        foodServiceNav=findViewById(R.id.foodServiceNav);
 
         mAuth=FirebaseAuth.getInstance();
 
@@ -91,6 +93,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this,AllChatsActivity.class));
+            }
+        });
+
+        orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,AllFoodOrdersActivity.class));
             }
         });
 
@@ -228,14 +237,19 @@ public class MainActivity extends AppCompatActivity {
         switch (role){
             case "admin":
                 adminNav.setVisibility(View.VISIBLE);
-                userNav.setVisibility(View.GONE);
+                profileNav.setVisibility(View.GONE);
                 authName.setText("ADMINISTRATOR");
+                foodServiceNav.setVisibility(View.GONE);
                 break;
             case "user":
-                userNav.setVisibility(View.VISIBLE);
                 adminNav.setVisibility(View.GONE);
                 authName.setText(fullName);
+                foodServiceNav.setVisibility(View.GONE);
                 break;
+            case "Food":
+                adminNav.setVisibility(View.GONE);
+                authName.setText(fullName);
+                foodServiceNav.setVisibility(View.VISIBLE);
             default:
                 break;
         }

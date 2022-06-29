@@ -39,7 +39,6 @@ public class ViewApplication extends AppCompatActivity {
     //loading feature
     public ProgressDialog pd;
 
-    public String serviceType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +168,25 @@ public class ViewApplication extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             ApplicationItem applicationItem=snapshot.getValue(ApplicationItem.class);
-                            serviceType=applicationItem.getServiceType();
+                            String serviceType=applicationItem.getServiceType();
+
+                            DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Profiles").child(userId);
+                            HashMap<String,Object> roleUpdate=new HashMap<>();
+                            roleUpdate.put("role",serviceType);
+
+                            ref.updateChildren(roleUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    pd.dismiss();
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(ViewApplication.this, "Application Accepted", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Toast.makeText(ViewApplication.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ViewApplication.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
                         }
 
                         @Override
@@ -177,21 +194,7 @@ public class ViewApplication extends AppCompatActivity {
 
                         }
                     });
-                    DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Profiles").child(userId);
-                    HashMap<String,Object> roleUpdate=new HashMap<>();
-                    roleUpdate.put("role",serviceType);
-                    ref.updateChildren(roleUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            pd.dismiss();
-                            if(task.isSuccessful()){
-                                Toast.makeText(ViewApplication.this, "Application Accepted", Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(ViewApplication.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                                Toast.makeText(ViewApplication.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+
 
                 }
             }
