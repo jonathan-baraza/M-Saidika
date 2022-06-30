@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.m_saidika.Adapters.OrderAdapter;
 import com.example.m_saidika.Models.OrderItem;
@@ -21,30 +22,26 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AllFoodOrdersActivity extends AppCompatActivity {
-    private Toolbar toolbar;
-    private RecyclerView allOrdersRecView;
-    private int numOfOrders=0;
+public class CustomerFoodOrders extends AppCompatActivity {
+    private String foodServiceId;
 
+    private Toolbar toolbar;
+    private RecyclerView customerOrdersRecView;
     private LinearLayoutManager layoutManager;
     private ArrayList<OrderItem> allOrders;
     private OrderAdapter orderAdapter;
 
     private FirebaseUser fUser;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_food_orders);
+        setContentView(R.layout.activity_customer_food_orders);
 
-        fUser= FirebaseAuth.getInstance().getCurrentUser();
 
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("All Orders ("+numOfOrders+")");
+        getSupportActionBar().setTitle("My Orders");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,32 +49,41 @@ public class AllFoodOrdersActivity extends AppCompatActivity {
             }
         });
 
+        fUser= FirebaseAuth.getInstance().getCurrentUser();
+
+        Intent intent=getIntent();
+        foodServiceId=intent.getStringExtra("foodServiceId");
 
         initOrdersRecView();
+
+
     }
 
     private void initOrdersRecView() {
-        allOrdersRecView=findViewById(R.id.allOrdersRecView);
-        layoutManager=new LinearLayoutManager(AllFoodOrdersActivity.this);
-        allOrdersRecView.setLayoutManager(layoutManager);
+        customerOrdersRecView=findViewById(R.id.customerOrdersRecView);
+        layoutManager=new LinearLayoutManager(CustomerFoodOrders.this);
+        customerOrdersRecView.setLayoutManager(layoutManager);
         allOrders=new ArrayList<>();
-        orderAdapter=new OrderAdapter(allOrders,AllFoodOrdersActivity.this,"restaurant",fUser.getUid());
-        allOrdersRecView.setAdapter(orderAdapter);
+        orderAdapter=new OrderAdapter(allOrders,CustomerFoodOrders.this,"customer",foodServiceId);
+        customerOrdersRecView.setAdapter(orderAdapter);
         orderAdapter.notifyDataSetChanged();
-        fetchOrdersFromDB();
+        fetchOrders();
     }
 
-    private void fetchOrdersFromDB() {
-        FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Food").child(fUser.getUid()).child("Orders").addValueEventListener(new ValueEventListener() {
+    private void fetchOrders() {
+        FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Food").child(foodServiceId).child("Orders").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 allOrders.clear();
-                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot:dataSnapshot.getChildren()){
                     OrderItem orderItem=snapshot.getValue(OrderItem.class);
-                    allOrders.add(orderItem);
+                    if(orderItem.getUserId().equals(fUser.getUid())){
+                        allOrders.add(orderItem);
+                    }
                 }
+
                 orderAdapter.notifyDataSetChanged();
-                getSupportActionBar().setTitle("All Orders ("+allOrders.size()+")");
+
             }
 
             @Override

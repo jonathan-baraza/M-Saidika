@@ -4,11 +4,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ViewOrderActivity">
+   <com.google.android.material.appbar.AppBarLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/bar">
+      <androidx.appcompat.widget.Toolbar
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/white"
+          android:id="@+id/toolbar">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Viewing this order"
-        android:layout_centerInParent="true"/>
+      </androidx.appcompat.widget.Toolbar>
+   </com.google.android.material.appbar.AppBarLayout>
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+      android:layout_below="@+id/bar">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_below="@+id/bar"
+          android:orientation="vertical"
+          android:gravity="center">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textSize="20sp"
+             android:textColor="@color/black"
+             android:text="Order Pending"
+             android:layout_marginTop="10dp"
+             android:id="@+id/orderStatus"/>
+         <ImageView
+             android:layout_width="250dp"
+             android:layout_height="250dp"
+             android:layout_centerHorizontal="true"
+             android:layout_marginTop="10dp"
+             android:id="@+id/image"
+             android:scaleType="fitCenter"
+             android:src="@drawable/order_icon_one" />
+
+         <TextView
+             android:id="@+id/foodName"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Fish and Fries"
+             android:textColor="@color/black"
+             android:textSize="18sp" />
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Ksh 150/="
+             android:layout_marginTop="5dp"
+             android:id="@+id/price"
+             />
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Ordered by: Jonathan Baraza"
+             android:layout_marginTop="10dp"
+             android:id="@+id/customerName"/>
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Date ordered: 10:43"
+             android:layout_marginTop="10dp"
+             android:id="@+id/time"/>
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+             android:gravity="center"
+             android:id="@+id/buttonsLayout">
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Set Order Status"
+                android:textColor="@color/black"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="15dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+               <androidx.appcompat.widget.AppCompatButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textAllCaps="false"
+                   android:layout_margin="10dp"
+                   android:text="Preparing"
+                   android:textColor="@color/white"
+                   android:drawablePadding="5dp"
+                   android:textSize="16sp"
+                   android:drawableTint="@color/white"
+                   android:drawableStart="@drawable/ic_baseline_hourglass_top_24"
+                   android:backgroundTint="@color/primary"
+                   android:id="@+id/btnInProgress"/>
+               <androidx.appcompat.widget.AppCompatButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textAllCaps="false"
+                   android:layout_margin="10dp"
+                   android:textColor="@color/white"
+                   android:text="Delivering"
+                   android:drawableStart="@drawable/ic_baseline_directions_bike_24"
+                   android:drawablePadding="5dp"
+                   android:textSize="16sp"
+                   android:backgroundTint="@color/success"
+                   android:id="@+id/btnOnTheWay"/>
+
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:layout_margin="10dp"
+                android:text="Pending"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/ic_baseline_pending_24"
+                android:drawablePadding="5dp"
+                android:textSize="16sp"
+                android:drawableTint="@color/white"
+                android:backgroundTint="@color/secondary"
+                android:id="@+id/btnPending"/>
+         </LinearLayout>
+
+
+      </LinearLayout>
+   </ScrollView>
+
+
 </RelativeLayout>

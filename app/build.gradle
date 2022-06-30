@@ -71,4 +71,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.okio:okio:2.1.0'
 
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+
 }

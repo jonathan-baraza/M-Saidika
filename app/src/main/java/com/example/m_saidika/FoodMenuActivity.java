@@ -48,7 +48,7 @@ import java.util.HashMap;
 
 public class FoodMenuActivity extends AppCompatActivity {
     public TextView title;
-    public ImageView closeAddForm,imgUpdate,goBack;
+    public ImageView closeAddForm,imgUpdate,goBack,orders;
     public Button btnSelectPicture,btnAddFood;
     public EditText foodName,foodPrice;
     public FloatingActionButton fab;
@@ -84,6 +84,7 @@ public class FoodMenuActivity extends AppCompatActivity {
         foodName=findViewById(R.id.foodName);
         foodPrice=findViewById(R.id.foodPrice);
         fab=findViewById(R.id.fab);
+        orders=findViewById(R.id.orders);
 
         goBack=findViewById(R.id.goBack);
 
@@ -120,6 +121,15 @@ public class FoodMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(FoodMenuActivity.this,CustomerFoodOrders.class);
+                intent.putExtra("foodServiceId",foodServiceId);
+                startActivity(intent);
             }
         });
 

@@ -40,6 +40,13 @@
                         android:text="Megabytes Menu"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_shopping_cart_24"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
+                        android:id="@+id/orders"/>
                 </RelativeLayout>
 
             </androidx.appcompat.widget.Toolbar>

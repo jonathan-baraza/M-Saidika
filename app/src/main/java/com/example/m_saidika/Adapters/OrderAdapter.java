@@ -29,11 +29,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
     private FirebaseUser fUser;
     private ArrayList<OrderItem> allOrders;
     private Context mContext;
+    public String userType,foodServiceId;
 
-    public OrderAdapter(ArrayList<OrderItem> allOrders, Context mContext) {
+    public OrderAdapter(ArrayList<OrderItem> allOrders, Context mContext,String userType,String foodServiceId) {
         this.allOrders = allOrders;
         this.mContext = mContext;
         this.fUser= FirebaseAuth.getInstance().getCurrentUser();
+        this.userType=userType;
+        this.foodServiceId=foodServiceId;
     }
 
     @NonNull
@@ -54,7 +57,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Profile customerProfile=snapshot.getValue(Profile.class);
-                holder.customerName.setText("Customer: "+customerProfile.getFirstName()+" "+customerProfile.getLastName());
+                if(!userType.equals("customer")){
+                    holder.customerName.setText("Customer: "+customerProfile.getFirstName()+" "+customerProfile.getLastName());
+                }else{
+                    holder.customerName.setVisibility(View.GONE);
+                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -67,6 +75,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             public void onClick(View view) {
                 Intent intent=new Intent(mContext, ViewOrderActivity.class);
                 intent.putExtra("orderId",orderItem.getOrderId());
+                intent.putExtra("userType",userType);
+                intent.putExtra("foodServiceId",foodServiceId);
                 mContext.startActivity(intent);
             }
         });
