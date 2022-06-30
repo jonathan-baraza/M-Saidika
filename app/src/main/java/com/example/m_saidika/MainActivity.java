@@ -29,9 +29,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
 
     public ImageView jobImage,transportImage,foodImage,housingImage,sPImage,emergencyImage;
-    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,orders,recentActivities,help,about;
+    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,orders,transportServices,recentActivities,help,about;
 
-    private LinearLayout adminNav,profileNav,foodServiceNav;
+    private LinearLayout adminNav,profileNav,foodServiceNav,transportServiceNav;
     private ImageView chat;
 
     private FirebaseAuth mAuth;
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CircleImageView profilePic;
 
+    private FirebaseUser fUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         allApplications=findViewById(R.id.allApplications);
         recentActivities=findViewById(R.id.recentActivities);
         orders=findViewById(R.id.orders);
+        transportServices=findViewById(R.id.tranportServices);
         chat=findViewById(R.id.chat);
         help=findViewById(R.id.help);
         about=findViewById(R.id.about);
@@ -80,8 +82,10 @@ public class MainActivity extends AppCompatActivity {
         adminNav=findViewById(R.id.adminNav);
         profileNav=findViewById(R.id.profileNav);
         foodServiceNav=findViewById(R.id.foodServiceNav);
+        transportServiceNav=findViewById(R.id.transportServiceNav);
 
         mAuth=FirebaseAuth.getInstance();
+        fUser=FirebaseAuth.getInstance().getCurrentUser();
 
         //sideMenu
         sideMenu=findViewById(R.id.sideMenu);
@@ -103,6 +107,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        transportServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent=new Intent(MainActivity.this,ViewTransportActivity.class);
+               intent.putExtra("id",fUser.getUid());
+               startActivity(intent);
+            }
+        });
+
 
         foodImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +128,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, JobActivity.class));
+            }
+        });
+
+        transportImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,TransportActivity.class));
             }
         });
 
@@ -250,6 +270,13 @@ public class MainActivity extends AppCompatActivity {
                 adminNav.setVisibility(View.GONE);
                 authName.setText(fullName);
                 foodServiceNav.setVisibility(View.VISIBLE);
+                break;
+            case "Transport":
+                adminNav.setVisibility(View.GONE);
+                authName.setText(fullName);
+                foodServiceNav.setVisibility(View.GONE);
+                transportServiceNav.setVisibility(View.VISIBLE);
+                break;
             default:
                 break;
         }

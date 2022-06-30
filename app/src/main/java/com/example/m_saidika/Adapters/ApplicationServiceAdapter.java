@@ -16,6 +16,7 @@ import com.example.m_saidika.FoodMenuActivity;
 import com.example.m_saidika.Models.ApplicationItem;
 import com.example.m_saidika.Models.Profile;
 import com.example.m_saidika.R;
+import com.example.m_saidika.ViewTransportActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,22 +27,24 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.ViewHolder>{
+public class ApplicationServiceAdapter extends RecyclerView.Adapter<ApplicationServiceAdapter.ViewHolder>{
 
-    public Context mContext;
-    public ArrayList<ApplicationItem> allApplications;
-    public FirebaseUser fUser;
+    private Context mContext;
+    private ArrayList<ApplicationItem> allApplications;
+    private FirebaseUser fUser;
+    private String serviceType;
 
-    public FoodServiceAdapter(Context mContext, ArrayList<ApplicationItem> allApplications) {
+    public ApplicationServiceAdapter(Context mContext, ArrayList<ApplicationItem> allApplications,String serviceType) {
         this.mContext = mContext;
         this.allApplications = allApplications;
         this.fUser = FirebaseAuth.getInstance().getCurrentUser();
+        this.serviceType=serviceType;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.food_service_item,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.application_service_item,parent,false);
         ViewHolder holder=new ViewHolder(view);
         return holder;
     }
@@ -70,10 +73,16 @@ public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.
         holder.name.setText(applicationItem.getCompanyName());
         holder.description.setText(applicationItem.getDescription());
         holder.location.setText("Location: "+applicationItem.getLocation());
-        holder.foodServiceContainer.setOnClickListener(new View.OnClickListener() {
+        holder.serviceContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(mContext, FoodMenuActivity.class);
+                Intent intent;
+                if(serviceType.equals("Food")){
+                     intent=new Intent(mContext, FoodMenuActivity.class);
+                }else{
+                     intent=new Intent(mContext, ViewTransportActivity.class);
+                }
+
                 intent.putExtra("id",applicationItem.getUserId());
                 intent.putExtra("title",applicationItem.getCompanyName());
                 mContext.startActivity(intent);
@@ -87,7 +96,7 @@ public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public RelativeLayout foodServiceContainer;
+        public RelativeLayout serviceContainer;
         public ImageView image;
         public TextView name,description,location;
         public ViewHolder(@NonNull View itemView) {
@@ -96,7 +105,7 @@ public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.
             image=itemView.findViewById(R.id.image);
             name=itemView.findViewById(R.id.name);
             description=itemView.findViewById(R.id.description);
-            foodServiceContainer=itemView.findViewById(R.id.foodServiceContainer);
+            serviceContainer =itemView.findViewById(R.id.foodServiceContainer);
             location=itemView.findViewById(R.id.location);
         }
     }

@@ -18,57 +18,57 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FoodActivity extends AppCompatActivity {
-    public Toolbar toolbar;
-    public RecyclerView foodServicesRecView;
-    public ApplicationServiceAdapter foodServiceAdapter;
-    public LinearLayoutManager layoutManager;
-    public ArrayList<ApplicationItem> allApplications;
-
+public class TransportActivity extends AppCompatActivity {
+    private Toolbar toolbar;
+    
+    private RecyclerView transportRecView;
+    private LinearLayoutManager layoutManager;
+    private ArrayList<ApplicationItem> allTransportServices;
+    private ApplicationServiceAdapter transportAdapter;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food);
-        
+        setContentView(R.layout.activity_transport);
+
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Food Services");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Transport Services");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        
-        initRecyclerView();
-        
+
+        initTransportRecView();
     }
 
-    private void initRecyclerView() {
-        foodServicesRecView=findViewById(R.id.foodServicesRecView);
-        layoutManager=new LinearLayoutManager(FoodActivity.this);
-        foodServicesRecView.setLayoutManager(layoutManager);
-        allApplications=new ArrayList<>();
-        foodServiceAdapter=new ApplicationServiceAdapter(FoodActivity.this,allApplications,"Food");
-        foodServicesRecView.setAdapter(foodServiceAdapter);
-        foodServiceAdapter.notifyDataSetChanged();
-
-        fetchFoodServices();
+    private void initTransportRecView() {
+        transportRecView=findViewById(R.id.transportRecView);
+        layoutManager=new LinearLayoutManager(TransportActivity.this);
+        transportRecView.setLayoutManager(layoutManager);
+        allTransportServices=new ArrayList<>();
+        transportAdapter=new ApplicationServiceAdapter(TransportActivity.this,allTransportServices,"Transport");
+        transportRecView.setAdapter(transportAdapter);
+        transportAdapter.notifyDataSetChanged();
+        
+        fetchTransportServices();
     }
 
-    private void fetchFoodServices() {
+    private void fetchTransportServices() {
         FirebaseDatabase.getInstance().getReference().child("Applications").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                allApplications.clear();
+                allTransportServices.clear();
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    ApplicationItem item=snapshot.getValue(ApplicationItem.class);
-                    if(item.getServiceType().equals("Food") && item.getVerificationStatus().equals("accepted")){
-                        allApplications.add(item);
+                    ApplicationItem applicationItem=snapshot.getValue(ApplicationItem.class);
+                    if(applicationItem.getVerificationStatus().equals("accepted") && applicationItem.getServiceType().equals("Transport")){
+                        allTransportServices.add(applicationItem);
                     }
                 }
-                foodServiceAdapter.notifyDataSetChanged();
+                transportAdapter.notifyDataSetChanged();
             }
 
             @Override
