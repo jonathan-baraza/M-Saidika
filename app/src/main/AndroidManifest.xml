@@ -21,10 +21,10 @@
         tools:replace="android:icon"
         tools:targetApi="31">
         <activity
-            android:name=".ViewTransportActivity"
+            android:name=".ViewMatatuActivity"
             android:exported="false" />
         <activity
-            android:name=".BookTransportActivity"
+            android:name=".ViewTransportActivity"
             android:exported="false" />
         <activity
             android:name=".TransportActivity"

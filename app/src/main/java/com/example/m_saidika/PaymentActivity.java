@@ -54,7 +54,7 @@ public class PaymentActivity extends AppCompatActivity{
     public boolean isReady=false;
 
     public TextView name,price;
-    private String amountToBePaid;
+    private String amountToBePaid,matatuId,numberPlate;
     private FirebaseUser fUser;
 
     public Button btnPay;
@@ -77,10 +77,15 @@ public class PaymentActivity extends AppCompatActivity{
 
         Intent intent=getIntent();
         name.setText(intent.getStringExtra("name"));
-        price.setText(intent.getStringExtra("price"));
         amountToBePaid=intent.getStringExtra("amountToBePaid");
         serviceId=intent.getStringExtra("serviceId");
         paymentType=intent.getStringExtra("type");
+        price.setText(intent.getStringExtra("price"));
+
+       if(paymentType.equals("Transport")){
+            matatuId=intent.getStringExtra("matatuId");
+            numberPlate=intent.getStringExtra("numberPlate");
+        }
 
         ButterKnife.bind(this);
         pd = new ProgressDialog(this);
@@ -257,6 +262,33 @@ public class PaymentActivity extends AppCompatActivity{
                                 }
                             });
 
+                        }else if(paymentType.equals("Transport")){
+                            //Recording the order after successfull payment
+
+                            DateFormat df=new SimpleDateFormat("h:mm a EEE, MMM d, yyyy");
+                            String time=df.format(Calendar.getInstance().getTime());
+                            DatabaseReference dbRef=FirebaseDatabase.getInstance().getReference().child("Passengers").child(matatuId);
+                            String key=dbRef.push().getKey();
+
+                            HashMap<String,Object> passengerDetails=new HashMap<>();
+                            passengerDetails.put("paymentId",checkoutRequestID);
+                            passengerDetails.put("userId",fUser.getUid());
+                            passengerDetails.put("time",time);
+                            passengerDetails.put("passengerId",key);
+
+                            dbRef.child(key).setValue(passengerDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(PaymentActivity.this, "Matatu booked successfully", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }else{
+                                        Toast.makeText(PaymentActivity.this, "Failed to book matatu", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(PaymentActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
+                                }
+                            });
                         }
 
                     }

@@ -5,14 +5,159 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ViewTransportActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/transportArea">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My transport"
-        android:id="@+id/txt"
-        android:layout_centerInParent="true"
-        android:textSize="18sp"
-        android:textColor="@color/black"/>
+        android:id="@+id/bar">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            android:background="@color/white"/>
+    </com.google.android.material.appbar.AppBarLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/bar"
+            android:id="@+id/matatuRecView"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addMatatu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_add_24" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/addMatatuForm"
+        android:background="@color/white"
+        android:visibility="gone">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:text="Add New Matatu"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/closeAddForm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:drawableEnd="@drawable/ic_close"
+                android:drawableTint="@color/black" />
+
+        </RelativeLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_one"
+            android:layout_marginTop="20dp"
+            android:padding="13dp"
+            android:hint="Number Plate"
+            android:inputType="text"
+            android:textSize="14sp"
+            android:id="@+id/numberPlate"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_one"
+            android:layout_marginTop="20dp"
+            android:padding="13dp"
+            android:hint="Destination"
+            android:textSize="14sp"
+            android:inputType="text"
+            android:id="@+id/destination"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Departure time"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_marginTop="20dp"/>
+        <TimePicker
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:theme="@style/CardView.Dark"
+            android:timePickerMode="spinner"
+            android:layout_marginTop="10dp"
+
+            android:id="@+id/departureTime"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:layout_marginTop="15dp"
+            android:hint="Capacity"
+            android:inputType="number"
+            android:textSize="14sp"
+            android:background="@drawable/bg_one"
+            android:id="@+id/capacity"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:layout_marginTop="15dp"
+            android:hint="Fare price"
+            android:textSize="14sp"
+            android:inputType="number"
+            android:background="@drawable/bg_one"
+            android:id="@+id/price"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_gravity="end"
+            android:text="Submit"
+            android:layout_marginTop="20dp"
+            android:id="@+id/submitForm"/>
+        </LinearLayout>
+        </ScrollView>
+
+
+
+    </LinearLayout>
+
+
+
 
 </RelativeLayout>
