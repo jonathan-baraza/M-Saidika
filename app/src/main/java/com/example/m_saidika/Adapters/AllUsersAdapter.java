@@ -2,10 +2,12 @@ package com.example.m_saidika.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -61,6 +63,15 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.ViewHo
 
             }
         });
+
+        holder.btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:254704783187"));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     public void setAllUsers(ArrayList<Profile> allUsers) {
@@ -75,12 +86,13 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
         public CircleImageView profilePic;
         public TextView name;
-        public Button btnStartChat;
+        public ImageView btnStartChat,btnCall;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             profilePic=itemView.findViewById(R.id.profilePic);
             name=itemView.findViewById(R.id.name);
             btnStartChat=itemView.findViewById(R.id.btnStartChat);
+            btnCall=itemView.findViewById(R.id.btnCall);
         }
     }
 }

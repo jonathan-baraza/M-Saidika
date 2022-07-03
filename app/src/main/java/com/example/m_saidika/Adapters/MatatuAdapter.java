@@ -15,13 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.m_saidika.Models.Matatu;
+import com.example.m_saidika.Models.Passenger;
 import com.example.m_saidika.R;
 import com.example.m_saidika.ViewMatatuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -49,11 +53,32 @@ public class MatatuAdapter extends RecyclerView.Adapter<MatatuAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(mContext).load(R.drawable.vehicle).into(holder.image);
         Matatu matatu=allMatatus.get(position);
-        int seatsRemaining=Integer.parseInt(matatu.getCapacity())-matatu.getTotalPassengers();
+
         holder.destination.setText("Destination: "+matatu.getDestination());
         holder.departureTime.setText("Departure time: "+matatu.getDepartureTime());
         holder.price.setText("Fare price: Ksh "+matatu.getFarePrice()+"/=");
-        holder.capacity.setText("Seats remaining: #"+seatsRemaining);
+
+        FirebaseDatabase.getInstance().getReference().child("Passengers").child(matatu.getMatatuId()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Passenger> allPassengers =new ArrayList<>();
+                allPassengers.clear();
+                for (DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    Passenger passenger=snapshot.getValue(Passenger.class);
+                    allPassengers.add(passenger);
+                }
+
+                int seatsRem=Integer.parseInt(matatu.getCapacity())-allPassengers.size();
+                holder.capacity.setText("Seats remaining: #"+seatsRem);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         holder.matatuContainer.setOnClickListener(new View.OnClickListener() {
             @Override

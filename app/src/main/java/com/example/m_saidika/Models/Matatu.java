@@ -2,15 +2,13 @@ package com.example.m_saidika.Models;
 
 public class Matatu {
     private String numberPlate,destination,capacity,farePrice,departureTime,matatuId;
-    private int totalPassengers;
 
-    public Matatu(String numberPlate, String destination, String capacity, String farePrice, String departureTime, int totalPassengers,String matatuId) {
+    public Matatu(String numberPlate, String destination, String capacity, String farePrice, String departureTime,String matatuId) {
         this.numberPlate = numberPlate;
         this.destination = destination;
         this.capacity = capacity;
         this.farePrice = farePrice;
         this.departureTime = departureTime;
-        this.totalPassengers = totalPassengers;
         this.matatuId=matatuId;
     }
 
@@ -56,14 +54,6 @@ public class Matatu {
 
     public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
-    }
-
-    public int getTotalPassengers() {
-        return totalPassengers;
-    }
-
-    public void setTotalPassengers(int totalPassengers) {
-        this.totalPassengers = totalPassengers;
     }
 
     public String getMatatuId() {
