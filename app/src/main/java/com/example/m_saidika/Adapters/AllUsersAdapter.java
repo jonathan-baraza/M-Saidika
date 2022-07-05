@@ -68,7 +68,7 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:254704783187"));
+                intent.setData(Uri.parse("tel:"+userProfile.getPhone()));
                 mContext.startActivity(intent);
             }
         });

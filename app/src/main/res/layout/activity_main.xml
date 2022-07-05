@@ -6,11 +6,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bar">
+        android:id="@+id/bar"
+        android:layout_margin="0dp">
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,126 +41,181 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/bar"
-        android:layout_marginTop="-50dp">
+        android:layout_centerInParent="true"
+        android:fillViewport="true">
 
+        <LinearLayout
+            android:id="@+id/parentLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="10dp">
+            <!--        Row-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
 
-        <ImageView
-            android:id="@+id/jobImage"
-            android:layout_width="150dp"
-            android:layout_height="250dp"
-            android:layout_marginLeft="5dp"
-            android:padding="5dp"
-            android:src="@drawable/job" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/jobText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/jobImage"
-            android:layout_marginLeft="10dp"
-            android:text="Job Opportunities" />
+                    <ImageView
+                        android:id="@+id/jobImage"
+                        android:layout_width="165dp"
+                        android:layout_height="165dp"
+                        android:src="@drawable/job_interview" />
 
-        <ImageView
-            android:id="@+id/transportImage"
-            android:layout_width="180dp"
-            android:layout_height="250dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:padding="5dp"
-            android:src="@drawable/transport" />
+                    <TextView
+                        android:id="@+id/jobText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:text="Job Opportunities"
+                        android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/transportText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/transportImage"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="55dp"
-            android:text="Transport Services" />
+                </LinearLayout>
 
-        <ImageView
-            android:id="@+id/foodImage"
-            android:layout_width="150dp"
-            android:layout_height="250dp"
-            android:layout_alignTop="@+id/jobText"
-            android:layout_marginLeft="10dp"
-            android:padding="5dp"
-            android:src="@drawable/food" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/foodText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/foodImage"
-            android:layout_marginLeft="10dp"
-            android:text="Food Services" />
+                    <ImageView
+                        android:id="@+id/transportImage"
+                        android:layout_width="165dp"
+                        android:layout_height="165dp"
+                        android:src="@drawable/vehicle2" />
 
-        <ImageView
-            android:id="@+id/housingImage"
-            android:layout_width="180dp"
-            android:layout_height="250dp"
-            android:layout_alignTop="@id/transportText"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:padding="5dp"
-            android:src="@drawable/housing" />
+                    <TextView
+                        android:id="@+id/transportText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:text="Transport Services"
+                        android:textColor="@color/black" />
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/housingText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/housingImage"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="55dp"
-            android:text="Housing Services" />
+            </LinearLayout>
+            <!--        Row-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
 
-        <ImageView
-            android:id="@+id/sPImage"
-            android:layout_width="150dp"
-            android:layout_height="250dp"
-            android:layout_alignTop="@+id/foodText"
-            android:layout_marginLeft="10dp"
-            android:padding="5dp"
-            android:src="@drawable/sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/sPText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/sPImage"
-            android:layout_marginLeft="10dp"
-            android:text="Service Provider" />
+                    <ImageView
+                        android:id="@+id/foodImage"
+                        android:layout_width="165dp"
+                        android:layout_height="165dp"
+                        android:src="@drawable/fast_food" />
 
-        <ImageView
-            android:id="@+id/emergencyImage"
-            android:layout_width="180dp"
-            android:layout_height="250dp"
-            android:layout_alignTop="@id/housingText"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:padding="5dp"
-            android:src="@drawable/emergency" />
+                    <TextView
+                        android:id="@+id/foodText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/foodImage"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:text="Food Services"
+                        android:textColor="@color/black" />
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/emergencyText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/emergencyImage"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="55dp"
-            android:text="Emergency Services" />
-    </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:id="@+id/housingImage"
+                        android:layout_width="165dp"
+                        android:layout_height="165dp"
+                        android:src="@drawable/m_home" />
+
+                    <TextView
+                        android:id="@+id/housingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:text="Housing Services"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--        Row-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/sPImage"
+                        android:layout_width="165dp"
+                        android:layout_height="165dp"
+                        android:src="@drawable/m_application" />
+
+                    <TextView
+                        android:id="@+id/sPText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:text="Service Providers"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/emergencyImage"
+                        android:layout_width="165dp"
+                        android:layout_height="165dp"
+                        android:src="@drawable/heal" />
+
+                    <TextView
+                        android:id="@+id/emergencyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:text="Emergency Services"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
     <RelativeLayout
         android:id="@+id/sideMenu"
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_below="@+id/bar"
-        android:background="#007bff"
+        android:background="@color/primary"
         android:visibility="gone">
 
         <ImageView
@@ -390,5 +448,29 @@
         </RelativeLayout>
 
     </RelativeLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:id="@+id/splash"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/loading2"
+            android:layout_centerInParent="true"
+            android:id="@+id/loadImage"/>
+
+        <TextView
+            android:id="@+id/loadTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please wait..."
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+    </LinearLayout>
 
 </RelativeLayout>

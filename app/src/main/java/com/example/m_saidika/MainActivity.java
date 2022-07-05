@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -15,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.m_saidika.Models.Profile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +29,10 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
+    //Splash
+    private LinearLayout splash;
+    private ImageView loadImage;
+    private TextView loadTxt;
 
     public ImageView jobImage,transportImage,foodImage,housingImage,sPImage,emergencyImage;
     public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,orders,transportServices,recentActivities,help,about;
@@ -50,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //splash
+        splash=findViewById(R.id.splash);
+        loadImage=findViewById(R.id.loadImage);
+        loadTxt=findViewById(R.id.loadTxt);
+        Glide.with(MainActivity.this).load(R.drawable.loading2).into(loadImage);
+
         email=findViewById(R.id.email);
         btnSignOut=findViewById(R.id.btnSignOut);
 
@@ -66,6 +78,20 @@ public class MainActivity extends AppCompatActivity {
         housingText=findViewById(R.id.housingText);
         sPText=findViewById(R.id.sPText);
         emergencyText=findViewById(R.id.emergencyText);
+
+        loadTheAnimations();
+
+        new CountDownTimer(4000, 1000) {
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                splash.setVisibility(View.GONE);
+            }
+        }.start();
 
 
         //side menu
@@ -218,7 +244,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    private void loadTheAnimations() {
+        Glide.with(MainActivity.this).load(R.drawable.job_interview).into(jobImage);
+        Glide.with(MainActivity.this).load(R.drawable.vehicle3).into(transportImage);
+        Glide.with(MainActivity.this).load(R.drawable.fast_food).into(foodImage);
+        Glide.with(MainActivity.this).load(R.drawable.m_home).into(housingImage);
+        Glide.with(MainActivity.this).load(R.drawable.m_application).into(sPImage);
+        Glide.with(MainActivity.this).load(R.drawable.heal).into(emergencyImage);
+    }
 
 
     @Override
