@@ -58,7 +58,7 @@ public class PostJobActivity extends AppCompatActivity {
         fUser= FirebaseAuth.getInstance().getCurrentUser();
 
         mAuth= FirebaseAuth.getInstance();
-        databaseRef= FirebaseDatabase.getInstance().getReference().child("Jobs");
+        databaseRef= FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Jobs");
 
         builder = new AlertDialog.Builder(PostJobActivity.this);
         builder.setTitle("Input Error").setCancelable(false).create();
@@ -105,7 +105,7 @@ public class PostJobActivity extends AppCompatActivity {
 
     private void postJob(String jobCompanyNameTxt, String jobLocationTxt, String jobPhoneNumberTxt, String jobDescriptionTxt, String jobRequirementsTxt) {
         pd.show();
-        DatabaseReference dbRef= FirebaseDatabase.getInstance().getReference().child("Jobs");
+        DatabaseReference dbRef= FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Jobs");
 
 
         String key = dbRef.push().getKey();

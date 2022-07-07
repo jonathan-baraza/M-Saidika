@@ -157,6 +157,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        housingImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, HouseActivity.class));
+                   }
+        });
+
         transportImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -314,5 +322,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
 
 }

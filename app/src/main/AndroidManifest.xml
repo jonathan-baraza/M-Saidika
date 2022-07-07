@@ -7,7 +7,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -21,6 +23,17 @@
         android:theme="@style/Theme.MSaidika"
         tools:replace="android:icon"
         tools:targetApi="31">
+       
+
+         <activity
+            android:name=".ViewHouseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PostHouseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HouseActivity"
+             android:exported="false" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">

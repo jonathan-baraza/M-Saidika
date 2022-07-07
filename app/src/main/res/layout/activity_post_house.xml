@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PostHouseActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/logo"/>
+
+            <TextView
+                android:id="@+id/houseVacancy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="House Vacancy"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/aptName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Name of Apartment"
+                android:drawableLeft="@drawable/ic_business"
+                android:drawablePadding="10dp"
+                android:background="@drawable/bg_one"
+                android:inputType="text"
+                android:padding="15dp"
+                android:textSize="14dp"/>
+
+            <EditText
+                android:id="@+id/aptLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Location"
+                android:drawableLeft="@drawable/ic_location"
+                android:drawablePadding="10dp"
+                android:background="@drawable/bg_one"
+                android:inputType="text"
+                android:padding="15dp"
+                android:textSize="14dp"/>
+
+            <EditText
+                android:id="@+id/aptPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Phone Number"
+                android:drawableLeft="@drawable/ic_phone"
+                android:drawablePadding="10dp"
+                android:background="@drawable/bg_one"
+                android:inputType="phone"
+                android:padding="15dp"
+                android:textSize="14dp"/>
+
+            <EditText
+                android:id="@+id/aptRent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Rent"
+                android:drawableLeft="@drawable/ic_money"
+                android:drawablePadding="10dp"
+                android:background="@drawable/bg_one"
+                android:inputType="phone"
+                android:padding="15dp"
+                android:textSize="14dp"/>
+
+            <EditText
+                android:id="@+id/aptDescription"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:hint="Apartment Description"
+                android:drawableLeft="@drawable/ic_description"
+                android:drawablePadding="10dp"
+                android:background="@drawable/bg_one"
+                android:inputType="text"
+                android:padding="15dp"
+                android:textSize="14dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_one"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:id="@+id/picLin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Click here to upload apartment photo"
+                    android:textSize="15dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/aptPic"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_house"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="20dp"
+                android:text="Submit"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

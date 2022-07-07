@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/bg_one"
+    android:padding="10dp"
+    android:id="@+id/houseContainer">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/housePic"
+        android:src="@drawable/ic_house"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/housePic"
+        android:text="TextView"
+        android:textSize="18dp"
+        android:id="@+id/houseName"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/houseLocation"
+        android:layout_below="@+id/houseName"
+        android:text="TextView"
+        android:layout_toEndOf="@+id/housePic"
+        android:layout_margin="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/houseLocation"
+        android:layout_toEndOf="@+id/housePic"
+        android:id="@+id/houseRent"
+        android:layout_margin="10dp"
+        android:text="TextView"/>
+</RelativeLayout>
