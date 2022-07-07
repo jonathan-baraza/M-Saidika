@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -15,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.m_saidika.Models.Profile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,11 +29,15 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
+    //Splash
+    private LinearLayout splash;
+    private ImageView loadImage;
+    private TextView loadTxt;
 
     public ImageView jobImage,transportImage,foodImage,housingImage,sPImage,emergencyImage;
-    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,recentActivities,help,about;
+    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,orders,transportServices,recentActivities,help,about;
 
-    private LinearLayout adminNav,userNav;
+    private LinearLayout adminNav,profileNav,foodServiceNav,transportServiceNav;
     private ImageView chat;
 
     private FirebaseAuth mAuth;
@@ -44,10 +50,17 @@ public class MainActivity extends AppCompatActivity {
 
     private CircleImageView profilePic;
 
+    private FirebaseUser fUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //splash
+        splash=findViewById(R.id.splash);
+        loadImage=findViewById(R.id.loadImage);
+        loadTxt=findViewById(R.id.loadTxt);
+        Glide.with(MainActivity.this).load(R.drawable.loading2).into(loadImage);
 
         email=findViewById(R.id.email);
         btnSignOut=findViewById(R.id.btnSignOut);
@@ -66,20 +79,39 @@ public class MainActivity extends AppCompatActivity {
         sPText=findViewById(R.id.sPText);
         emergencyText=findViewById(R.id.emergencyText);
 
+        loadTheAnimations();
+
+        new CountDownTimer(4000, 1000) {
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                splash.setVisibility(View.GONE);
+            }
+        }.start();
+
 
         //side menu
         authName=findViewById(R.id.authName);
         btnProfile=findViewById(R.id.btnProfile);
         allApplications=findViewById(R.id.allApplications);
         recentActivities=findViewById(R.id.recentActivities);
+        orders=findViewById(R.id.orders);
+        transportServices=findViewById(R.id.tranportServices);
         chat=findViewById(R.id.chat);
         help=findViewById(R.id.help);
         about=findViewById(R.id.about);
 
         adminNav=findViewById(R.id.adminNav);
-        userNav=findViewById(R.id.userNav);
+        profileNav=findViewById(R.id.profileNav);
+        foodServiceNav=findViewById(R.id.foodServiceNav);
+        transportServiceNav=findViewById(R.id.transportServiceNav);
 
         mAuth=FirebaseAuth.getInstance();
+        fUser=FirebaseAuth.getInstance().getCurrentUser();
 
         //sideMenu
         sideMenu=findViewById(R.id.sideMenu);
@@ -91,6 +123,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this,AllChatsActivity.class));
+            }
+        });
+
+        orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,AllFoodOrdersActivity.class));
+            }
+        });
+
+        transportServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent=new Intent(MainActivity.this,ViewTransportActivity.class);
+               intent.putExtra("id",fUser.getUid());
+               startActivity(intent);
             }
         });
 
@@ -109,10 +157,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         housingImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, HouseActivity.class));
+                   }
+        });
+
+        transportImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,TransportActivity.class));
             }
         });
 
@@ -196,7 +252,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    private void loadTheAnimations() {
+        Glide.with(MainActivity.this).load(R.drawable.job_interview).into(jobImage);
+        Glide.with(MainActivity.this).load(R.drawable.vehicle3).into(transportImage);
+        Glide.with(MainActivity.this).load(R.drawable.fast_food).into(foodImage);
+        Glide.with(MainActivity.this).load(R.drawable.m_home).into(housingImage);
+        Glide.with(MainActivity.this).load(R.drawable.m_application).into(sPImage);
+        Glide.with(MainActivity.this).load(R.drawable.heal).into(emergencyImage);
+    }
 
 
     @Override
@@ -221,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
                     profilePic.setImageResource(R.drawable.avatar1);
                 }
 
-//                setUpPageAsPerRole(userProfile.getRole(),userProfile.getFirstName()+" "+userProfile.getLastName());
+                setUpPageAsPerRole(userProfile.getRole(),userProfile.getFirstName()+" "+userProfile.getLastName());
             }
 
             @Override
@@ -231,21 +294,34 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    private void setUpPageAsPerRole(String role,String fullName) {
-//        switch (role){
-//            case "admin":
-//                adminNav.setVisibility(View.VISIBLE);
-//                userNav.setVisibility(View.GONE);
-//                authName.setText("ADMINISTRATOR");
-//                break;
-//            case "user":
-//                userNav.setVisibility(View.VISIBLE);
-//                adminNav.setVisibility(View.GONE);
-//                authName.setText(fullName);
-//                break;
-//            default:
-//                break;
-//        }
-//    }
+    private void setUpPageAsPerRole(String role,String fullName) {
+        switch (role){
+            case "admin":
+                adminNav.setVisibility(View.VISIBLE);
+                profileNav.setVisibility(View.GONE);
+                authName.setText("ADMINISTRATOR");
+                foodServiceNav.setVisibility(View.GONE);
+                break;
+            case "user":
+                adminNav.setVisibility(View.GONE);
+                authName.setText(fullName);
+                foodServiceNav.setVisibility(View.GONE);
+                break;
+            case "Food":
+                adminNav.setVisibility(View.GONE);
+                authName.setText(fullName);
+                foodServiceNav.setVisibility(View.VISIBLE);
+                break;
+            case "Transport":
+                adminNav.setVisibility(View.GONE);
+                authName.setText(fullName);
+                foodServiceNav.setVisibility(View.GONE);
+                transportServiceNav.setVisibility(View.VISIBLE);
+                break;
+            default:
+                break;
+        }
+    }
+
 
 }

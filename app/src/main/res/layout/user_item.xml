@@ -20,14 +20,27 @@
         android:textColor="@color/black"
         android:textSize="16sp" />
 
-    <Button
+    <ImageView
         android:id="@+id/btnStartChat"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/btnCall"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_chat"
+        android:background="@color/success"
+        android:layout_marginEnd="10dp"
+        android:padding="3dp"/>
+
+    <ImageView
+        android:id="@+id/btnCall"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:drawableRight="@drawable/ic_baseline_send_24"
-        android:text="chat"
-        android:textAllCaps="false" />
+        android:background="@color/primary"
+        android:padding="3dp"
+        android:src="@drawable/ic_baseline_call_24_white"
+        android:textAllCaps="false"
+        android:textSize="12sp" />
 
 </RelativeLayout>

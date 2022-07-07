@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.m_saidika.Adapters.FoodServiceAdapter;
+import com.example.m_saidika.Adapters.ApplicationServiceAdapter;
 import com.example.m_saidika.Models.ApplicationItem;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class FoodActivity extends AppCompatActivity {
     public Toolbar toolbar;
     public RecyclerView foodServicesRecView;
-    public FoodServiceAdapter foodServiceAdapter;
+    public ApplicationServiceAdapter foodServiceAdapter;
     public LinearLayoutManager layoutManager;
     public ArrayList<ApplicationItem> allApplications;
 
@@ -50,7 +50,7 @@ public class FoodActivity extends AppCompatActivity {
         layoutManager=new LinearLayoutManager(FoodActivity.this);
         foodServicesRecView.setLayoutManager(layoutManager);
         allApplications=new ArrayList<>();
-        foodServiceAdapter=new FoodServiceAdapter(FoodActivity.this,allApplications);
+        foodServiceAdapter=new ApplicationServiceAdapter(FoodActivity.this,allApplications,"Food");
         foodServicesRecView.setAdapter(foodServiceAdapter);
         foodServiceAdapter.notifyDataSetChanged();
 
@@ -64,7 +64,7 @@ public class FoodActivity extends AppCompatActivity {
                 allApplications.clear();
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                     ApplicationItem item=snapshot.getValue(ApplicationItem.class);
-                    if(item.getServiceType().equals("Food")){
+                    if(item.getServiceType().equals("Food") && item.getVerificationStatus().equals("accepted")){
                         allApplications.add(item);
                     }
                 }

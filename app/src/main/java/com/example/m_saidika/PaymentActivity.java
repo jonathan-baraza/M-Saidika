@@ -27,6 +27,7 @@ import static com.example.m_saidika.Constants.PASSKEY;
 import static com.example.m_saidika.Constants.TRANSACTION_TYPE;
 
 import com.example.m_saidika.Models.AccessToken;
+import com.example.m_saidika.Models.Matatu;
 import com.example.m_saidika.Models.MpesaResponseItem;
 import com.example.m_saidika.Models.Profile;
 import com.example.m_saidika.Models.STKPush;
@@ -53,7 +54,7 @@ public class PaymentActivity extends AppCompatActivity{
     public boolean isReady=false;
 
     public TextView name,price;
-    private String amountToBePaid;
+    private String amountToBePaid,matatuId,numberPlate;
     private FirebaseUser fUser;
 
     public Button btnPay;
@@ -64,6 +65,11 @@ public class PaymentActivity extends AppCompatActivity{
     public AlertDialog.Builder builder;
     public String serviceId;
     public String paymentType;
+
+    private int totalNumOfPassengers;
+
+    private boolean updatedList=false;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,10 +82,15 @@ public class PaymentActivity extends AppCompatActivity{
 
         Intent intent=getIntent();
         name.setText(intent.getStringExtra("name"));
-        price.setText(intent.getStringExtra("price"));
         amountToBePaid=intent.getStringExtra("amountToBePaid");
         serviceId=intent.getStringExtra("serviceId");
         paymentType=intent.getStringExtra("type");
+        price.setText(intent.getStringExtra("price"));
+
+       if(paymentType.equals("Transport")){
+            matatuId=intent.getStringExtra("matatuId");
+            numberPlate=intent.getStringExtra("numberPlate");
+        }
 
         ButterKnife.bind(this);
         pd = new ProgressDialog(this);
@@ -219,48 +230,78 @@ public class PaymentActivity extends AppCompatActivity{
             }.start();
 
         }else{
-            pd.dismiss();
+
             if(mpesaRespone.resultCode.equals("0")){
-                //Means payment was successfull
-                builder.setIcon(R.drawable.ic_baseline_done_24_success);
-                builder.setTitle("Payment Successfull");
-                builder.setMessage("Your payment was successfully done and recorded.");
-                builder.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                        if(paymentType.equals("foodOrder")){
-                            //Recording the order after successfull payment
-                            DateFormat df=new SimpleDateFormat("h:mm a EEE, MMM d, yyyy");
-                            String time=df.format(Calendar.getInstance().getTime());
-                            DatabaseReference dbRef=FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Food").child(serviceId).child("Orders");
-                            String key=dbRef.push().getKey();
-                            HashMap<String,Object> orderDetails=new HashMap<>();
-                            orderDetails.put("paymentId",checkoutRequestID);
-                            orderDetails.put("orderId",key);
-                            orderDetails.put("userId",fUser.getUid());
-                            orderDetails.put("name",name.getText().toString());
-                            orderDetails.put("price",amountToBePaid);
-                            orderDetails.put("time", time);
-                            orderDetails.put("status", "pending");
-                            dbRef.child(key).setValue(orderDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(PaymentActivity.this, "Order Placed", Toast.LENGTH_SHORT).show();
-                                        finish();
-                                    }else{
-                                        Toast.makeText(PaymentActivity.this, "Failed to place order", Toast.LENGTH_SHORT).show();
-                                        finish();
-                                    }
-                                }
-                            });
-
+                if(paymentType.equals("foodOrder")){
+                    pd.setMessage("Payment was successfull, now placing your order...");
+                    //Recording the order after successfull payment
+                    DateFormat df=new SimpleDateFormat("h:mm a EEE, MMM d, yyyy");
+                    String time=df.format(Calendar.getInstance().getTime());
+                    DatabaseReference dbRef=FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Food").child(serviceId).child("Orders");
+                    String key=dbRef.push().getKey();
+                    HashMap<String,Object> orderDetails=new HashMap<>();
+                    orderDetails.put("paymentId",checkoutRequestID);
+                    orderDetails.put("orderId",key);
+                    orderDetails.put("userId",fUser.getUid());
+                    orderDetails.put("name",name.getText().toString());
+                    orderDetails.put("price",amountToBePaid);
+                    orderDetails.put("time", time);
+                    orderDetails.put("status", "pending");
+                    dbRef.child(key).setValue(orderDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            pd.dismiss();
+                            if(task.isSuccessful()){
+                                Toast.makeText(PaymentActivity.this, "Order Placed", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }else{
+                                Toast.makeText(PaymentActivity.this, "Failed to place order", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
                         }
+                    });
 
-                    }
-                });
-                builder.create().show();
+                }else if(paymentType.equals("Transport")){
+                    pd.setMessage("Payment was successfull, now booking your transport...");
+                    //Recording the order after successfull payment
+
+                        DateFormat df=new SimpleDateFormat("h:mm a EEE, MMM d, yyyy");
+                        String time=df.format(Calendar.getInstance().getTime());
+                        DatabaseReference dbRef=FirebaseDatabase.getInstance().getReference().child("Passengers").child(matatuId);
+
+                        HashMap<String,Object> passengerDetails=new HashMap<>();
+                        passengerDetails.put("paymentId",checkoutRequestID);
+                        passengerDetails.put("userId",fUser.getUid());
+                        passengerDetails.put("time",time);
+
+                        dbRef.child(fUser.getUid()).setValue(passengerDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    builder.setIcon(R.drawable.ic_baseline_done_24_success);
+                                    builder.setTitle("Payment Successfull");
+                                    builder.setMessage("Your payment was successfully done and recorded.");
+                                    builder.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                            Toast.makeText(PaymentActivity.this, "Matatu booked successfully", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(PaymentActivity.this,TransportActivity.class));
+                                        }
+                                    });
+
+                                }else{
+                                    Toast.makeText(PaymentActivity.this, "Failed to book matatu", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PaymentActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            }
+
+                        });
+
+            }else{
+                    finish();
+                }
             }
             else{
                 //Means some error occured, either cancellation, invalid entry or timeout reached.
