@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewJobActivity">
+    android:orientation="vertical"
+    tools:context=".ViewHouseActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:padding="10dp"/>
 
             <TextView
-                android:id="@+id/viewJobCompanyName"
+                android:id="@+id/viewHouseName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -57,7 +57,7 @@
 
                     <TextView
                         android:paddingTop="10dp"
-                        android:id="@+id/viewJobLocation"
+                        android:id="@+id/viewHouseLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/holo_red_dark"
@@ -90,7 +90,7 @@
 
                     <TextView
                         android:paddingTop="10dp"
-                        android:id="@+id/viewJobDescription"
+                        android:id="@+id/viewHouseDescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/holo_red_dark"
@@ -113,17 +113,17 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/requirements"
+                        android:id="@+id/rent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Requirements"
+                        android:text="Rent"
                         android:paddingTop="10dp"
                         android:textSize="15dp"
                         android:textStyle="bold"/>
 
                     <TextView
                         android:paddingTop="10dp"
-                        android:id="@+id/viewJobRequirements"
+                        android:id="@+id/viewHouseRent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/holo_red_dark"
@@ -156,12 +156,43 @@
 
                     <TextView
                         android:paddingTop="10dp"
-                        android:id="@+id/viewJobPhone"
+                        android:id="@+id/viewHousePhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/holo_red_dark"
                         android:text="TextView"
                         android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/HousePic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" Picture"
+                        android:paddingTop="10dp"
+                        android:textSize="15dp"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/viewHousePic"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/doc" />
 
                 </RelativeLayout>
 

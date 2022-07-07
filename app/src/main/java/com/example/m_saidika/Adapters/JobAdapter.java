@@ -55,6 +55,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, ViewJobActivity.class);
                 intent.putExtra("jobId", jobItem.getJobId());
+                intent.putExtra("owner", jobItem.getOwner());
                 mContext.startActivity(intent);
             }
         });

@@ -109,6 +109,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        housingImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, HouseActivity.class));
+            }
+        });
+
         openSideMenuAnimation= AnimationUtils.loadAnimation(MainActivity.this,R.anim.open_side_menu);
         closeSideMenuAnimation=AnimationUtils.loadAnimation(MainActivity.this,R.anim.close_side_menu);
 
@@ -214,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                     profilePic.setImageResource(R.drawable.avatar1);
                 }
 
-                setUpPageAsPerRole(userProfile.getRole(),userProfile.getFirstName()+" "+userProfile.getLastName());
+//                setUpPageAsPerRole(userProfile.getRole(),userProfile.getFirstName()+" "+userProfile.getLastName());
             }
 
             @Override
@@ -224,21 +231,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setUpPageAsPerRole(String role,String fullName) {
-        switch (role){
-            case "admin":
-                adminNav.setVisibility(View.VISIBLE);
-                userNav.setVisibility(View.GONE);
-                authName.setText("ADMINISTRATOR");
-                break;
-            case "user":
-                userNav.setVisibility(View.VISIBLE);
-                adminNav.setVisibility(View.GONE);
-                authName.setText(fullName);
-                break;
-            default:
-                break;
-        }
-    }
+//    private void setUpPageAsPerRole(String role,String fullName) {
+//        switch (role){
+//            case "admin":
+//                adminNav.setVisibility(View.VISIBLE);
+//                userNav.setVisibility(View.GONE);
+//                authName.setText("ADMINISTRATOR");
+//                break;
+//            case "user":
+//                userNav.setVisibility(View.VISIBLE);
+//                adminNav.setVisibility(View.GONE);
+//                authName.setText(fullName);
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 
 }

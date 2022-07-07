@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.m_saidika.Adapters.HouseAdapter;
 import com.example.m_saidika.Adapters.JobAdapter;
+import com.example.m_saidika.Models.HouseItem;
 import com.example.m_saidika.Models.JobItem;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,30 +24,30 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class JobActivity extends AppCompatActivity {
+public class HouseActivity extends AppCompatActivity {
 
-    public Button postJob;
-    public RecyclerView jobRecyclerView;
-    public JobAdapter jobAdapter;
+    public Button postHouse;
+    public RecyclerView houseRecyclerView;
+    public HouseAdapter houseAdapter;
     public LinearLayoutManager layoutManager;
-    public ArrayList<JobItem> allJobItems;
+    public ArrayList<HouseItem> allHouseItems;
 
     FirebaseUser fUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_job);
+        setContentView(R.layout.activity_house);
 
-        postJob = findViewById(R.id.postJob);
+        postHouse = findViewById(R.id.postHouse);
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         initializeRecyclerView();
 
-        postJob.setOnClickListener(new View.OnClickListener() {
+        postHouse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(JobActivity.this, PostJobActivity.class);
+                Intent intent = new Intent(HouseActivity.this, PostHouseActivity.class);
                 startActivity(intent);
             }
         });
@@ -53,27 +55,27 @@ public class JobActivity extends AppCompatActivity {
     }
 
     private void initializeRecyclerView() {
-        jobRecyclerView = findViewById(R.id.jobRecyclerView);
-        allJobItems = new ArrayList<>();
-        layoutManager=new LinearLayoutManager(JobActivity.this);
-        jobRecyclerView.setLayoutManager(layoutManager);
-        jobAdapter = new JobAdapter(JobActivity.this,allJobItems);
-        jobRecyclerView.setAdapter(jobAdapter);
-        jobAdapter.notifyDataSetChanged();
+        houseRecyclerView = findViewById(R.id.houseRecyclerView);
+        allHouseItems = new ArrayList<>();
+        layoutManager=new LinearLayoutManager(HouseActivity.this);
+        houseRecyclerView.setLayoutManager(layoutManager);
+        houseAdapter = new HouseAdapter(HouseActivity.this,allHouseItems);
+        houseRecyclerView.setAdapter(houseAdapter);
+        houseAdapter.notifyDataSetChanged();
         fetchJobsFromDB();
     }
 
     private void fetchJobsFromDB() {
-        DatabaseReference dbRef= FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Jobs");
+        DatabaseReference dbRef= FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Houses");
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                allJobItems.clear();
+                allHouseItems.clear();
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    JobItem jobItem = snapshot.getValue(JobItem.class);
-                    allJobItems.add(jobItem);
+                    HouseItem houseItem = snapshot.getValue(HouseItem.class);
+                    allHouseItems.add(houseItem);
                 }
-                jobAdapter.notifyDataSetChanged();
+                houseAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -82,6 +84,4 @@ public class JobActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
