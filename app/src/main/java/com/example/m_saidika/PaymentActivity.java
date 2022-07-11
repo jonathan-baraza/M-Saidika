@@ -54,7 +54,7 @@ public class PaymentActivity extends AppCompatActivity{
     public boolean isReady=false;
 
     public TextView name,price;
-    private String amountToBePaid,matatuId,numberPlate;
+    private String amountToBePaid,matatuId,numberPlate,destination;
     private FirebaseUser fUser;
 
     public Button btnPay;
@@ -69,6 +69,7 @@ public class PaymentActivity extends AppCompatActivity{
     private int totalNumOfPassengers;
 
     private boolean updatedList=false;
+    private boolean insertedOrder=false;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,9 @@ public class PaymentActivity extends AppCompatActivity{
        if(paymentType.equals("Transport")){
             matatuId=intent.getStringExtra("matatuId");
             numberPlate=intent.getStringExtra("numberPlate");
+        }
+        if(paymentType.equals("foodOrder")){
+            destination=intent.getStringExtra("destination");
         }
 
         ButterKnife.bind(this);
@@ -172,7 +176,7 @@ public class PaymentActivity extends AppCompatActivity{
                     if (response.isSuccessful()) {
                         Timber.d("post submitted to API. %s", response.body());
                         pd.setMessage("Waiting for your action...");
-                        new CountDownTimer(4000,1000) {
+                        new CountDownTimer(20000,1000) {
                             @Override
                             public void onTick(long l) {
 
@@ -216,20 +220,20 @@ public class PaymentActivity extends AppCompatActivity{
     }
 
     private void handleUserFeedback(String checkoutRequestID) {
-        if(mpesaRespone==null || mpesaRespone.getResultCode()==null){
-            new CountDownTimer(3000,1000){
-                @Override
-                public void onTick(long l) {
-
-                }
-
-                @Override
-                public void onFinish() {
-                    fetchMpesaResponseFromDB(checkoutRequestID);
-                }
-            }.start();
-
-        }else{
+//        if(mpesaRespone==null || mpesaRespone.getResultCode()==null){
+//            new CountDownTimer(3000,1000){
+//                @Override
+//                public void onTick(long l) {
+//
+//                }
+//
+//                @Override
+//                public void onFinish() {
+//                    fetchMpesaResponseFromDB(checkoutRequestID);
+//                }
+//            }.start();
+//
+//        }else{
 
             if(mpesaRespone.resultCode.equals("0")){
                 if(paymentType.equals("foodOrder")){
@@ -247,13 +251,24 @@ public class PaymentActivity extends AppCompatActivity{
                     orderDetails.put("price",amountToBePaid);
                     orderDetails.put("time", time);
                     orderDetails.put("status", "pending");
+                    orderDetails.put("destination", destination);
                     dbRef.child(key).setValue(orderDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             pd.dismiss();
                             if(task.isSuccessful()){
-                                Toast.makeText(PaymentActivity.this, "Order Placed", Toast.LENGTH_SHORT).show();
-                                finish();
+                                builder.setIcon(R.drawable.ic_baseline_done_24_success);
+                                builder.setTitle("Payment Successfull");
+                                builder.setMessage("Your payment was successfully done and order is placed.");
+                                builder.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Toast.makeText(PaymentActivity.this, "Order placed successfully", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(PaymentActivity.this,FoodActivity.class));
+                                        finish();
+                                    }
+                                });
+                                builder.create().show();
                             }else{
                                 Toast.makeText(PaymentActivity.this, "Failed to place order", Toast.LENGTH_SHORT).show();
                                 finish();
@@ -287,8 +302,10 @@ public class PaymentActivity extends AppCompatActivity{
 
                                             Toast.makeText(PaymentActivity.this, "Matatu booked successfully", Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(PaymentActivity.this,TransportActivity.class));
+                                            finish();
                                         }
                                     });
+                                    builder.create().show();
 
                                 }else{
                                     Toast.makeText(PaymentActivity.this, "Failed to book matatu", Toast.LENGTH_SHORT).show();
@@ -316,7 +333,7 @@ public class PaymentActivity extends AppCompatActivity{
                 });
                 builder.create().show();
             }
-        }
+//        }
     }
 
     @Override

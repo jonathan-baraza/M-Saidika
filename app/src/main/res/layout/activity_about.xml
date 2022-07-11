@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bar">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:id="@+id/toolbar"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/logo"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary"
+                android:text="Msaidika"
+                android:layout_gravity="center"
+                android:textSize="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/secondary"
+                android:text="Msaidika is a mobile application developed to help make life easier among people of a small geographical location. Msaidika contains features which aim to solve different problems within the community:"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary"
+                android:text="Security"
+                android:layout_marginTop="10dp"
+                android:textSize="18dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/secondary"
+                android:text="Users have a direct link to the nearest police station as well as any other security personnel including the campus security."/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary"
+                android:text="Health and safety"
+                android:layout_marginTop="10dp"
+                android:textSize="18dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/secondary"
+                android:text="The app contain a direct link to an ambulance which would come in handy incase a resident or student falls sick and is unable to find an ambulance by other means.
+It also contains a direct link to the nearest fire brigade that would help incase of any fires. In the case of mental health, M-saidika contains a means to talk to a certified psychologist.
+."/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary"
+                android:text="Job Opportunities"
+                android:layout_marginTop="10dp"
+                android:textSize="18dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/secondary"
+                android:text="App users will be able to post vacancies for jobs and recommendations for the same. People would be able to view the jobs listed and apply based on their qualifications.
+."/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary"
+                android:text="Services"
+                android:layout_marginTop="10dp"
+                android:textSize="18dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/secondary"
+                android:text="The app connects users with the nearest restaurants and enables them to order and track their order progress.\n\n It also enable booking of matatu transport and paying for the same. \n\n All these services are backed up by an intergrated payment system via Mpesa which is safe and very reliable.
+."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Developers"
+                android:textSize="18sp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/primary"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/secondary"
+                android:text="Msaidika was developed by Jonathan Baraza and Michael Murithi, two final year students taking Computer Science. It was developed using Android studio with Java as the backend programming language, XML as the front end and firebase as the database.
+."/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

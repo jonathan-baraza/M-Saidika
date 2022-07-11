@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,9 +33,9 @@ import java.util.HashMap;
 
 public class ViewOrderActivity extends AppCompatActivity {
 
-    private String orderId,userType,foodServiceId;
-    private TextView foodName,price,customerName,time,orderStatus;
-    private Button btnPending,btnInProgress,btnOnTheWay;
+    private String orderId,userType,foodServiceId,customerPhone;
+    private TextView foodName,price,customerName,time,orderStatus,destination;
+    private Button btnPending,btnInProgress,btnOnTheWay,btnCallCustomer;
 
     private ImageView image;
 
@@ -66,10 +67,12 @@ public class ViewOrderActivity extends AppCompatActivity {
         foodName=findViewById(R.id.foodName);
         price=findViewById(R.id.price);
         customerName=findViewById(R.id.customerName);
+        destination=findViewById(R.id.destination);
         time=findViewById(R.id.time);
         btnPending =findViewById(R.id.btnPending);
         btnInProgress=findViewById(R.id.btnInProgress);
         btnOnTheWay=findViewById(R.id.btnOnTheWay);
+        btnCallCustomer=findViewById(R.id.btnCallCustomer);
 
         buttonsLayout=findViewById(R.id.buttonsLayout);
 
@@ -92,6 +95,7 @@ public class ViewOrderActivity extends AppCompatActivity {
                 foodName.setText(orderItem.getName());
                 price.setText("Ksh "+orderItem.getPrice()+"/=");
                 time.setText("Date ordered: "+orderItem.getTime());
+                destination.setText(orderItem.getDestination());
                 setImageStatus(orderItem.getStatus());
 
 
@@ -100,6 +104,7 @@ public class ViewOrderActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Profile customerProfile =snapshot.getValue(Profile.class);
                         customerName.setText("Ordered by: "+customerProfile.getFirstName()+" "+customerProfile.getLastName());
+                        customerPhone=customerProfile.getPhone();
                     }
 
                     @Override
@@ -134,6 +139,15 @@ public class ViewOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateOrderStatus("delivering");
+            }
+        });
+
+        btnCallCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+customerPhone));
+                startActivity(intent);
             }
         });
 

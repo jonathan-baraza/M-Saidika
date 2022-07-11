@@ -260,7 +260,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:id="@+id/adminNav"
+                android:id="@+id/panelistNav"
                 android:visibility="gone">
 
                 <TextView
@@ -281,6 +281,34 @@
                     android:background="@color/white" />
 
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/adminNav"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableStart="@drawable/ic_baseline_construction_24"
+                    android:drawablePadding="10dp"
+                    android:text="Manage Users"
+                    android:textColor="@color/white"
+                    android:id="@+id/manageUsers"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white" />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

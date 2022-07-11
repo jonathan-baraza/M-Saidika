@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView loadTxt;
 
     public ImageView jobImage,transportImage,foodImage,housingImage,sPImage,emergencyImage;
-    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,orders,transportServices,recentActivities,help,about;
+    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,orders,manageUsers,transportServices,recentActivities,help,about;
 
-    private LinearLayout adminNav,profileNav,foodServiceNav,transportServiceNav;
+    private LinearLayout panelistNav,adminNav,profileNav,foodServiceNav,transportServiceNav;
     private ImageView chat;
 
     private FirebaseAuth mAuth;
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         housingText=findViewById(R.id.housingText);
         sPText=findViewById(R.id.sPText);
         emergencyText=findViewById(R.id.emergencyText);
+        manageUsers=findViewById(R.id.manageUsers);
 
         loadTheAnimations();
 
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         about=findViewById(R.id.about);
 
         adminNav=findViewById(R.id.adminNav);
+        panelistNav=findViewById(R.id.panelistNav);
         profileNav=findViewById(R.id.profileNav);
         foodServiceNav=findViewById(R.id.foodServiceNav);
         transportServiceNav=findViewById(R.id.transportServiceNav);
@@ -118,6 +120,13 @@ public class MainActivity extends AppCompatActivity {
         openSideMenu=findViewById(R.id.openSideMenu);
         closeSideMenu=findViewById(R.id.closeSideMenu);
         profilePic=findViewById(R.id.profilePic);
+
+        manageUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,ManageUsersActivity.class));
+            }
+        });
 
         about.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
         if(user==null){
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
         }else{
-            getProfileDetails();
+            checkUserStatus();
         }
         super.onStart();
     }
@@ -308,12 +317,40 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void checkUserStatus() {
+        FirebaseDatabase.getInstance().getReference().child("Profiles").child(fUser.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Profile userProfile=snapshot.getValue(Profile.class);
+                if(!userProfile.getStatus().equals("active")){
+                    startActivity(new Intent(MainActivity.this,DisabledActivity.class));
+                    finish();
+                }else{
+                    getProfileDetails();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     private void setUpPageAsPerRole(String role,String fullName) {
         switch (role){
             case "admin":
                 adminNav.setVisibility(View.VISIBLE);
                 profileNav.setVisibility(View.GONE);
                 authName.setText("ADMINISTRATOR");
+                foodServiceNav.setVisibility(View.GONE);
+                break;
+            case "panelist":
+                panelistNav.setVisibility(View.VISIBLE);
+                adminNav.setVisibility(View.GONE);
+                profileNav.setVisibility(View.GONE);
+                authName.setText("PANELIST");
                 foodServiceNav.setVisibility(View.GONE);
                 break;
             case "user":

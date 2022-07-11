@@ -8,8 +8,9 @@ public class OrderItem {
     private String price;
     private String time;
     private String status;
+    private String destination;
 
-    public OrderItem(String paymentId, String orderId, String name, String price, String time, String status,String userId) {
+    public OrderItem(String paymentId, String orderId, String name, String price, String time, String status,String userId,String destination) {
         this.paymentId = paymentId;
         this.orderId = orderId;
         this.name = name;
@@ -17,6 +18,7 @@ public class OrderItem {
         this.time = time;
         this.status = status;
         this.userId=userId;
+        this.destination=destination;
     }
 
     public OrderItem() {
@@ -76,5 +78,13 @@ public class OrderItem {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 }

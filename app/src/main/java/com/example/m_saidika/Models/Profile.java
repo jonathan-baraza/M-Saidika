@@ -10,9 +10,10 @@ public class Profile {
     private String bio;
     private String userId;
     private String role;
+    private String status;
 
 
-    public Profile(String firstName, String lastName, String phone, String admNo, String idNo, String photo, String bio,String userId,String role) {
+    public Profile(String firstName, String lastName, String phone, String admNo, String idNo, String photo, String bio,String userId,String role,String status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -22,6 +23,7 @@ public class Profile {
         this.bio = bio;
         this.userId=userId;
         this.role=role;
+        this.status=status;
     }
 
     public Profile() {
@@ -97,5 +99,13 @@ public class Profile {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

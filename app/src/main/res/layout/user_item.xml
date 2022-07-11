@@ -42,5 +42,43 @@
         android:src="@drawable/ic_baseline_call_24_white"
         android:textAllCaps="false"
         android:textSize="12sp" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/adminButtons"
+    android:visibility="gone">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDisable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@color/danger"
+        android:drawableEnd="@drawable/ic_baseline_not_interested_24"
+        android:drawablePadding="2dp"
+        android:padding="3dp"
+        android:text="Disable"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEnable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@color/success"
+        android:drawableEnd="@drawable/ic_single_tick"
+        android:drawablePadding="2dp"
+        android:padding="3dp"
+        android:text="Activate"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        />
+
+</LinearLayout>
 
 </RelativeLayout>

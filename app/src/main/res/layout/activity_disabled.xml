@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DisabledActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="40dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/danger"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:text="Ooops! Your account was deactivated."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/danger"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_marginTop="5dp"
+        android:text="Kindly contact the site administrator."/>
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/image"
+        android:src="@drawable/banned"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:text="Call Admin"
+        android:textAllCaps="false"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/ic_baseline_call_24_white"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        android:id="@+id/btnCall"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:text="Exit App"
+        android:drawableStart="@drawable/ic_close"
+        android:textColor="@color/white"
+        android:drawablePadding="5dp"
+        android:id="@+id/btnExit"
+        android:background="@color/danger"/>
+
+
+
+</LinearLayout>

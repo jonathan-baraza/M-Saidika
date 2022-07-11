@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelpActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bar">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            android:background="@color/white"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/bar"
+        android:padding="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:text="How to register as a service provider"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/secondary"
+            android:text="You can register as a landlord, a food service provider i.e restaurant, a transport service provider or a job provider through the following steps: \n\n1. Click on the service providers icon on the main menu.\n\n2. Fill the form and choose the service type from the spinner. \n\n3. Wait for the admin to vet your application and either accept or reject it."/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:text="Our payment option"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/secondary"
+            android:text="Msaidika users safaricom's Mpesa payment option. Your transactions are safely and efficiently recorded on our database.In case of anything, contact the application's administrator."/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:text="Contact Admin"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="18dp"/>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:layout_marginTop="15dp">
+           <Button
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Call"
+               android:textAllCaps="false"
+               android:id="@+id/btnCall"/>
+           <Button
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Chat"
+               android:textAllCaps="false"
+               android:id="@+id/btnChat"
+               android:backgroundTint="@color/success"
+               android:layout_marginStart="15dp"/>
+
+       </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

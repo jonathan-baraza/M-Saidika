@@ -45,6 +45,15 @@
             android:layout_marginTop="10dp"
             android:textSize="16sp"
             android:id="@+id/price"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/bg_one"
+            android:padding="15dp"
+            android:layout_margin="20dp"
+            android:hint="Enter delivery destination...(be as precise as possible.)"
+            android:textSize="14sp"
+            android:id="@+id/destination"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
