@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         splash=findViewById(R.id.splash);
         loadImage=findViewById(R.id.loadImage);
         loadTxt=findViewById(R.id.loadTxt);
-        Glide.with(MainActivity.this).load(R.drawable.loading2).into(loadImage);
+        Glide.with(MainActivity.this).load(R.drawable.loading).into(loadImage);
 
         email=findViewById(R.id.email);
         btnSignOut=findViewById(R.id.btnSignOut);
@@ -118,6 +118,20 @@ public class MainActivity extends AppCompatActivity {
         openSideMenu=findViewById(R.id.openSideMenu);
         closeSideMenu=findViewById(R.id.closeSideMenu);
         profilePic=findViewById(R.id.profilePic);
+
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,AboutActivity.class));
+            }
+        });
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,HelpActivity.class));
+            }
+        });
 
         chat.setOnClickListener(new View.OnClickListener() {
             @Override

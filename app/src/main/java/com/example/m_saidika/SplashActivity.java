@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
 
         loadImage=findViewById(R.id.loadImage);
         txtWait=findViewById(R.id.txtWait);
-        Glide.with(SplashActivity.this).load(R.drawable.loading2).into(loadImage);
+        Glide.with(SplashActivity.this).load(R.drawable.loading).into(loadImage);
 
         new CountDownTimer(4000, 1000) {
             @Override

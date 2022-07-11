@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.m_saidika.JobActivity;
 import com.example.m_saidika.Models.ApplicationItem;
 import com.example.m_saidika.Models.JobItem;
@@ -45,6 +48,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull JobAdapter.ViewHolder holder, int position) {
+        Glide.with(mContext).load(R.drawable.job3).into(holder.image);
         JobItem jobItem = allJobItems.get(position);
         holder.jobsCompanyName.setText("Company Name: " + jobItem.getCompanyName());
         holder.jobsLocation.setText("Location: " + jobItem.getLocation());
@@ -70,7 +74,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView jobsCompanyName, jobsLocation, jobsDescription;
-        public CardView jobsCard;
+        public RelativeLayout jobsCard;
+        public ImageView image;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -78,6 +83,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
             jobsLocation=itemView.findViewById(R.id.jobsLocation);
             jobsDescription=itemView.findViewById(R.id.jobsDescription);
             jobsCard=itemView.findViewById(R.id.jobsCard);
+            image=itemView.findViewById(R.id.image);
 
         }
     }

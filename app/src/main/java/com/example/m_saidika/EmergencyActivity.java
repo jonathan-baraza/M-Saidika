@@ -1,6 +1,8 @@
 package com.example.m_saidika;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,17 +11,34 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.m_saidika.Models.Profile;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.net.URI;
 
 public class EmergencyActivity extends AppCompatActivity {
-
-    public TextView policeTxt, ambulanceTxt, fireTxt, counsellingTxt, sSecurityTxt;
-    public Button policeBtn, ambulanceBtn, fireBtn, counsellingChatBtn, counsellingBtn, sSecurityBtn;
+    private Toolbar toolbar;
+    private TextView policeTxt, ambulanceTxt, fireTxt, counsellingTxt, sSecurityTxt;
+    private Button policeBtn, ambulanceBtn, fireBtn, counsellingChatBtn, counsellingBtn, sSecurityBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency);
+
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("M-saidika Emergencies");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         policeTxt=findViewById(R.id.policeTxt);
         ambulanceTxt=findViewById(R.id.ambulanceTxt);
@@ -63,7 +82,9 @@ public class EmergencyActivity extends AppCompatActivity {
         counsellingChatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(EmergencyActivity.this,ChatActivity.class);
+                intent.putExtra("recipientId","8Qwx9m8QecOt4D240ZG6tWEBWOa2");
+                startActivity(intent);
             }
         });
 

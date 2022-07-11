@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -39,19 +40,21 @@ import java.util.HashMap;
 
 public class ServiceProviderActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public Spinner spinner;
-    public EditText companyName, location, description;
-    public ImageView permit;
-    public Button btnSubmit;
-    public LinearLayout permitLin;
-    public AlertDialog.Builder builder;
-    public String serviceType = "";
-    public InputValidation inputValidation;
+    private Toolbar toolbar;
 
-    public Uri imageUri;
+    private Spinner spinner;
+    private EditText companyName, location, description;
+    private ImageView permit;
+    private Button btnSubmit;
+    private LinearLayout permitLin;
+    private AlertDialog.Builder builder;
+    private String serviceType = "";
+    private InputValidation inputValidation;
+
+    private Uri imageUri;
 
     //loading feature
-    public ProgressDialog pd;
+    private ProgressDialog pd;
 
     //Authentication with firebase
     private FirebaseAuth mAuth;
@@ -64,6 +67,17 @@ public class ServiceProviderActivity extends AppCompatActivity implements Adapte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_provider);
+
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Service provider application.");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         companyName=findViewById(R.id.companyName);
         location=findViewById(R.id.location);
@@ -191,6 +205,7 @@ public class ServiceProviderActivity extends AppCompatActivity implements Adapte
                     pd.dismiss();
                     Toast.makeText(ServiceProviderActivity.this, "Application was successful", Toast.LENGTH_SHORT).show();
                     clearInputs();
+                    finish();
                 }
             }
         });

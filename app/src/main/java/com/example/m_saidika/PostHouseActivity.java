@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -34,16 +35,16 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.util.HashMap;
 
 public class PostHouseActivity extends AppCompatActivity {
-
-    public EditText aptName, aptLocation, aptPhoneNumber, aptRent, aptDescription;
-    public ImageView aptPic;
-    public LinearLayout picLin;
-    public Button btnSubmit;
-    public AlertDialog.Builder builder;
-    public Uri imageUri;
+    private Toolbar toolbar;
+    private EditText aptName, aptLocation, aptPhoneNumber, aptRent, aptDescription;
+    private ImageView aptPic;
+    private LinearLayout picLin;
+    private Button btnSubmit;
+    private AlertDialog.Builder builder;
+    private Uri imageUri;
 
     //loading feature
-    public ProgressDialog pd;
+    private ProgressDialog pd;
 
     //Authentication with firebase
     private FirebaseAuth mAuth;
@@ -56,6 +57,17 @@ public class PostHouseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_house);
+
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Post Vacant House");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         aptName = findViewById(R.id.aptName);
         aptLocation = findViewById(R.id.aptLocation);
@@ -188,6 +200,7 @@ public class PostHouseActivity extends AppCompatActivity {
                     pd.dismiss();
                     Toast.makeText(PostHouseActivity.this, "House post was successful", Toast.LENGTH_SHORT).show();
                     clearInputs();
+                    finish();
                 }
             }
         });

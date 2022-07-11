@@ -2,6 +2,7 @@ package com.example.m_saidika;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,8 @@ import android.widget.Button;
 
 import com.example.m_saidika.Adapters.JobAdapter;
 import com.example.m_saidika.Models.JobItem;
+import com.example.m_saidika.Models.Profile;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,11 +27,12 @@ import java.util.ArrayList;
 
 public class JobActivity extends AppCompatActivity {
 
-    public Button postJob;
-    public RecyclerView jobRecyclerView;
-    public JobAdapter jobAdapter;
-    public LinearLayoutManager layoutManager;
-    public ArrayList<JobItem> allJobItems;
+    private FloatingActionButton postJob;
+    private RecyclerView jobRecyclerView;
+    private JobAdapter jobAdapter;
+    private LinearLayoutManager layoutManager;
+    private ArrayList<JobItem> allJobItems;
+    private Toolbar toolbar;
 
     FirebaseUser fUser;
 
@@ -37,9 +41,22 @@ public class JobActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job);
 
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Jobs");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         postJob = findViewById(R.id.postJob);
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
+        
+        setUpPageAsPerRole();
         initializeRecyclerView();
 
         postJob.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +67,23 @@ public class JobActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setUpPageAsPerRole() {
+        FirebaseDatabase.getInstance().getReference().child("Profiles").child(fUser.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Profile userProfile=snapshot.getValue(Profile.class);
+                if(userProfile.getRole().equals("Job")){
+                    postJob.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void initializeRecyclerView() {

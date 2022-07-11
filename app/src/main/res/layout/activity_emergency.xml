@@ -1,187 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EmergencyActivity"
-    android:padding="10dp"
-    android:gravity="center">
+    tools:context=".EmergencyActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bar">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:id="@+id/toolbar"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <RelativeLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:padding="10dp">
 
-        <TextView
-            android:id="@+id/policeTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Police Services"
-            android:paddingTop="10dp"
-            android:textSize="15dp"
-            android:textStyle="bold"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
 
-        <Button
-            android:id="@+id/policeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/holo_red_dark"
-            android:text="Call"
-            android:textAllCaps="false"
-            android:layout_alignParentEnd="true"/>
+                <TextView
+                    android:id="@+id/policeTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="Police Services"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/policeBtn"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:text="Call"
+                    android:textAllCaps="false" />
 
-    </LinearLayout>
+            </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/ambulanceTxt"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ambulance Services"
-                android:paddingTop="10dp"
-                android:textSize="15dp"
-                android:textStyle="bold"/>
+                android:padding="10dp">
 
-            <Button
-                android:id="@+id/ambulanceBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_red_dark"
-                android:text="Call"
-                android:textAllCaps="false"
-                android:layout_alignParentEnd="true"/>
+                <TextView
+                    android:id="@+id/ambulanceTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="Ambulance Services"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/ambulanceBtn"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:text="Call"
+                    android:textAllCaps="false" />
 
-    </LinearLayout>
+            </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/fireTxt"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fire Services"
-                android:paddingTop="10dp"
-                android:textSize="15dp"
-                android:textStyle="bold"/>
+                android:padding="10dp">
 
-            <Button
-                android:id="@+id/fireBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_red_dark"
-                android:text="Call"
-                android:textAllCaps="false"
-                android:layout_alignParentEnd="true"/>
+                <TextView
+                    android:id="@+id/fireTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="Fire Services"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/fireBtn"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:text="Call"
+                    android:textAllCaps="false" />
 
-    </LinearLayout>
+            </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/counsellingTxt"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="Counselling Services"
-                android:textSize="15dp"
-                android:textStyle="bold"/>
+                android:padding="10dp">
 
-            <Button
-                android:id="@+id/counsellingChatBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_toStartOf="@+id/counsellingBtn"
-                android:backgroundTint="@android:color/holo_blue_dark"
-                android:text="Chat"
-                android:textAllCaps="false" />
+                <TextView
+                    android:id="@+id/counsellingTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="Counselling Services"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/counsellingBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_red_dark"
-                android:text="Call"
-                android:textAllCaps="false"
-                android:layout_alignParentEnd="true"/>
+                <Button
+                    android:id="@+id/counsellingChatBtn"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toStartOf="@+id/counsellingBtn"
+                    android:backgroundTint="@android:color/holo_blue_dark"
+                    android:text="Chat"
+                    android:textAllCaps="false" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/counsellingBtn"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:text="Call"
+                    android:textAllCaps="false" />
 
-    </LinearLayout>
+            </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/sSecurityTxt"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="School Security"
-                android:paddingTop="10dp"
-                android:textSize="15dp"
-                android:textStyle="bold"/>
+                android:padding="10dp">
 
-            <Button
-                android:id="@+id/sSecurityBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_red_dark"
-                android:text="Call"
-                android:textAllCaps="false"
-                android:layout_alignParentEnd="true"/>
+                <TextView
+                    android:id="@+id/sSecurityTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="School Security"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/sSecurityBtn"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:text="Call"
+                    android:textAllCaps="false" />
 
+            </RelativeLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

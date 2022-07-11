@@ -50,8 +50,7 @@ public class ViewJobActivity extends AppCompatActivity {
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewJobActivity.this, JobActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

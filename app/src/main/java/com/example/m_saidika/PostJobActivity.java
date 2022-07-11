@@ -3,6 +3,7 @@ package com.example.m_saidika;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -24,12 +25,14 @@ import java.util.HashMap;
 
 public class PostJobActivity extends AppCompatActivity {
 
-    public EditText jobCompanyName, jobLocation, jobPhoneNumber, jobDescription, jobRequirements;
-    public Button btnSubmit;
-    public AlertDialog.Builder builder;
+    private Toolbar toolbar;
+
+    private EditText jobCompanyName, jobLocation, jobPhoneNumber, jobDescription, jobRequirements;
+    private Button btnSubmit;
+    private AlertDialog.Builder builder;
 
     //loading feature
-    public ProgressDialog pd;
+    private ProgressDialog pd;
 
     //Authentication with firebase
     private FirebaseAuth mAuth;
@@ -42,6 +45,17 @@ public class PostJobActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_job);
+
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Post Job Vacancy");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         jobCompanyName = findViewById(R.id.jobCompanyName);
         jobLocation = findViewById(R.id.jobLocation);
@@ -133,6 +147,7 @@ public class PostJobActivity extends AppCompatActivity {
                     pd.dismiss();
                     Toast.makeText(PostJobActivity.this, "Job post was successful", Toast.LENGTH_SHORT).show();
                     clearInputs();
+                    finish();
                 }
             }
         });
