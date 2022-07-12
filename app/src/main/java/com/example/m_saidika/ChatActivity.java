@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -36,6 +37,7 @@ import com.google.firebase.storage.StorageTask;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -203,12 +205,15 @@ public class ChatActivity extends AppCompatActivity {
         DateFormat df=new SimpleDateFormat("h:mm a");
         String time=df.format(Calendar.getInstance().getTime());
 
+        //Encode Message for security
+        String encodedMessage= Base64.encodeToString(messageTxt.getBytes(),Base64.NO_WRAP);
+
         HashMap<String,Object> messageData=new HashMap<>();
         String messageId=dbRef.push().getKey();
         messageData.put("messageId",messageId);
         messageData.put("senderId",fUser.getUid());
         messageData.put("recipientId",recipientId);
-        messageData.put("message",messageTxt);
+        messageData.put("message",encodedMessage);
         messageData.put("isPhoto",isPhoto);
         messageData.put("time",time);
         messageData.put("isDelivered","false");

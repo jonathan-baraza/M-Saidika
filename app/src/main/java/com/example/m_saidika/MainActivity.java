@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView loadTxt;
 
     public ImageView jobImage,transportImage,foodImage,housingImage,sPImage,emergencyImage;
-    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,orders,manageUsers,transportServices,recentActivities,help,about;
+    public TextView jobText,transportText,foodText,housingText,sPText,emergencyText,email,btnProfile,authName,allApplications,orders,manageUsers,transportServices,help,about;
 
     private LinearLayout panelistNav,adminNav,profileNav,foodServiceNav,transportServiceNav;
     private ImageView chat;
@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
         authName=findViewById(R.id.authName);
         btnProfile=findViewById(R.id.btnProfile);
         allApplications=findViewById(R.id.allApplications);
-        recentActivities=findViewById(R.id.recentActivities);
         orders=findViewById(R.id.orders);
         transportServices=findViewById(R.id.tranportServices);
         chat=findViewById(R.id.chat);
@@ -254,6 +253,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(MainActivity.this, "You have been signed out.", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                finish();
             }
         });
 
@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
         if(user==null){
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
         }else{
-            checkUserStatus();
+            getProfileDetails();
         }
         super.onStart();
     }
@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     profilePic.setImageResource(R.drawable.avatar1);
                 }
-
+                checkUserStatus();
                 setUpPageAsPerRole(userProfile.getRole(),userProfile.getFirstName()+" "+userProfile.getLastName());
             }
 
@@ -322,11 +322,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Profile userProfile=snapshot.getValue(Profile.class);
-                if(!userProfile.getStatus().equals("active")){
+                if(!(userProfile.getStatus().equals("active"))){
                     startActivity(new Intent(MainActivity.this,DisabledActivity.class));
                     finish();
-                }else{
-                    getProfileDetails();
                 }
 
             }
@@ -359,6 +357,11 @@ public class MainActivity extends AppCompatActivity {
                 foodServiceNav.setVisibility(View.GONE);
                 break;
             case "Food":
+                adminNav.setVisibility(View.GONE);
+                authName.setText(fullName);
+                foodServiceNav.setVisibility(View.VISIBLE);
+                break;
+            case "Housing":
                 adminNav.setVisibility(View.GONE);
                 authName.setText(fullName);
                 foodServiceNav.setVisibility(View.VISIBLE);

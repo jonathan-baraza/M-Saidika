@@ -392,23 +392,6 @@
 
 
 <!--            For all users-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:drawableStart="@drawable/ic_baseline_access_time_24"
-                android:drawablePadding="10dp"
-                android:text="Recent Activities"
-                android:textColor="@color/white"
-                android:id="@+id/recentActivities"
-                android:textSize="16dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/white" />
-
 
             <TextView
                 android:layout_width="match_parent"

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -42,26 +43,27 @@ import java.util.HashMap;
 
 
 public class ProfileActivity extends AppCompatActivity {
+    private Toolbar toolbar;
     //update form elements
-    public LinearLayout updateForm,profileDetails;
-    public ImageView btnCloseUpdateForm,imgUpdate,backArrow;
-    public EditText phoneUpdate,bioUpdate;
-    public Button btnShowUpdateForm,btnUpdateProfilePhoto,btnUpdateProfile;
+    private LinearLayout updateForm,profileDetails;
+    private ImageView btnCloseUpdateForm,imgUpdate,backArrow;
+    private EditText phoneUpdate,bioUpdate;
+    private Button btnShowUpdateForm,btnUpdateProfilePhoto,btnUpdateProfile;
 
 
-    public ImageView profilePic;
-    public TextView name, email, phone, idNo,admNo;
+    private ImageView profilePic;
+    private TextView name, email, phone, idNo,admNo;
 
-    public Uri imageUri;
-    public String downloadUrl;
+    private Uri imageUri;
+    private String downloadUrl;
 
 
     //Validator
-    public InputValidation inputValidation;
+    private InputValidation inputValidation;
 
-    public AlertDialog.Builder builder;
+    private AlertDialog.Builder builder;
 
-    public ProgressDialog pd;
+    private ProgressDialog pd;
 
     FirebaseUser fUser;
 
@@ -69,6 +71,17 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Your profile");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
         pd=new ProgressDialog(ProfileActivity.this);

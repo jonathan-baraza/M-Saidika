@@ -2,6 +2,7 @@ package com.example.m_saidika.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,9 +59,11 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
                     }
                 });
             }else{
+                byte[] decodedBytes= android.util.Base64.decode(message.getMessage(), Base64.NO_WRAP);
+                String decodedMessage=new String(decodedBytes);
                 holder.senderPhoto.setVisibility(View.GONE);
                 holder.senderMessage.setVisibility(View.VISIBLE);
-                holder.senderMessage.setText(message.getMessage());
+                holder.senderMessage.setText(decodedMessage);
             }
             holder.senderTime.setText(message.getTime());
         }else{
@@ -78,9 +81,11 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
                     }
                 });
             }else{
+                byte[] decodedBytes= android.util.Base64.decode(message.getMessage(), Base64.NO_WRAP);
+                String decodedMessage=new String(decodedBytes);
                 holder.recipientPhoto.setVisibility(View.GONE);
                 holder.recipientMessage.setVisibility(View.VISIBLE);
-                holder.recipientMessage.setText(message.getMessage());
+                holder.recipientMessage.setText(decodedMessage);
             }
             holder.recipientTime.setText(message.getTime());
 

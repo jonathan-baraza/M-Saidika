@@ -16,6 +16,7 @@
         android:textColor="@color/danger"
         android:textAlignment="center"
         android:textSize="18sp"
+        android:id="@+id/txt"
         android:text="Ooops! Your account was deactivated."/>
     <TextView
         android:layout_width="wrap_content"

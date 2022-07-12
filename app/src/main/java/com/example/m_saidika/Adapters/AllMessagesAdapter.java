@@ -3,6 +3,7 @@ package com.example.m_saidika.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,8 +66,10 @@ public class AllMessagesAdapter extends RecyclerView.Adapter<AllMessagesAdapter.
             holder.message.setVisibility(View.GONE);
             holder.photoMessage.setVisibility(View.VISIBLE);
         }else{
+            byte[] decodedBytes= android.util.Base64.decode(message.getMessage(), Base64.NO_WRAP);
+            String decodedMessage=new String(decodedBytes);
             holder.photoMessage.setVisibility(View.GONE);
-            holder.message.setText(message.getMessage());
+            holder.message.setText(decodedMessage);
         }
 
         holder.time.setText(message.getTime());
