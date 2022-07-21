@@ -174,8 +174,8 @@ public class RegisterActivity extends AppCompatActivity {
                     else if(!inputValidation.isValidEmail(emailTxt)){
                         builder.setMessage("Invalid email format");
                         builder.show();
-                    }else if(!(phoneTxt.length()==12)){
-                        builder.setMessage("Invalid phone number...check the number of digits and start with 254...");
+                    }else if(!(phoneTxt.length()>=10)){
+                        builder.setMessage("Invalid phone number...check the number of digits.");
                         builder.show();
                     }else if (residentButton.isChecked() && idNo.length()<6){
                         builder.setMessage("ID number must be greater than 6 characters");
@@ -188,7 +188,7 @@ public class RegisterActivity extends AppCompatActivity {
                         builder.setMessage("Confirm password does not match password");
                         builder.show();
                     }else{
-                        registerUser(emailTxt,passwordTxt,fNameTxt,lNameTxt,phoneTxt,residentButton.isChecked(),studentButton.isChecked(),admNoTxt,idNoTxt);
+                        registerUser(emailTxt,passwordTxt,fNameTxt,lNameTxt,inputValidation.sanitizePhoneNumber(phoneTxt),residentButton.isChecked(),studentButton.isChecked(),admNoTxt,idNoTxt);
                     }
 
                 }

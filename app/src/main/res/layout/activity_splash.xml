@@ -7,11 +7,12 @@
     tools:context=".SplashActivity"
     android:orientation="vertical"
  >
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:src="@drawable/downwave"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/downwave" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -44,12 +45,13 @@
         android:id="@+id/txtWait"/>
 
     </LinearLayout>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:src="@drawable/upwave2"
         android:layout_alignParentBottom="true"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/upwave2" />
 
 
 
