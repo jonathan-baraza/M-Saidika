@@ -33,16 +33,16 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    public EditText fName, lName, email, phone, password, confirmPassword, admNo, idNo;
-    public TextView goToLogin;
-    public RadioGroup radioGroup;
-    public RadioButton studentButton, residentButton;
-    public Button btnRegister;
-    public AlertDialog.Builder builder;
-    public InputValidation inputValidation;
+    private EditText fName, lName, email, phone, password, confirmPassword, admNo, idNo;
+    private TextView goToLogin;
+    private RadioGroup radioGroup;
+    private RadioButton studentButton, residentButton;
+    private Button btnRegister;
+    private AlertDialog.Builder builder;
+    private InputValidation inputValidation;
     
     //loading feature
-    public ProgressDialog pd;
+    private ProgressDialog pd;
     
     //Authentication with firebase
     private FirebaseAuth mAuth;
@@ -89,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        //Instantiate validation class
         inputValidation=new InputValidation();
 
 
@@ -199,6 +200,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+
+    //Register user function
     private void registerUser(String emailTxt, String passwordTxt,String fNameTxt,String lNameTxt,String phoneTxt,boolean resident,boolean student, String admNo,String idNo) {
         pd.show();
         mAuth.createUserWithEmailAndPassword(emailTxt,passwordTxt).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
