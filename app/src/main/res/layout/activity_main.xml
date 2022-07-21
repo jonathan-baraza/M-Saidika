@@ -466,7 +466,8 @@
         android:background="@color/white"
         android:id="@+id/splash"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"

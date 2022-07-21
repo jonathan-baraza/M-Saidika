@@ -49,27 +49,27 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class PaymentActivity extends AppCompatActivity{
-    private DarajaApiClient mApiClient;
-    private ProgressDialog pd;
+    public DarajaApiClient mApiClient;
+    public ProgressDialog pd;
     public boolean isReady=false;
 
     public TextView name,price;
-    private String amountToBePaid,matatuId,numberPlate,destination;
-    private FirebaseUser fUser;
+    public String amountToBePaid,matatuId,numberPlate,destination;
+    public FirebaseUser fUser;
 
     public Button btnPay;
     public Profile userProfile;
 
-    private MpesaResponseItem mpesaRespone;
+    public MpesaResponseItem mpesaRespone;
 
     public AlertDialog.Builder builder;
     public String serviceId;
     public String paymentType;
 
-    private int totalNumOfPassengers;
+    public int totalNumOfPassengers;
 
-    private boolean updatedList=false;
-    private boolean insertedOrder=false;
+    public boolean updatedList=false;
+    public boolean insertedOrder=false;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,29 +129,38 @@ public class PaymentActivity extends AppCompatActivity{
     }
 
     public void getAccessToken() {
+        pd.setMessage("Processing your request");
+        pd.setTitle("Please Wait...");
+        pd.setIndeterminate(true);
+        pd.show();
         mApiClient.setGetAccessToken(true);
+//        mApiClient.setAuthToken("5urAAbvs3NlyQpmdzz9Ui7tSYGTM");
         mApiClient.mpesaService().getAccessToken().enqueue(new Callback<AccessToken>() {
             @Override
             public void onResponse(@NonNull Call<AccessToken> call, @NonNull Response<AccessToken> response) {
                 if (response.isSuccessful()) {
+                    System.out.println(response.body().accessToken);
                     mApiClient.setAuthToken(response.body().accessToken);
+                    mApiClient.setAuthToken("84AXr8Ur3altbvhNtuPQOk2vlN4j");
                     isReady=true;
                     performSTKPush(userProfile.getPhone(),amountToBePaid);
+                }else{
+                    System.out.println("Access token ERRRRROOORR INNNNN");
+                    System.out.println(response);
+                    Toast.makeText(PaymentActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
-
+                System.out.println("Access token Errorrr");
+                System.out.println(t);
             }
         });
     }
 
     public void performSTKPush(String phone_number,String amount) {
-        pd.setMessage("Processing your request");
-        pd.setTitle("Please Wait...");
-        pd.setIndeterminate(true);
-        pd.show();
+
         String timestamp = Utils.getTimestamp();
         STKPush stkPush = new STKPush(
                 BUSINESS_SHORT_CODE,

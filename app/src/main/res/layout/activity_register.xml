@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,18 +8,30 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+       >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/downwave"
+                android:id="@+id/downwave"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
             <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/logo"/>
+                android:src="@drawable/logo2" />
 
             <TextView
                 android:id="@+id/register"
@@ -28,7 +40,7 @@
                 android:layout_gravity="center"
 
                 android:text="Register"
-                android:textColor="@color/black"
+                android:textColor="@color/primary"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
@@ -37,52 +49,64 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="First Name"
+                android:background="@drawable/bg_one"
                 android:drawableLeft="@drawable/ic_person"
                 android:drawablePadding="10dp"
-                android:background="@drawable/bg_one"
+                android:drawableTint="@color/primary"
+                android:hint="First Name"
+                android:textColor="@color/primary"
+                android:textColorHint="@color/primary_light"
                 android:inputType="textPersonName"
                 android:padding="15dp"
-                android:textSize="14dp"/>
+                android:textSize="14dp" />
 
             <EditText
                 android:id="@+id/lName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Last Name"
+                android:background="@drawable/bg_one"
                 android:drawableLeft="@drawable/ic_person"
                 android:drawablePadding="10dp"
-                android:textSize="14dp"
-                android:background="@drawable/bg_one"
+                android:drawableTint="@color/primary"
+                android:hint="Last Name"
+                android:textColor="@color/primary"
+                android:textColorHint="@color/primary_light"
                 android:inputType="textPersonName"
-                android:padding="15dp" />
+                android:padding="15dp"
+                android:textSize="14dp" />
 
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Email"
+                android:background="@drawable/bg_one"
                 android:drawableLeft="@drawable/ic_email"
                 android:drawablePadding="10dp"
-                android:textSize="14dp"
-                android:background="@drawable/bg_one"
+                android:drawableTint="@color/primary"
+                android:hint="Email"
+                android:textColor="@color/primary"
+                android:textColorHint="@color/primary_light"
                 android:inputType="textEmailAddress"
-                android:padding="15dp" />
+                android:padding="15dp"
+                android:textSize="14dp" />
 
             <EditText
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Phone Number i.e 254..."
+                android:background="@drawable/bg_one"
                 android:drawableLeft="@drawable/ic_phone"
                 android:drawablePadding="10dp"
-                android:textSize="14dp"
+                android:drawableTint="@color/primary"
+                android:hint="Phone Number i.e 254..."
                 android:inputType="phone"
-                android:background="@drawable/bg_one"
-                android:padding="15dp" />
+                android:textColor="@color/primary"
+                android:textColorHint="@color/primary_light"
+                android:padding="15dp"
+                android:textSize="14dp" />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -97,14 +121,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
-                    android:text="Student" />
+                    android:buttonTint="@color/primary"
+                    android:text="Student"
+                    android:textColor="@color/primary" />
 
                 <RadioButton
                     android:id="@+id/residentButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="Resident" />
+                    android:buttonTint="@color/primary"
+                    android:text="Resident"
+                    android:textColor="@color/primary" />
 
             </RadioGroup>
 
@@ -113,54 +141,66 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="14dp"
-                android:hint="Student Admission Number"
+                android:background="@drawable/bg_one"
                 android:drawableLeft="@drawable/ic_id_card"
                 android:drawablePadding="10dp"
+                android:hint="Student Admission Number"
                 android:inputType="text"
-                android:background="@drawable/bg_one"
-                android:visibility="gone"
-                android:padding="15dp"/>
+                android:padding="15dp"
+                android:textColor="@color/primary"
+               android:drawableTint="@color/primary"
+                android:textColorHint="@color/primary_light"
+                android:textSize="14dp"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/idNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="14dp"
-                android:hint="Identification Number"
+                android:background="@drawable/bg_one"
                 android:drawableLeft="@drawable/ic_id_card"
                 android:drawablePadding="10dp"
+                android:drawableTint="@color/primary"
+                android:hint="Identification Number"
+                android:textColor="@color/primary"
+                android:textColorHint="@color/primary_light"
                 android:inputType="phone"
-                android:background="@drawable/bg_one"
-                android:visibility="gone"
-                android:padding="15dp"/>
+                android:padding="15dp"
+                android:textSize="14dp"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/password"
-                android:background="@drawable/bg_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Password"
-                android:textSize="14dp"
+                android:background="@drawable/bg_one"
                 android:drawableLeft="@drawable/ic_lock"
                 android:drawablePadding="10dp"
+                android:drawableTint="@color/primary"
+                android:hint="Password"
+                android:textColor="@color/primary"
+                android:textColorHint="@color/primary_light"
                 android:inputType="textPassword"
-                android:padding="15dp" />
+                android:padding="15dp"
+                android:textSize="14dp" />
 
             <EditText
                 android:id="@+id/confirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Confirm Password"
+                android:background="@drawable/bg_one"
                 android:drawableLeft="@drawable/ic_lock"
                 android:drawablePadding="10dp"
-                android:textSize="14dp"
-                android:background="@drawable/bg_one"
+                android:drawableTint="@color/primary"
+                android:hint="Confirm Password"
+                android:textColor="@color/primary"
+                android:textColorHint="@color/primary_light"
                 android:inputType="textPassword"
-                android:padding="15dp" />
+                android:padding="15dp"
+                android:textSize="14dp" />
 
             <Button
                 android:id="@+id/btnRegister"
@@ -168,6 +208,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/button_bg_one"
+                android:drawableEnd="@drawable/ic_baseline_send_24"
                 android:text="Submit"
                 android:textAllCaps="false" />
 
@@ -177,8 +219,9 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:text="You already have an account?"
+                android:textColor="@color/primary"
 
-                 />
+                />
 
             <TextView
                 android:id="@+id/goToLogin"
@@ -187,11 +230,18 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:text="Login"
-
-                android:textStyle="bold|italic" />
+                android:textColor="@color/primary" />
 
         </LinearLayout>
 
-    </ScrollView>
 
-</LinearLayout>
+            <ImageView
+                android:id="@+id/upwave"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_alignParentBottom="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/upwave3" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

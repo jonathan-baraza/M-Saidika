@@ -2,8 +2,10 @@ package com.example.m_saidika;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,9 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.m_saidika.Models.ApplicationItem;
 import com.example.m_saidika.Models.FoodItem;
 import com.example.m_saidika.Models.JobItem;
+import com.example.m_saidika.Models.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,9 +31,10 @@ import com.squareup.picasso.Picasso;
 
 public class ViewJobActivity extends AppCompatActivity {
 
-    public TextView viewJobCompanyName, viewJobLocation, viewJobRequirements, viewJobDescription, viewJobPhone;
-    public ImageView backArrow;
-    public Button delete;
+    private TextView viewJobCompanyName, viewJobLocation, viewJobRequirements, viewJobDescription, viewJobPhone;
+    private ImageView profilePic;
+    private Button delete,btnCall;
+    private Toolbar toolbar;
 
     FirebaseUser fUser;
 
@@ -43,26 +48,44 @@ public class ViewJobActivity extends AppCompatActivity {
         viewJobDescription = findViewById(R.id.viewJobDescription);
         viewJobPhone = findViewById(R.id.viewJobPhone);
         delete = findViewById(R.id.delete);
-        backArrow = findViewById(R.id.backArrow);
+        toolbar=findViewById(R.id.toolbar);
+        profilePic=findViewById(R.id.profilePic);
 
-        fUser= FirebaseAuth.getInstance().getCurrentUser();
-
-        backArrow.setOnClickListener(new View.OnClickListener() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(viewJobDescription.getText().toString());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
 
+        btnCall=findViewById(R.id.btnCall);
+
+        fUser= FirebaseAuth.getInstance().getCurrentUser();
+
+
         Intent intent = getIntent();
         String jobId = intent.getStringExtra("jobId");
         String owner = intent.getStringExtra("owner");
 
         fetchData(jobId);
+        fetchOwnerProfile(owner);
 
         if (fUser.getUid().equals(owner)){
             delete.setVisibility(View.VISIBLE);
         }
+
+        btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+viewJobPhone.getText().toString()));
+                startActivity(intent);
+            }
+        });
+
 
        delete.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -79,6 +102,26 @@ public class ViewJobActivity extends AppCompatActivity {
            }
        });
 
+    }
+
+    private void fetchOwnerProfile(String owner) {
+        FirebaseDatabase.getInstance().getReference().child("Profiles").child(owner).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Profile ownerProfile=snapshot.getValue(Profile.class);
+                if(ownerProfile.getPhoto().length()>0){
+                    Picasso.get().load(ownerProfile.getPhoto()).placeholder(R.drawable.loading).into(profilePic);
+                }else{
+                    Glide.with(ViewJobActivity.this).load(R.drawable.job_interview).into(profilePic);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void fetchData(String jobId) {
