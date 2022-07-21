@@ -239,7 +239,7 @@ public class RegisterActivity extends AppCompatActivity {
                         else{
                             pd.dismiss();
                             builder.setTitle("Error");
-//                builder.setMessage("Registration failed, try again later.");
+//                          builder.setMessage("Registration failed, try again later.");
                             builder.setMessage(task.getException().toString());
 
                             builder.show();

@@ -73,7 +73,7 @@ public class HouseActivity extends AppCompatActivity {
         setupPageAsPerRole();
         initializeRecyclerView();
 
-        new CountDownTimer(5000, 1000) {
+        new CountDownTimer(7000, 1000) {
             @Override
             public void onTick(long l) {
 

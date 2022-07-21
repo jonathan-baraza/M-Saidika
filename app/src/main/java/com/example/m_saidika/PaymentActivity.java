@@ -134,14 +134,13 @@ public class PaymentActivity extends AppCompatActivity{
         pd.setIndeterminate(true);
         pd.show();
         mApiClient.setGetAccessToken(true);
-//        mApiClient.setAuthToken("5urAAbvs3NlyQpmdzz9Ui7tSYGTM");
+
         mApiClient.mpesaService().getAccessToken().enqueue(new Callback<AccessToken>() {
             @Override
             public void onResponse(@NonNull Call<AccessToken> call, @NonNull Response<AccessToken> response) {
                 if (response.isSuccessful()) {
                     System.out.println(response.body().accessToken);
                     mApiClient.setAuthToken(response.body().accessToken);
-                    mApiClient.setAuthToken("84AXr8Ur3altbvhNtuPQOk2vlN4j");
                     isReady=true;
                     performSTKPush(userProfile.getPhone(),amountToBePaid);
                 }else{
@@ -229,20 +228,6 @@ public class PaymentActivity extends AppCompatActivity{
     }
 
     private void handleUserFeedback(String checkoutRequestID) {
-//        if(mpesaRespone==null || mpesaRespone.getResultCode()==null){
-//            new CountDownTimer(3000,1000){
-//                @Override
-//                public void onTick(long l) {
-//
-//                }
-//
-//                @Override
-//                public void onFinish() {
-//                    fetchMpesaResponseFromDB(checkoutRequestID);
-//                }
-//            }.start();
-//
-//        }else{
 
             if(mpesaRespone.resultCode.equals("0")){
                 if(paymentType.equals("foodOrder")){
@@ -348,5 +333,10 @@ public class PaymentActivity extends AppCompatActivity{
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        //do nothing
     }
 }

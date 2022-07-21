@@ -35,7 +35,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/logo"/>
+                android:src="@drawable/logo2"/>
 
             <TextView
                 android:id="@+id/sPApplication"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Service Provider Application"
-                android:textColor="@color/black"
+                android:textColor="@color/primary"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -58,6 +58,9 @@
                 android:background="@drawable/bg_one"
                 android:inputType="text"
                 android:padding="13dp"
+                android:textColor="@color/primary"
+                android:drawableTint="@color/primary"
+                android:textColorHint="@color/primary_light"
                 android:textSize="14dp"/>
 
             <EditText
@@ -71,6 +74,9 @@
                 android:background="@drawable/bg_one"
                 android:inputType="text"
                 android:padding="13dp"
+                android:textColor="@color/primary"
+                android:drawableTint="@color/primary"
+                android:textColorHint="@color/primary_light"
                 android:textSize="14dp"/>
 
             <EditText
@@ -84,31 +90,34 @@
                 android:background="@drawable/bg_one"
                 android:inputType="text"
                 android:padding="13dp"
+                android:textColor="@color/primary"
+                android:drawableTint="@color/primary"
+                android:textColorHint="@color/primary_light"
                 android:textSize="14dp"/>
 
             <LinearLayout
+                android:id="@+id/permitLin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_one"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:id="@+id/permitLin">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/primary"
                     android:text="Click here to upload Business permit"
-                    android:textSize="15dp"
-                    />
+                    android:textSize="15dp" />
 
                 <ImageView
                     android:id="@+id/permit"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/doc"/>
+                    android:src="@drawable/doc" />
 
             </LinearLayout>
 
@@ -123,6 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Service Type"
+                    android:textColor="@color/primary"
                     android:textSize="15dp"
                     />
 
@@ -130,8 +140,7 @@
                     android:id="@+id/spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    />
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
 

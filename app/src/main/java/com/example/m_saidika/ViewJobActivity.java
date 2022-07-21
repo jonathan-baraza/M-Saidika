@@ -54,6 +54,7 @@ public class ViewJobActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(viewJobDescription.getText().toString());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +133,7 @@ public class ViewJobActivity extends AppCompatActivity {
                 viewJobCompanyName.setText(jobItem.getCompanyName());
                 viewJobLocation.setText(jobItem.getLocation());
                 viewJobDescription.setText(jobItem.getDescription());
+                getSupportActionBar().setTitle(jobItem.getDescription());
                 viewJobRequirements.setText(jobItem.getRequirements());
                 viewJobPhone.setText(jobItem.getPhone());
             }

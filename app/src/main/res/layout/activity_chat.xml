@@ -53,7 +53,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/actionArea"
         android:layout_below="@+id/header"
-        android:paddingBottom="20dp"/>
+        android:paddingBottom="20dp" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,10 +70,10 @@
             android:layout_toStartOf="@+id/btnsContainer"
             android:background="@drawable/bg_two"
             android:hint="Type Message here..."
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
             android:paddingStart="15dp"
+            android:paddingTop="15dp"
             android:paddingEnd="30dp"
+            android:paddingBottom="15dp"
             android:textColor="@color/white"
             android:textColorHint="#d6d6d6"
             android:textSize="16sp" />

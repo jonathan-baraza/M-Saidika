@@ -28,12 +28,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <ImageView
+                    android:id="@+id/chat"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@mipmap/ic_messenger"
-                    android:id="@+id/chat"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_alignParentEnd="true"
+                    android:src="@mipmap/ic_messenger" />
             </RelativeLayout>
 
 
@@ -210,255 +211,257 @@
 
         </LinearLayout>
     </ScrollView>
-    <RelativeLayout
-        android:id="@+id/sideMenu"
-        android:layout_width="250dp"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/bar"
-        android:background="@color/primary"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/closeSideMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="15dp"
-            android:src="@drawable/ic_close" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profilePic"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@id/closeSideMenu"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/loader2" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:id="@+id/authName"
-            android:layout_below="@+id/profilePic"
-            android:textAlignment="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp"/>
-
-        <LinearLayout
-            android:id="@+id/navList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/authName"
-            android:orientation="vertical"
-            android:paddingStart="20dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="20dp">
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/panelistNav"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:drawableStart="@drawable/ic_recent_clipboard"
-                    android:drawablePadding="10dp"
-                    android:text="Applications"
-                    android:textColor="@color/white"
-                    android:id="@+id/allApplications"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/adminNav"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:drawableStart="@drawable/ic_baseline_construction_24"
-                    android:drawablePadding="10dp"
-                    android:text="Manage Users"
-                    android:textColor="@color/white"
-                    android:id="@+id/manageUsers"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/profileNav"
-                android:visibility="visible">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_security"
-                    android:drawablePadding="10dp"
-                    android:text="My Profile"
-                    android:id="@+id/btnProfile"
-                    android:textColor="@color/white"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white" />
-
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/foodServiceNav"
-                android:orientation="vertical"
-                android:visibility="gone">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:drawableStart="@drawable/ic_baseline_fastfood_24"
-                    android:drawablePadding="10dp"
-                    android:text="Orders"
-                    android:id="@+id/orders"
-                    android:textColor="@color/white"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/transportServiceNav"
-                android:orientation="vertical"
-                android:visibility="gone">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:drawableStart="@drawable/ic_baseline_directions_car_24"
-                    android:drawablePadding="10dp"
-                    android:text="Transport Services"
-                    android:id="@+id/tranportServices"
-                    android:textColor="@color/white"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white" />
-
-            </LinearLayout>
-
-
-
-<!--            For all users-->
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:drawableStart="@drawable/ic_baseline_info_24"
-                android:drawablePadding="10dp"
-                android:text="About us"
-                android:id="@+id/about"
-                android:textColor="@color/white"
-                android:textSize="16dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/white" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:drawableStart="@drawable/ic_help"
-                android:drawablePadding="10dp"
-                android:text="Help"
-                android:id="@+id/help"
-                android:textColor="@color/white"
-                android:textSize="16dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/white" />
-
-
-        </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/btnSignOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="40dp">
+            android:id="@+id/sideMenu"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/bar"
+            android:background="@color/primary"
+            android:visibility="gone">
 
             <ImageView
-                android:id="@+id/signOutIcon"
+                android:id="@+id/closeSideMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="15dp"
+                android:src="@drawable/ic_close" />
 
-                android:layout_marginStart="20dp"
-                android:scaleX="-1"
-                android:src="@drawable/ic_login_logout" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilePic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/closeSideMenu"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/loader2" />
 
             <TextView
+                android:id="@+id/authName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/signOutIcon"
-                android:text="Sign out"
+                android:layout_below="@+id/profilePic"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="16dp" />
-        </RelativeLayout>
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-    </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/navList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/authName"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp">
+
+
+                <LinearLayout
+                    android:id="@+id/panelistNav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/allApplications"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:drawableStart="@drawable/ic_recent_clipboard"
+                        android:drawablePadding="10dp"
+                        android:text="Applications"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/adminNav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/manageUsers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:drawableStart="@drawable/ic_baseline_construction_24"
+                        android:drawablePadding="10dp"
+                        android:text="Manage Users"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/profileNav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/btnProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_security"
+                        android:drawablePadding="10dp"
+                        android:text="My Profile"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/foodServiceNav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/orders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:drawableStart="@drawable/ic_baseline_fastfood_24"
+                        android:drawablePadding="10dp"
+                        android:text="Orders"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/transportServiceNav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tranportServices"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:drawableStart="@drawable/ic_baseline_directions_car_24"
+                        android:drawablePadding="10dp"
+                        android:text="Transport Services"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white" />
+
+                </LinearLayout>
+
+
+                <!--            For all users-->
+
+                <TextView
+                    android:id="@+id/about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableStart="@drawable/ic_baseline_info_24"
+                    android:drawablePadding="10dp"
+                    android:text="About us"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white" />
+
+                <TextView
+                    android:id="@+id/help"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableStart="@drawable/ic_help"
+                    android:drawablePadding="10dp"
+                    android:text="Help"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/btnSignOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="40dp">
+
+                <ImageView
+                    android:id="@+id/signOutIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+
+                    android:layout_marginStart="20dp"
+                    android:scaleX="-1"
+                    android:src="@drawable/ic_login_logout" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/signOutIcon"
+                    android:text="Sign out"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+        </RelativeLayout>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -467,6 +470,7 @@
         android:id="@+id/splash"
         android:gravity="center"
         android:orientation="vertical"
+        android:visibility="gone"
         >
         <ImageView
             android:layout_width="100dp"

@@ -59,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        //TODO: Set Regex to validate inputs for both login and register.
         
 
         btnLogin.setOnClickListener(new View.OnClickListener() {

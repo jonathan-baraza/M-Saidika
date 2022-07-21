@@ -166,7 +166,6 @@ public class AllChatsActivity extends AppCompatActivity {
                     Message message=snapshot.getValue(Message.class);
                     if(message.getSenderId().equals(fUser.getUid()) || message.getRecipientId().equals(fUser.getUid())){
                         allMessages.add(message);
-                        //filter messages
                     }
                 }
                 filterMessages(allMessages);

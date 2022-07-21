@@ -45,17 +45,20 @@
             android:id="@+id/photoMessage"
             android:visibility="gone"/>
     </LinearLayout>
+
     <TextView
+        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="10:45 am"
-        android:id="@+id/time"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_margin="10dp"
-        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
 
-        />
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="10:45 am"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

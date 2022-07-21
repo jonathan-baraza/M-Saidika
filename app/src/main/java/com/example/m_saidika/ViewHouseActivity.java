@@ -50,8 +50,7 @@ public class ViewHouseActivity extends AppCompatActivity {
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewHouseActivity.this, HouseActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

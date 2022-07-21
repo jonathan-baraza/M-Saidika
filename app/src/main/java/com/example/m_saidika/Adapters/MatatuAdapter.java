@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.m_saidika.Models.Matatu;
 import com.example.m_saidika.Models.Passenger;
 import com.example.m_saidika.R;
+import com.example.m_saidika.TransportActivity;
 import com.example.m_saidika.ViewMatatuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -97,16 +98,9 @@ public class MatatuAdapter extends RecyclerView.Adapter<MatatuAdapter.ViewHolder
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Transport").child(serviceId).child(matatu.getMatatuId()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(mContext, "Matatu deleted successfully", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(mContext, "Failed to delete matatu", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Transport").child(serviceId).child(matatu.getMatatuId()).removeValue();
+                Toast.makeText(mContext, "Matatu deleted successfully", Toast.LENGTH_SHORT).show();
+                mContext.startActivity(new Intent(mContext, TransportActivity.class));
             }
         });
 
