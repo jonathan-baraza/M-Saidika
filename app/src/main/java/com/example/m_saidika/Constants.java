@@ -13,5 +13,5 @@ public class Constants {
     public static final String PASSKEY = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
     public static final String TRANSACTION_TYPE = "CustomerPayBillOnline";
     public static final String PARTYB = "174379"; //same as business shortcode above
-    public static final String CALLBACKURL = "https://9a32-105-160-7-69.ngrok.io/api/mpesa-response";
+    public static final String CALLBACKURL = "https://f77d-41-89-160-19.ngrok.io/api/mpesa-response";
 }

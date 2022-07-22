@@ -373,6 +373,10 @@ public class MainActivity extends AppCompatActivity {
                 transportServiceNav.setVisibility(View.VISIBLE);
                 break;
             default:
+                adminNav.setVisibility(View.GONE);
+                authName.setText(fullName);
+                foodServiceNav.setVisibility(View.GONE);
+                transportServiceNav.setVisibility(View.GONE);
                 break;
         }
     }

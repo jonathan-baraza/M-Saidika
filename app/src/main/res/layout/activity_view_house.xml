@@ -50,10 +50,11 @@
                         android:id="@+id/location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Location"
+                        android:textColor="@color/primary"
                         android:paddingTop="10dp"
+                        android:text="Location"
                         android:textSize="15dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:paddingTop="10dp"
@@ -83,10 +84,11 @@
                         android:id="@+id/description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Description"
                         android:paddingTop="10dp"
+                        android:textColor="@color/primary"
+                        android:text="Description"
                         android:textSize="15dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:paddingTop="10dp"
@@ -116,10 +118,11 @@
                         android:id="@+id/rent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rent"
                         android:paddingTop="10dp"
+                        android:text="Rent"
+                        android:textColor="@color/primary"
                         android:textSize="15dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:paddingTop="10dp"
@@ -149,10 +152,11 @@
                         android:id="@+id/phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Phone Number"
                         android:paddingTop="10dp"
+                        android:text="Phone Number"
+                        android:textColor="@color/primary"
                         android:textSize="15dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:paddingTop="10dp"
@@ -182,10 +186,11 @@
                         android:id="@+id/HousePic"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" Picture"
                         android:paddingTop="10dp"
+                        android:text=" Picture"
+                        android:textColor="@color/primary"
                         android:textSize="15dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/viewHousePic"
