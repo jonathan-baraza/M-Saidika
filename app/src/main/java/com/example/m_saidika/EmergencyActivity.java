@@ -65,7 +65,7 @@ public class EmergencyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:991"));
+                intent.setData(Uri.parse("tel:0710761679"));
                 startActivity(intent);
             }
         });
@@ -92,7 +92,7 @@ public class EmergencyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:254791483633"));
+                intent.setData(Uri.parse("tel:0791483633"));
                 startActivity(intent);
             }
         });
