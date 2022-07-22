@@ -76,6 +76,7 @@ public class ViewJobActivity extends AppCompatActivity {
 
         if (fUser.getUid().equals(owner)){
             delete.setVisibility(View.VISIBLE);
+            btnCall.setVisibility(View.GONE);
         }
 
         btnCall.setOnClickListener(new View.OnClickListener() {

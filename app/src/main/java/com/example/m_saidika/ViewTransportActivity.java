@@ -75,7 +75,7 @@ public class ViewTransportActivity extends AppCompatActivity {
         serviceId=intent.getStringExtra("id");
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Tranport Services");
+        getSupportActionBar().setTitle(intent.getStringExtra("title"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

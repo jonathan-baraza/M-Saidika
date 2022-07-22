@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.m_saidika.FoodMenuActivity;
 import com.example.m_saidika.Models.ApplicationItem;
 import com.example.m_saidika.Models.Profile;
@@ -59,7 +60,7 @@ public class ApplicationServiceAdapter extends RecyclerView.Adapter<ApplicationS
                 if(profile.getPhoto().length()>0){
                     Picasso.get().load(profile.getPhoto()).placeholder(R.drawable.loader2).into(holder.image);
                 }else{
-                    holder.image.setImageResource(R.drawable.cartoon_restaurant);
+                    Glide.with(mContext).load(R.drawable.m_application).into(holder.image);
                 }
 
             }

@@ -184,7 +184,7 @@ public class PaymentActivity extends AppCompatActivity{
                     if (response.isSuccessful()) {
                         Timber.d("post submitted to API. %s", response.body());
                         pd.setMessage("Waiting for your action...");
-                        new CountDownTimer(20000,1000) {
+                        new CountDownTimer(16000,1000) {
                             @Override
                             public void onTick(long l) {
 
